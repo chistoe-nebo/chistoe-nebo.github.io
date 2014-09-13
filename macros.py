@@ -1,0 +1,464 @@
+# vim: set fileencoding=utf-8 tw=0 nofoldenable:
+
+import cgi
+import hashlib
+import imp
+import os
+import re
+import sys
+
+BASE_URL = "http://land.umonkey.net"
+WEBSITE_NAME = u"Жизнь в деревне"
+DEFAULT_LANGUAGE = "ru"
+STOP_LABELS = ["draft", "status", "link", "queue"]
+
+from plugins import *
+
+from plugins.simple_menu import *
+#SIMPLE_MENU_FIXED = [("volunteer/", u"Волонтёрам", None, 60, None)]
+
+from plugins.disqus import *
+DISQUS_ID = "umonkey-land"
+
+from plugins.frontpage_tiles import *
+FRONTPAGE_SPECS = [
+    {"label": "blog",
+     "title": u"Блог <a href='/blog.xml'>RSS</a> <a href='/blog/subscribe/'>email</a>",
+     "more": u"Остальное <a href='/blog/'>в архиве</a>.",
+     },
+    {"label": "photo",
+     "title": u"Фотоблог <a href='/photo.xml'>RSS</a>",
+     "more": u"Остальное <a href='/photo/'>в архиве</a>.",
+     "skip": ["guests"],
+     },
+    {"label": "video",
+     "title": u"Видео <a href='/video.xml'>RSS</a> <a href='http://www.youtube.com/user/umonkey/videos'>YouTube</a>",
+     "more": u"Остальное <a href='/video/'>в архиве</a>.",
+     },
+    {"label": "guests",
+     "title": u"Гости <a href='/about/guests/' title='Карта, что брать с собой'>Как приехать?</a> <a href='/volunteer/' title='4 часа работы в день в обмен на еду и кров'>Волонтёрам</a>",
+     "more": u"Были и другие, но они ушли <a href='/guests/'>в архив</a>.",
+     },
+    {"label": "neighbors",
+     "title": u"Соседи <a href='/neighbors/' title='Блоги наших соседей по поселению и по духу'>Похожие сайты</a>",
+     "more": u"Есть и <a href='/neighbors/'>другие соседи</a>.",
+     },
+    {"label": "nature",
+     "title": u"Природа <a href='/nature/'>Альбом</a>",
+     "more": u"Остальное <a href='/nature/'>в альбоме</a>.",
+     },
+]
+
+from plugins.sitemap import *
+SITEMAP_BLACKLIST_IMAGES = "^/thumbnails/"
+SITEMAP_EXTRA_URLS = ["volunteer/", "tools/beton-calc.html"]
+
+#from plugins.ueb import *
+#UEB_PATTERN = "http://example.com/edit?page=%s"
+
+from plugins.meta import *
+OG_COUNTRY_NAME = "Russia"
+OG_LOCALITY = "Sebezh"
+OG_EMAIL = "hex@umonkey.net"
+
+from plugins.yandex_metrika import *
+YANDEX_METRIKA_ID = "14608519"
+
+from plugins.photopages import *
+PHOTO_PAGE_TEMPLATE = "photo_template.md"
+PHOTO_INCLUDE_PATTERN = "^photo/[^/]+\.jpg$"
+
+from plugins.podcast import *
+
+#from plugins.shadowbox import *
+
+from plugins.feeds import *
+from plugins.pagelist import *
+
+from plugins.pagemeta import *
+PAGEMETA_LABELS = ["blog", "photo", "animals"]
+
+from plugins.anchors import *
+ANCHOR_SYMBOL = u"⚓"
+
+from plugins.authors import *
+AUTHORS = [{
+    "name": "umonkey",
+    "display_name": u"Владимир",
+    "link": "https://plus.google.com/111824683191076754514/posts",
+    "default": True,
+}, {
+    "name": "estel",
+    "display_name": u"Юлия",
+    "link": "http://vk.com/e_stel",
+    "sex": "f",
+}]
+
+from plugins.openid import *
+MYOPENID_NAME = "umonkey"
+
+from plugins.rdfa import *
+
+from plugins.video import *
+
+#from plugins.microblog import *
+MICROBLOG_SOURCE = "input/microblog.txt"
+#MICROBLOG_FEED = "output/microblog.xml"
+#MICROBLOG_URL = "http://land.umonkey.net/micro/"
+MICROBLOG_LANG = "rus"
+MICROBLOG_TITLE = u"Микроблог из деревни"
+MICROBLOG_DESCRIPTION = u"Ссылки и короткие заметки."
+MICROBLOG_STRIP_HASHTAGS = True
+
+
+page = {}
+pages = []
+
+
+# Place your own Poole hooks here.
+
+def fix_url(url):
+    """Removes /index.html from local links."""
+    if url.endswith("/index.html"):
+        return url[:-10]
+    elif url == "index.html":
+        return ""
+    return url
+
+
+def gallery(label):
+    items = []
+    for page in pages:
+        if label in get_page_labels(page) and is_page_visible(page):
+            html = u"<li><a href='/%s'>" % strip_url(page["url"])
+            html += u"<img src='%s' alt='image'/>" % page["image"]
+            html += u"<span>%s</span>" % page["title"]
+            html += u"</a></li>"
+            items.append(html)
+
+    if not items:
+        return u"Эта галерея пуста."
+
+    output = u"<ul class='gallery'>\n%s\n</ul>" % u"\n".join(items)
+    return output
+
+
+def wrap_content(contents):
+    """Вывод основного содержимого страницы, обрамление добавками.  Для блога
+    добавляется предложение подписаться на RSS, например."""
+    labels = get_page_labels(page)
+
+    html = u""
+
+    hook_names = [f for f in globals()
+        if f.startswith("hook_page_contents_")]
+    hooks = [getattr(sys.modules["macros"], f)
+        for f in sorted(hook_names)]
+
+    for hook in hooks:
+        value = hook(page)
+        if value is not None:
+            html += value
+            break
+
+    if not html:
+        html += page.html
+
+    html += subscribe_please()
+    html += similar_posts()
+    return html
+
+
+def subscribe_please():
+    labels = set(re.split(",\s*", page.get("labels", "")))
+
+    if set(["blog", "nature"]) & labels:
+        return u"<p>Следить за развитием событий удобнее всего с помощью <a href=\"/blog/subscribe/\">почтовой рассылки</a> или <a href=\"/blog.xml\">RSS ленты</a>.</p>"
+
+    elif "podcast" in labels:
+        return u"<p>Следить за развитием событий удобнее всего с помощью <a href=\"/podcast.xml\">RSS ленты</a>, есть <a href='http://farm.rpod.ru/'>зеркало на Russian Podcasting</a>.</p>"
+
+    elif "photo" in labels:
+        return u"<p>Следить за нашим <a href='/photo/'>фотоблогом</a> удобнее всего с помощью <a href='/photo.xml'>RSS ленты</a>.</p>"
+
+    else:
+        return u""
+
+
+def static_file_url(filename):
+    """Returns a link to the specified file.  The link contains a string that
+    prevents caching the file after it's changed (technically it adds an MD5
+    hash of the contents)."""
+
+    import hashlib
+
+    path = os.path.join("input", filename)
+    if not os.path.exists(path):
+        return path
+
+    contents = file(path, "rb").read()
+    checksum = hashlib.md5(contents).hexdigest()
+
+    return filename + "?hash=" + checksum
+
+
+def metrika(filename):
+    import json
+
+    months = [u"Январь", u"Февраль", u"Март", u"Апрель", u"Май", u"Июнь",
+        u"Июль", u"Август", u"Сентябрь", u"Октябрь", u"Ноябрь", u"Декабрь"]
+
+    def fmt(value):
+        if value < 1000:
+            return str(value)
+        return "%u&nbsp;%03u" % (value / 1000, value % 1000)
+
+    try:
+        with open(filename, "rb") as f:
+            data = json.loads(f.read())
+
+            output = u"<table id='metrika'>\n"
+            output += u"<thead><tr>"
+            output += u"<th>Месяц</th>"
+            output += u"<th>Посетители</th>"
+            output += u"<th>Визиты</th>"
+            output += u"<th>Страницы</th>"
+            output += u"<th>Глубина</th>"
+            output += u"<th>Отказы</th>"
+            output += u"</tr></thead>\n"
+
+            output += u"<tbody>\n"
+            for row in data["data"]:
+                year = row["date"][:4]
+                month = int(row["date"][4:6])
+                output += u"<tr>\n"
+                output += u"<td>%s, %s</td>\n" % (months[month-1], year)
+                output += u"<td>%s</td>\n" % fmt(row["visitors"])
+                output += u"<td>%s</td>\n" % fmt(row["visits"])
+                output += u"<td>%s</td>\n" % fmt(row["page_views"])
+                output += u"<td>%.1f</td>\n" % row["depth"]
+                output += u"<td>%u%%</td>\n" % (100 * row["denial"])
+                output += u"</tr>\n"
+
+            output += u"</tbody>\n</table>\n"
+            return output
+    except Exception, e:
+        import traceback
+        print "error  : could not display metrika table: %s" % e
+        print traceback.format_exc(e)
+        return u"При попытке построения таблицы возникла ошибка."
+
+
+def similar_posts():
+    try:
+        labels = set(get_page_labels(page)) & set(["blog", "podcast", "guests"])
+        if not labels:
+            return ""
+
+        main_label = labels.pop()
+
+        similar = []
+
+        meidx = None
+        for p in sorted(pages, key=lambda p: p.get("date")):
+            if not p.get("date"):
+                continue
+            if p.url == page.url:
+                meidx = len(similar)
+            elif "draft" in page["labels"]:
+                continue
+            if main_label in get_page_labels(p):
+                similar.append(p)
+
+        if meidx is None:
+            return ""
+
+        start = max(meidx - 2, 0)
+        start = min(start, len(similar) - 5)
+        similar = similar[start:start+5]
+
+        if not similar:
+            return ""
+
+        months = [u"январь", u"февраль", u"март", u"апрель", u"май", u"июнь",
+            u"июль", u"август", u"сентябрь", u"октябрь", u"ноябрь", u"декабрь"]
+
+        items = []
+        for p in similar:
+            pd = get_page_date(p)
+            month = int(time.strftime("%m", pd))
+            year = time.strftime("%Y", pd)
+            item = u"<div class=\"date\">%s %s</div>" % (months[month-1], year)
+
+            if p.url == page.url:
+                item += u"<a class=\"current\">%s</a>" % p["title"]
+            else:
+                item += u"<a href=\"%s\">%s</a>" % (fix_url(p.url), p["title"])
+
+            items.append(item)
+
+        output = u"<div id=\"similar\"><table><tbody><tr>\n"
+        for item in items:
+            output += u"<td>%s</td>\n" % item
+        output += u"</tr></tbody></table></div>\n"
+
+        return output
+    except Exception, e:
+        print "error  : coult not render similar posts: %s" % e
+        return "<!-- error rendering similar posts -->\n"
+
+
+def recent_blog_posts(limit=9):
+    """Renders some recent blog posts as tiles."""
+    tiles = []
+
+    for page in sorted(macros("pages"), key=lambda p: p.get("date"), reverse=True):
+        if "date" not in page:
+            continue
+
+        labels = get_page_labels(page)
+
+        if "blog" not in labels:
+            continue
+
+        if "draft" in labels:
+            continue
+
+        if "poster" not in page:
+            continue
+
+        tiles.append({
+            "link": page.url,
+            "title": page["title"],
+            "image": "input/" + page["poster"].encode("utf-8")
+        })
+
+    from plugins import Tiles
+    return Tiles([(None, tiles[:limit])]).render()
+
+
+
+def show_projects(filename):
+    output = u"<table class='projects'>\n"
+    output += u"<thead><tr><th>Проект</th><th/><th/></tr></thead>\n"
+    output += u"<tbody>\n"
+
+    raw_data = open("input/" + filename, "rb").read().decode("utf-8")
+    lines = [l.split(";") for l in raw_data.strip().split("\n") if not l.startswith("#")]
+
+    for parts in sorted(lines, key=lambda p: (-float(p[1]), p[0])):
+        try:
+            name, progress, link, comment = parts
+            output += u"<tr>"
+
+            if link:
+                output += u"<td><a href='%s'>%s</a></td>" % (link, name)
+            else:
+                output += u"<td>%s</td>" % name
+
+            if int(progress) == 1:
+                output += u"<td>&#x2713;</td>"
+            else:
+                output += u"<td/>"
+
+            output += u"<td>%s</td>" % comment
+
+            output += u"</tr>\n"
+        except ValueError, e:
+            print "error  : bad project line: %s" % ";".join(parts).encode("utf-8")
+
+    output += u"</tbody>\n"
+    output += u"</table>\n"
+
+    return output
+
+
+def last_guests(columns=3):
+    """Вывод картинок последних гостей."""
+    from plugins import Tiles
+
+    tiles = []
+
+    for page in sorted(pages, key=lambda p: p.get("date"), reverse=True):
+        labels = get_page_labels(page)
+
+        if "photo" not in labels:
+            continue
+
+        if "guests" not in labels:
+            continue
+
+        if "draft" in labels:
+            continue
+
+        tiles.append({
+            "link": page.url,
+            "title": page["title"],
+            "image": "input/" + page["image"],
+        })
+
+    return Tiles([(None, tiles[:6])]).render()
+
+
+def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None):
+    """Вывод картинок с животными."""
+    from plugins import Tiles
+    from fnmatch import fnmatch
+
+    tiles = []
+
+    for page in sorted(pages, key=lambda p: p.get(sort), reverse=reverse):
+        labels = get_page_labels(page)
+
+        if "draft" in labels:
+            continue
+
+        if not fnmatch(page.fname, pattern):
+            continue
+
+        image = get_page_image_path(page)
+        if not image:
+            print "warning: page %s has no image or thumbnail, hidden." % page.fname
+            continue
+
+        tiles.append({
+            "link": page.url,
+            "title": page["title"],
+            "image": image,
+        })
+
+    if not tiles:
+        print "warning: nothing to show on page %s" % macros("page").fname
+        return ""
+
+    if limit:
+        tiles = tiles[:limit]
+
+    return Tiles([(None, tiles)]).render()
+
+
+def format_pagelist_title(page):
+    """Форматирование ссылки на пост в списке"""
+    page_url = fix_url(page["url"])
+
+    labels = get_page_labels(page)
+    cls = "flag" if "flag" in labels else "noflag"
+
+    return u"<a class='%s' href='/%s'>%s</a>" % (cls, page_url, cgi.escape(page["title"]))
+
+
+def format_feed_item_title(page):
+    title = page["title"]
+    if title.startswith(u"Подкаст №"):
+        title = u"Подкаст из экопоселения: эпизод %s" % title.split(" ", 1)[1]
+    return title
+
+
+def page_title():
+    title = page.get("title")
+
+    if "animals" in get_page_labels(page):
+        _t = title[0].lower() + title[1:]
+        title = u"<a href='/nature/'>Природа</a>: %s" % _t
+
+    return title

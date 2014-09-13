@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset={{ __encoding__ }}"/>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/{{ static_file_url("files/screen.css") }}"/>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+    <link rel="alternate" type="application/rss+xml" title="Записи из блога" href="http://land.umonkey.net/blog.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="Фотографии" href="http://land.umonkey.net/photo.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="Комментарии" href="http://umonkey-land.disqus.com/latest.rss"/>
+    <link rel="icon" type="image/png" href="/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon.png"/>
+    <meta name="viewport" content="width=1000"/>
+    <!-- does not validate
+    <meta name="microid" content="mailto+http:sha1:beb7bf1a0c9a4ad6035d0147745754f394320f75"/>
+    -->
+  </head>
+  <body{{ html_body_attrs() }}>
+    <div id="wrapper">
+      <div id="header">
+        <h1><a href="/">Жизнь в деревне</a></h1>
+        {{ simple_menu() }}
+      </div>
+      <div id="content">
+        <div id="chead">
+          <h1>{{ page_title() }}</h1>
+          {{ page_meta() }}
+        </div>
+        {{ wrap_content(__content__) }}
+        {{ comments() }}
+      </div>
+      <div id="footer">
+        <p>&copy; 2012-2014 <a href="http://umonkey.net/" target="_blank">Justin Forest</a> &middot; <a href="/sitemap/">карта сайта</a> &middot; <a href="/mail/" accesskey="m" title="Написать письмо">написать письмо</a> &middot; <a href="/stats/">статистика</a></p>
+        <form id="search" method="get" action="http://yandex.ru/sitesearch">
+          <input type="hidden" name="searchid" value="2039956"/>
+          <input type="hidden" name="web" value="0"/>
+          <input type="hidden" name="l10n" value="ru"/>
+          <input type="text" name="text" placeholder="Яндекс"/>
+          <button>Найти</button>
+        </form>
+      </div>
+    </div>
+    <div id="llabel"></div>
+  </body>
+</html>

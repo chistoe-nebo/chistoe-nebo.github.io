@@ -1,0 +1,39 @@
+#header {
+	background-color: #3C6D6E;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 0px 0;
+	height: 60px;
+}
+#header .wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+#header h1 {
+	display: inline-block;
+	width: 213px;
+	height: 60px;
+	line-height: 60px;
+	margin: 0;
+
+	font-size: 30px;
+
+	background-image: url(/images/logo.png);
+	background-repeat: no-repeat;
+	text-indent: -1000px;
+}
+
+#header ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: inline-block;
+}
+#header li {
+	display: inline-block;
+	margin: 0 10px 0 0;
+	padding: 0;
+	line-height: 50px;
+	vertical-align: middle;
+}

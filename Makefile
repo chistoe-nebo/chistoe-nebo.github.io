@@ -11,4 +11,5 @@ build: clean
 	test -d output || mkdir output
 	test -d ~/.cache/thumbnails || mkdir -p ~/.cache/thumbnails
 	python -u poole.py --build | tee build.log
+	ls css.d/*.css | sort | xargs cat > output/screen.css
 	grep -E '^(error|warning)' build.log || true

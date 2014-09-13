@@ -1,0 +1,15 @@
+html {
+	/**
+	 * Фиксация минимальной высоты, чтобы работало height:100% в детях.
+	 ***/
+	height: 100%;
+}
+
+body {
+	background-color: white;
+	font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+
+	height: 100%;
+}

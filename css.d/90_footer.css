@@ -1,0 +1,22 @@
+#footer {
+	width: 100%;
+	border-top: solid 3px #666;
+	background-color: #ccc;
+	padding: 20px 0;
+}
+#footer .wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+#footer ul {
+	display: inline-block;
+	width: 250px;
+
+	margin: 0;
+	padding: 0;
+
+	color: gray;
+	font-size: 14px;
+	line-height: 1.75em;
+	list-style-type: none;
+}
