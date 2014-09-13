@@ -1,0 +1,14 @@
+#video {
+	width: 1000px;
+	height: 388px;
+	margin: 10px auto;
+}
+#video #player {
+	float: left;
+	margin-right: 10px;
+
+	width: 690px;
+	height: 388px;
+
+	background-color: gray;
+}

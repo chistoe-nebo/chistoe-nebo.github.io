@@ -1,4 +1,11 @@
 #insiders {
+	/**
+	 * Без position изображения скрываются под слайдером,
+	 * не важно какой z-index.
+	 **/
+	position: relative;
+	z-index: 10;
+
 	width: 1000px;
 	height: 250px;
 
@@ -22,33 +29,4 @@
 #insiders img {
 	width: 250px;
 	height: 250px;
-}
-
-
-#video {
-	width: 1000px;
-	height: 388px;
-	margin: 10px auto;
-}
-#video #player {
-	float: left;
-	margin-right: 10px;
-
-	width: 690px;
-	height: 388px;
-
-	background-color: gray;
-}
-
-
-#stuff {
-	width: 1000px;
-	height: 233px;
-	margin: 10px auto;
-}
-#stuff .item {
-	float: left;
-}
-#stuff .skip {
-	margin-left: 11px;
 }

@@ -7,6 +7,6 @@ jQuery(document).ready(function($){
 		"width": "100%",
 		"height": "100%",
 		"responsive": true,
-		"animspeed": 5000,
+		"animspeed": 50000,
 	});
 });

@@ -1,0 +1,11 @@
+#stuff {
+	width: 1000px;
+	height: 233px;
+	margin: 10px auto;
+}
+#stuff .item {
+	float: left;
+}
+#stuff .skip {
+	margin-left: 11px;
+}
