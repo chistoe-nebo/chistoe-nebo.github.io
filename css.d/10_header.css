@@ -41,3 +41,6 @@
 	line-height: 28px;
 	vertical-align: bottom;
 }
+#header li a {
+	color: inherit;
+}

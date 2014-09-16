@@ -13,14 +13,14 @@
 	background-color: #eee;
 }
 
-#splash ul {
+#splash ul.bjqs {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 	width: 100%;
 	height: 100%;
 }
-#splash li {
+#splash .bjqs li {
 	width: 100%;
 	height: 100%;
 
@@ -50,6 +50,7 @@
 }
 #splash .right .hint {
 	left: 50%;
+	bottom: 180px;
 	margin-left: 180px;
 }
 #splash .top_left .hint {
@@ -58,13 +59,63 @@
 	bottom: auto;
 }
 
-#splash li {
+#splash .bjqs li {
 	display: none;
 }
-#splash li:nth-child(1) {
+#splash .bjqs li:nth-child(1) {
 	display: list-item;
 }
 
-.bjqs-markers, .bjqs-controls {
-	display: none;
+.bjqs-controls li a {
+	display: block;
+	width: 47px;
+	height: 91px;
+	background: transparent url(/images/hover-arrows.png) no-repeat 0 0;
+
+	position: absolute;
+	top: 50%;
+	margin-top: -50px;
+	text-indent: -10000px;
+
+	outline: none;
+}
+.bjqs-controls .bjqs-prev a {
+	left: 50px;
+}
+.bjqs-controls .bjqs-next a {
+	left: 100%;
+	margin-left: -100px;
+	background-position: 100% 0;
+}
+
+.bjqs-markers {
+	position: absolute;
+
+	top: 100%;
+	margin-top: -180px;
+
+	right: 50%;
+	margin-right: -500px;
+
+	list-style-type: none;
+	padding: 0;
+}
+.bjqs-markers li {
+	display: inline-block;
+	background-color: gray;
+	margin: 0 2px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 20px;
+}
+.bjqs-markers a {
+	display: inline-block;
+	color: white;
+	text-decoration: none;
+	width: 20px;
+	outline: none;
+}
+.bjqs-markers .active-marker {
+	background-color: #ccc;
+	color: #333;
 }

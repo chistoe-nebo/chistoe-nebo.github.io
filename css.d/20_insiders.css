@@ -21,9 +21,36 @@
 	margin: 0;
 	padding: 0;
 	height: 250px;
+	overflow: hidden;
 }
 #insiders li {
 	float: left;
+	position: relative;
+}
+
+#insiders li .note {
+	display: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background: transparent url(/images/blur.png) repeat;
+}
+#insiders li:hover .note {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 200px;
+	padding: 25px;
+	color: black;
+	text-align: center;
+}
+#insiders .note .name {
+	font-weight: bold;
+	font-family: serif;
+	font-size: 1.5em;
+	line-height: 2em;
 }
 
 #insiders img {
