@@ -2,11 +2,10 @@
 	background-color: #3C6D6E;
 	color: white;
 	font-size: 15px;
+	line-height: 15px;
 	padding: 0px 0;
 	height: 60px;
-	position: absolute;
 	width: 100%;
-	z-index: 10;
 }
 #header .wrapper {
 	width: 1000px;
@@ -16,10 +15,10 @@
 	display: inline-block;
 	width: 213px;
 	height: 60px;
-	line-height: 60px;
 	margin: 0;
 
 	font-size: 30px;
+	line-height: 30px;
 
 	background-image: url(/images/logo.png);
 	background-repeat: no-repeat;
@@ -31,11 +30,14 @@
 	padding: 0;
 	list-style-type: none;
 	display: inline-block;
+	vertical-align: bottom;
 }
 #header li {
 	display: inline-block;
 	margin: 0 10px 0 0;
 	padding: 0;
-	line-height: 50px;
 	vertical-align: middle;
+
+	line-height: 28px;
+	vertical-align: bottom;
 }
