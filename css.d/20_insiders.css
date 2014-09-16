@@ -9,7 +9,7 @@
 	width: 1000px;
 	height: 250px;
 
-	margin: -125px auto 20px;
+	margin: -150px auto 20px;
 
 	background-color: #ccc;
 	border-top: solid 3px #666;
@@ -29,4 +29,20 @@
 #insiders img {
 	width: 250px;
 	height: 250px;
+}
+
+#insiders .meet {
+	margin: 0;
+	padding: 0;
+}
+#insiders .meet a {
+	display: block;
+	position: absolute;
+	top: 125px;
+	left: 200px;
+
+	width: 100px;
+	height: 100px;
+	background: transparent url(/images/insiders/meet.png) no-repeat 50% 50%;
+	text-indent: -1000px;
 }
