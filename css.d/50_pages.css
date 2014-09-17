@@ -1,0 +1,15 @@
+#content {
+	width: 1000px;
+	margin: 0 auto;
+
+	line-height: 1.5em;
+}
+
+#content img.right {
+	float: right;
+	margin: 0 0 10px 20px;
+}
+
+.wide img {
+	width: 100%;
+}

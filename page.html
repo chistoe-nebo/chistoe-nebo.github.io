@@ -3,43 +3,48 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset={{ __encoding__ }}"/>
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/{{ static_file_url("files/screen.css") }}"/>
-    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-    <link rel="alternate" type="application/rss+xml" title="Записи из блога" href="http://land.umonkey.net/blog.xml"/>
-    <link rel="alternate" type="application/rss+xml" title="Фотографии" href="http://land.umonkey.net/photo.xml"/>
-    <link rel="alternate" type="application/rss+xml" title="Комментарии" href="http://umonkey-land.disqus.com/latest.rss"/>
-    <link rel="icon" type="image/png" href="/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon.png"/>
+    <link rel="stylesheet" type="text/css" href="/screen.css"/>
+    <script type="text/javascript" src="/scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/scripts/bjqs-1.3.min.js"></script>
+    <script type="text/javascript" src="/scripts/scripts.js"></script>
     <meta name="viewport" content="width=1000"/>
-    <!-- does not validate
-    <meta name="microid" content="mailto+http:sha1:beb7bf1a0c9a4ad6035d0147745754f394320f75"/>
-    -->
   </head>
   <body{{ html_body_attrs() }}>
-    <div id="wrapper">
-      <div id="header">
-        <h1><a href="/">Жизнь в деревне</a></h1>
-        {{ simple_menu() }}
-      </div>
-      <div id="content">
-        <div id="chead">
-          <h1>{{ page_title() }}</h1>
-          {{ page_meta() }}
-        </div>
-        {{ wrap_content(__content__) }}
-        {{ comments() }}
-      </div>
-      <div id="footer">
-        <p>&copy; 2012-2014 <a href="http://umonkey.net/" target="_blank">Justin Forest</a> &middot; <a href="/sitemap/">карта сайта</a> &middot; <a href="/mail/" accesskey="m" title="Написать письмо">написать письмо</a> &middot; <a href="/stats/">статистика</a></p>
-        <form id="search" method="get" action="http://yandex.ru/sitesearch">
-          <input type="hidden" name="searchid" value="2039956"/>
-          <input type="hidden" name="web" value="0"/>
-          <input type="hidden" name="l10n" value="ru"/>
-          <input type="text" name="text" placeholder="Яндекс"/>
-          <button>Найти</button>
-        </form>
+    <div id="header">
+      <div class="wrapper">
+        <h1>Чистое небо</h1><ul>
+          <li><a href="/do/">Чем заняться</a></li>
+          <li><a href="/go/">Куда сходить</a></li>
+          <li><a href="/stay/">Где остановиться</a></li>
+          <li><a href="/plan/">Спланировать визит</a></li>
+        </ul>
       </div>
     </div>
-    <div id="llabel"></div>
+
+    {{ wide_image() }}
+
+    <div id="content">
+      <div id="chead">
+        <h1>{{ page_title() }}</h1>
+      </div>
+      {{ wrap_content(__content__) }}
+      <div style="clear:both"></div>
+    </div>
+
+    <div id="footer">
+      <div class="wrapper">
+        <ul>
+          <li><a href="/">Главная страница</a></li>
+          <li><a href="/map/">Карта сайта</a></li>
+          <li><a href="mailto:hex@umonkey.net">Написать письмо</a></li>
+        </ul>
+
+        <ul>
+          <li><a href="/insiders/">Наши жители</a></li>
+          <li><a href="/neighbors/">Наши соседи</a></li>
+          <li><a href="http://www.poselenia.ru/">Другие поселения</a></li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>

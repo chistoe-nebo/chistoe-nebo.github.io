@@ -7,7 +7,7 @@ import os
 import re
 import sys
 
-BASE_URL = "http://land.umonkey.net"
+BASE_URL = "http://nebo-2.umonkey.net"
 WEBSITE_NAME = u"Жизнь в деревне"
 DEFAULT_LANGUAGE = "ru"
 STOP_LABELS = ["draft", "status", "link", "queue"]
@@ -17,89 +17,51 @@ from plugins import *
 from plugins.simple_menu import *
 #SIMPLE_MENU_FIXED = [("volunteer/", u"Волонтёрам", None, 60, None)]
 
-from plugins.disqus import *
-DISQUS_ID = "umonkey-land"
-
-from plugins.frontpage_tiles import *
-FRONTPAGE_SPECS = [
-    {"label": "blog",
-     "title": u"Блог <a href='/blog.xml'>RSS</a> <a href='/blog/subscribe/'>email</a>",
-     "more": u"Остальное <a href='/blog/'>в архиве</a>.",
-     },
-    {"label": "photo",
-     "title": u"Фотоблог <a href='/photo.xml'>RSS</a>",
-     "more": u"Остальное <a href='/photo/'>в архиве</a>.",
-     "skip": ["guests"],
-     },
-    {"label": "video",
-     "title": u"Видео <a href='/video.xml'>RSS</a> <a href='http://www.youtube.com/user/umonkey/videos'>YouTube</a>",
-     "more": u"Остальное <a href='/video/'>в архиве</a>.",
-     },
-    {"label": "guests",
-     "title": u"Гости <a href='/about/guests/' title='Карта, что брать с собой'>Как приехать?</a> <a href='/volunteer/' title='4 часа работы в день в обмен на еду и кров'>Волонтёрам</a>",
-     "more": u"Были и другие, но они ушли <a href='/guests/'>в архив</a>.",
-     },
-    {"label": "neighbors",
-     "title": u"Соседи <a href='/neighbors/' title='Блоги наших соседей по поселению и по духу'>Похожие сайты</a>",
-     "more": u"Есть и <a href='/neighbors/'>другие соседи</a>.",
-     },
-    {"label": "nature",
-     "title": u"Природа <a href='/nature/'>Альбом</a>",
-     "more": u"Остальное <a href='/nature/'>в альбоме</a>.",
-     },
-]
-
 from plugins.sitemap import *
 SITEMAP_BLACKLIST_IMAGES = "^/thumbnails/"
 SITEMAP_EXTRA_URLS = ["volunteer/", "tools/beton-calc.html"]
-
-#from plugins.ueb import *
-#UEB_PATTERN = "http://example.com/edit?page=%s"
 
 from plugins.meta import *
 OG_COUNTRY_NAME = "Russia"
 OG_LOCALITY = "Sebezh"
 OG_EMAIL = "hex@umonkey.net"
 
-from plugins.yandex_metrika import *
-YANDEX_METRIKA_ID = "14608519"
+#from plugins.yandex_metrika import *
+#YANDEX_METRIKA_ID = "14608519"
 
-from plugins.photopages import *
-PHOTO_PAGE_TEMPLATE = "photo_template.md"
-PHOTO_INCLUDE_PATTERN = "^photo/[^/]+\.jpg$"
+#from plugins.photopages import *
+#PHOTO_PAGE_TEMPLATE = "photo_template.md"
+#PHOTO_INCLUDE_PATTERN = "^photo/[^/]+\.jpg$"
 
-from plugins.podcast import *
+#from plugins.podcast import *
 
 #from plugins.shadowbox import *
 
-from plugins.feeds import *
-from plugins.pagelist import *
+#from plugins.feeds import *
+#from plugins.pagelist import *
 
-from plugins.pagemeta import *
-PAGEMETA_LABELS = ["blog", "photo", "animals"]
+#from plugins.pagemeta import *
+#PAGEMETA_LABELS = ["blog", "photo", "animals"]
 
-from plugins.anchors import *
-ANCHOR_SYMBOL = u"⚓"
+#from plugins.anchors import *
+#ANCHOR_SYMBOL = u"⚓"
 
-from plugins.authors import *
-AUTHORS = [{
-    "name": "umonkey",
-    "display_name": u"Владимир",
-    "link": "https://plus.google.com/111824683191076754514/posts",
-    "default": True,
-}, {
-    "name": "estel",
-    "display_name": u"Юлия",
-    "link": "http://vk.com/e_stel",
-    "sex": "f",
-}]
+#from plugins.authors import *
+#AUTHORS = [{
+#    "name": "umonkey",
+#    "display_name": u"Владимир",
+#    "link": "https://plus.google.com/111824683191076754514/posts",
+#    "default": True,
+#}, {
+#    "name": "estel",
+#    "display_name": u"Юлия",
+#    "link": "http://vk.com/e_stel",
+#    "sex": "f",
+#}]
 
-from plugins.openid import *
-MYOPENID_NAME = "umonkey"
+#from plugins.rdfa import *
 
-from plugins.rdfa import *
-
-from plugins.video import *
+#from plugins.video import *
 
 #from plugins.microblog import *
 MICROBLOG_SOURCE = "input/microblog.txt"
@@ -462,3 +424,14 @@ def page_title():
         title = u"<a href='/nature/'>Природа</a>: %s" % _t
 
     return title
+
+
+def wide_image():
+    img = page.get("wideimage")
+    if not img:
+        return ""
+
+    html = u"<div class='wide'>\n<img src='%s' alt='wide'/>" % img
+    html += u"</div>\n"
+
+    return html
