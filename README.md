@@ -7,4 +7,7 @@
 
 Добавлять двоичные файлы (картинки итп) через веб-интерфейс нельзя, для этого придётся задействовать один из клиентов для работы с репозиториями Mercurial.
 
+Текущая версия сайта доступна по адресу [nebo.dev.umonkey.net][2].
+
 [1]: https://bitbucket.org/umonkey/website-nebo-welcome/src/default/input/
+[2]: http://nebo.dev.umonkey.net/
