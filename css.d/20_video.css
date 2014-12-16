@@ -1,14 +1,31 @@
 #video {
 	width: 1000px;
-	height: 388px;
+	height: 400px;
 	margin: 20px auto;
+	white-space: nowrap;
 }
+
+#video > div {
+	display: inline-block;
+}
+
 #video #player {
-	float: left;
 	margin-right: 10px;
 
 	width: 690px;
 	height: 388px;
 
 	background-color: gray;
+}
+
+#video p {
+	margin: 0;
+	font-size: 12px;
+	line-height: 14px;
+}
+#video p a {
+	color: gray;
+}
+#video #map p {
+	text-align: right;
 }
