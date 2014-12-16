@@ -31,10 +31,13 @@ import optparse
 import os
 from os.path import join as opj
 from os.path import exists as opx
+import posixpath
+import urllib
 import re
 import shutil
 import StringIO
 import sys
+import time
 import traceback
 import urlparse
 
@@ -264,6 +267,23 @@ pre {
 """
 }
 
+
+def symlink_output(real_path):
+    if os.path.islink("output"):
+        os.unlink("output")
+    elif os.path.isdir("output"):
+        shutil.rmtree("output")
+
+    os.symlink(real_path, "output")
+
+
+def purge_backups():
+    dirs = sorted(glob.glob("output-*-*"))
+    for dirname in dirs[:-10]:
+        print("info   : removing old output directory %s" % dirname)
+        shutil.rmtree(dirname)
+
+
 def init(project):
     """Initialize a site project."""
 
@@ -282,6 +302,11 @@ def init(project):
             fp.write(content)
 
     print("success: initialized project")
+
+
+def copy_file(src, dst):
+    # shutil.copy(src, dst)
+    os.link(src, dst)
 
 # =============================================================================
 # build site
@@ -449,25 +474,22 @@ def build(project, opts):
     # preparations
     # -------------------------------------------------------------------------
 
+    purge_backups()
+
     dir_in = opj(project, "input")
-    dir_out = opj(project, "output")
+
+    dir_out = opj(project, "output-" + time.strftime("%Y%m%d-%H%M%S"))
+    if not os.path.exists(dir_out):
+        os.makedirs(dir_out)
+
     page_html = opj(project, "page.html")
 
     # check required files and folders
-    for pelem in (page_html, dir_in, dir_out):
+    for pelem in (page_html, dir_in):
         if not opx(pelem):
             print("abort  : %s does not exist, looks like project has not been "
                   "initialized" % pelem)
             sys.exit(1)
-
-    # prepare output directory
-    for fod in glob.glob(opj(dir_out, "*")):
-        if os.path.isdir(fod):
-            shutil.rmtree(fod)
-        else:
-            os.remove(fod)
-    if not opx(dir_out):
-        os.mkdir(dir_out)
 
     # macro module
     fname = opj(opts.project, "macros.py")
@@ -519,10 +541,12 @@ def build(project, opts):
                 else:
                     src = opj(cwd, f)
                     try:
-                        shutil.copy(src, opj(dir_out, cwd_site))
+                        print "debug  : copying %s ..." % src
+                        copy_file(src, opj(dir_out, cwd_site, f))
                     except IOError, e:
                         print src, opj(dir_out, cwd_site), e
-                    except OSError:
+                    except OSError, e:
+                        print "oops", e
                         # some filesystems like FAT won't allow shutil.copy
                         shutil.copyfile(src, opj(dir_out, cwd_site, f))
 
@@ -536,6 +560,7 @@ def build(project, opts):
 
     hooks = [a for a in macros if re.match(r'hook_preconvert_|once_', a)]
     for fn in sorted(hooks):
+        print("info   : executing hook %s" % fn)
         macros[fn]()
 
     # -------------------------------------------------------------------------
@@ -560,6 +585,7 @@ def build(project, opts):
 
     hooks = [a for a in macros if a.startswith("hook_postconvert_")]
     for fn in sorted(hooks):
+        print("info   : executing hook %s" % fn)
         macros[fn]()
 
     # -------------------------------------------------------------------------
@@ -597,7 +623,19 @@ def build(project, opts):
         with codecs.open(fname, 'w', opts.output_enc) as fp:
             fp.write(out)
 
+    # -------------------------------------------------------------------------
+    # process code after building pages
+    # -------------------------------------------------------------------------
+
+    hooks = [a for a in macros if a.startswith("hook_after_")]
+    for fn in sorted(hooks):
+        print("info   : executing hook %s" % fn)
+        macros[fn]()
+
     print("success: built project")
+
+    symlink_output(dir_out)
+
 
 # =============================================================================
 # serve site
@@ -606,13 +644,25 @@ def build(project, opts):
 def serve(project, port):
     """Temporary serve a site project."""
 
+    class RequestHandler(SimpleHTTPRequestHandler):
+        def translate_path(self, path):
+            path = path.split("?", 1)[0]
+            path = path.split("#", 1)[0]
+            path = posixpath.normpath(urllib.unquote(path))
+
+            return os.path.join(os.getcwd(), "output", path[1:])
+
     root = opj(project, "output")
     if not os.listdir(project):
         print("abort  : output dir is empty (build project first!)")
         sys.exit(1)
 
-    os.chdir(root)
-    server = HTTPServer(('', port), SimpleHTTPRequestHandler)
+    m = SimpleHTTPRequestHandler.extensions_map
+    for k, v in m.items():
+        if k in (".js", ):
+            m[k] += "; charset=utf-8"
+
+    server = HTTPServer(('', port), RequestHandler)
     server.serve_forever()
 
 # =============================================================================
