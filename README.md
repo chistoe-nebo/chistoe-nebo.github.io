@@ -15,7 +15,5 @@
 - [Оформление сайта](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Design.md)
 
 
-## Оформление сайта
-
 [1]: https://bitbucket.org/umonkey/website-nebo-welcome/src/default/input/
 [2]: http://nebo.dev.umonkey.net/
