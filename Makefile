@@ -13,3 +13,6 @@ build: clean
 	python -u poole.py --build | tee build.log
 	ls css.d/*.css | sort | xargs cat > output/screen.css
 	grep -E '^(error|warning)' build.log || true
+
+deploy:
+	ssh nebo_welcome@doh.umonkey.net ./refresh
