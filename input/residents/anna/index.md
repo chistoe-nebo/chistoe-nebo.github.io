@@ -1,9 +1,9 @@
 title: Анна
-wideimage: /insiders/anna/wide.jpg
+wideimage: /residents/anna/wide.jpg
 ---
-<img src="/insiders/anna/photo.jpg" alt="Анна" class="right"/>
+<img src="/residents/anna/photo.jpg" alt="Анна" class="right"/>
 
-С 2012 года живёт в поселении постоянно, с мужем <a href="/insiders/dima/">Димой</a>.
+С 2012 года живёт в поселении постоянно, с мужем <a href="/residents/dima/">Димой</a>.
 Занимается домашним хозяйством.
 14 августа 2014 года родила сына Владислава.
 
@@ -12,4 +12,4 @@ wideimage: /insiders/anna/wide.jpg
 Мастер-класс длится 2 часа и включает все этапы изготовления хлеба, чаепитие.
 Стоит 1000 р.
 
-[Познакомиться с другими жителями](/insiders/)
+[Познакомиться с другими жителями](/residents/)
