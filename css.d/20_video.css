@@ -7,6 +7,7 @@
 
 #video > div {
 	display: inline-block;
+	vertical-align: top;
 }
 
 #video #player {
