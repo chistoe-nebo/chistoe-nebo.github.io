@@ -29,9 +29,16 @@ def get_abs_url(rel_url):
         macros("BASE_URL", "http://example.com"),
         rel_url)
 
+
 def macros(k, v=None):
     """Access properties of the macros module, e.g. pages, or page."""
     return getattr(sys.modules["macros"], k, v)
+
+
+def makedir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        print "info   : created folder %s" % path
 
 
 def utf(s):
@@ -124,7 +131,7 @@ def html_body_attrs():
     return output
 
 
-def get_page_image_path(page):
+def get_page_image_path(page, image=None):
     if "image" in page:
         image = page["image"]
     elif "thumbnail" in page:
@@ -225,11 +232,10 @@ class Thumbnail(object):
             return
 
         if not os.path.exists(self.web_path):
-            if not os.path.exists("output/thumbnails"):
-                os.makedirs("output/thumbnails")
-                print "info   : created folder output/thumbnails."
+            tpath = macros("output") + "/thumbnails"
+            makedir(tpath)
+            shutil.copy(self.tmp_path, macros("output") + "/" + self.web_path)
             # print "debug  : wrote %s" % self.web_path
-            shutil.copy(self.tmp_path, "output/" + self.web_path)
 
     @classmethod
     def from_url(cls, url, *args, **kwargs):
@@ -344,7 +350,7 @@ class Tiles(object):
 
             output += u"<ul class='%s'>\n" % cls
             for idx, tile in enumerate(items[:_limit]):
-                link = fix_url(tile["link"])
+                link = fix_url(tile["link"]) if "link" in tile else None
                 title = tile.get("title")
 
                 if "image" in tile:
@@ -375,18 +381,21 @@ class Tiles(object):
                 else:
                     item_class += " col_mid"
 
-                output += u"<li class='{0}'>\n".format(item_class)
-                if title:
-                    output += u"<a href='/%s' title='%s'>\n" % (fix_url(link), title)
-                else:
-                    output += u"<a href='/%s'>\n" % fix_url(link)
-                output += u"<img src='/%s' alt='%s'/>\n" % (image, title or "thumbnail")
+                output += u"<li class='{0}'>".format(item_class)
+
+                img = u"<img src='/%s' alt='%s'/>" % (image, title or "thumbnail")
+                if link:
+                    img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
+                output += img
+
                 if title and show_title:
-                    output += u"<span>%s</span>\n" % title
-                output += u"</a>"
+                    output += u"<span class='title'>%s</span>\n" % title
+                if tile.get("text"):
+                    output += u"<div class='summary'>%s</div>" % tile["text"]
+
                 if tile.get("description"):
                     output += u"<div class='description'>%s</div>" % tile["description"]
-                output += u"</li>\n"
+                output += u"</li>"
 
             output += u"</ul>\n"
 

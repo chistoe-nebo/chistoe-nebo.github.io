@@ -375,7 +375,7 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
         if "draft" in labels:
             continue
 
-        if not fnmatch(page.fname, pattern):
+        if not fnmatch(page.url, pattern):
             continue
 
         image = get_page_image_path(page)
@@ -385,7 +385,8 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
 
         tiles.append({
             "link": page.url,
-            "title": page["title"],
+            "title": page.get("list_title", page["title"]),
+            "text": page.get("list_text"),
             "image": image,
         })
 
@@ -396,7 +397,14 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
     if limit:
         tiles = tiles[:limit]
 
-    return Tiles([(None, tiles)]).render()
+    return Tiles([(None, tiles)], (326, 233)).render()
+
+
+def album(tiles):
+    for tile in tiles:
+        tile["image"] = "input/" + tile["link"]
+    return Tiles([(None, tiles)], (326, 233)).render(
+        css_class="album")
 
 
 def format_pagelist_title(page):

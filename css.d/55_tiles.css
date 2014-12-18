@@ -1,0 +1,34 @@
+/**
+ * Оформление кладки из картинок.
+ **/
+
+ul.tiles {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+ul.tiles li {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 11px;
+	margin-bottom: 40px;
+	width: 326px;
+}
+ul.tiles li.col0 {
+	margin-left: 0;
+}
+
+ul.tiles li span {
+	display: block;
+}
+ul.tiles .summary {
+	font-size: 14px;
+	color: gray;
+	line-height: 125%;
+}
+
+ul.album .title {
+	color: gray;
+	font-size: 14px;
+}

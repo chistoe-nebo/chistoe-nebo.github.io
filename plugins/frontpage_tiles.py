@@ -73,7 +73,7 @@ def frontpage_tiles():
                 link += u" class='tile'"
 
                 t = Thumbnail(image_path,
-                    width=300, height=200)
+                    width=326, height=233)
                 link += u" style='background-image: url(/%s)'" % t.web_path
 
             if "summary" in page:

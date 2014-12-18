@@ -305,6 +305,7 @@ def init(project):
 
 
 def copy_file(src, dst):
+    # print "debug  : copying %s ..." % src
     # shutil.copy(src, dst)
     os.link(src, dst)
 
@@ -541,12 +542,10 @@ def build(project, opts):
                 else:
                     src = opj(cwd, f)
                     try:
-                        print "debug  : copying %s ..." % src
                         copy_file(src, opj(dir_out, cwd_site, f))
                     except IOError, e:
                         print src, opj(dir_out, cwd_site), e
-                    except OSError, e:
-                        print "oops", e
+                    except OSError:
                         # some filesystems like FAT won't allow shutil.copy
                         shutil.copyfile(src, opj(dir_out, cwd_site, f))
 

@@ -395,7 +395,7 @@ def photo_album(split_months=False, size=75, limit=None, columns=10, label="phot
 
 def make_thumbnail(src, size, tpl_vars=None, path=False):
     t = Thumbnail(src, width=size, height=size)
-    dst = "output/" + t.web_path
+    dst = macros("output") + "/" + t.web_path
 
     if path:
         return dst[6:]

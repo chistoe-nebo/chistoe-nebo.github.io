@@ -21,5 +21,14 @@
 - [Оформление сайта](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Design.md)
 
 
+## Форматирование страниц
+
+В теле страниц можно использовать любую разметку Markdown и некоторые специальные функции.
+
+### Вставка уменьшенного изображения
+
+    {{ thumbnail("files/welcome.jpg", 300, 200) }}
+
+
 [1]: https://bitbucket.org/umonkey/website-nebo-welcome/src/default/input/
 [2]: http://nebo.dev.umonkey.net/
