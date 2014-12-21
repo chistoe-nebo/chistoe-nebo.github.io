@@ -11,4 +11,10 @@ jQuery(document).ready(function($){
 			"animspeed": 50000,
 		});
 	}
+
+	$(document).on("click", ".video", function (e) {
+		e.preventDefault();
+		var code = $(this).attr("data-code");
+		$(this).replaceWith(code);
+	});
 });
