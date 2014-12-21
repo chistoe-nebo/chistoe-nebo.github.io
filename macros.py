@@ -443,3 +443,12 @@ def wide_image():
     html += u"</div>\n"
 
     return html
+
+
+def include(path):
+    base = os.path.dirname(page.fname)
+    real = os.path.abspath(os.path.join(base, path))
+    if os.path.exists(real):
+        return open(real, "rb").read().decode("utf-8")
+    else:
+        return "<!-- file %s not found -->" % path

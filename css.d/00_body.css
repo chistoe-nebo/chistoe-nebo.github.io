@@ -9,6 +9,7 @@ body {
 	background-color: white;
 
 	font: normal 16px/1.25em "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333;
 
 	margin: 0;
 	padding: 0 0 100px;
@@ -17,10 +18,15 @@ body {
 }
 
 h1, h2, h3, h4, ht {
-	font-family: Ubuntu, sans-serif;
+	font-family: Arial, Ubuntu, sans-serif;
 }
 
 h1 {
 	font-size: 30px;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 20px;
 	font-weight: normal;
 }

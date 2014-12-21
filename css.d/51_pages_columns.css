@@ -1,0 +1,23 @@
+div.row {
+	font-size: 0; /* подавление пробелов между блоками */
+	margin-bottom: 50px;
+}
+div.col {
+	display: inline-block;
+	vertical-align: top;
+	width: 450px;
+
+	/* восстановление подавленного в div.row шрифта */
+	font-size: 16px;
+	line-height: 1.75em;
+}
+div.col:nth-child(1) {
+	margin-right: 100px;
+}
+
+div.col p {
+	margin: 0 0 1em; /* TODO: в общие стили */
+}
+div.col img {
+	max-width: 100%;
+}
