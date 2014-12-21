@@ -1,3 +1,3 @@
 title: Познакомьтесь с жителями поселения
 ---
-- [Аня](/residents/anna/)
+{{ tiles_by_pattern("residents/*/index.html") }}
