@@ -362,6 +362,37 @@ def last_guests(columns=3):
     return Tiles([(None, tiles[:6])]).render()
 
 
+def get_page_icons(page):
+    icons = page.get("icons")
+    if not icons:
+        return None
+
+    titles = {
+        "home": u"размещение в доме",
+        "tents": u"размещение в палатке",
+        "sauna": u"баня",
+        "boat": u"выход к озеру",
+        "kids": u"есть дети (не грудные)",
+        "bicycle": u"велосипед в аренду",
+        "wifi": u"бесплатный wifi",
+    }
+
+    parts = []
+    for icon in re.split(",\s+", icons):
+        path = "input/images/icons/%s.png" % icon
+        if not os.path.exists(path):
+            print "warning: bad icon %s for page %s" % (icon, page.fname)
+            continue
+
+        src = "/images/icons/%s.png" % icon
+        parts.append("<img src='%s' alt='%s' title='%s'/>" % (src, icon, titles.get(icon, icon)))
+
+    if not parts:
+        return None
+
+    return "<div class=\"icons\">%s</div>" % "".join(parts)
+
+
 def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None):
     """Вывод картинок с животными."""
     from plugins import Tiles
@@ -386,6 +417,7 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
         tiles.append({
             "link": page.url,
             "title": page.get("list_title", page["title"]),
+            "pre_title": get_page_icons(page),
             "text": page.get("list_text"),
             "image": image,
         })

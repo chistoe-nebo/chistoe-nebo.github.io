@@ -388,6 +388,9 @@ class Tiles(object):
                     img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
                 output += img
 
+                if tile.get("pre_title"):
+                    output += tile["pre_title"]
+
                 if title and show_title:
                     output += u"<span class='title'>%s</span>\n" % title
                 if tile.get("text"):

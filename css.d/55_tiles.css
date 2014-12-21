@@ -32,3 +32,19 @@ ul.album .title {
 	color: gray;
 	font-size: 14px;
 }
+
+.tiles li {
+	position: relative;
+}
+.tiles .icons {
+	position: absolute;
+	top: 233px;
+	margin-top: -37px;
+	font-size: 1em;
+	height: 37px;
+}
+.tiles .icons img {
+	width: 32px;
+	height: 37px;
+	cursor: help;
+}
