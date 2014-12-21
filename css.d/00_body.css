@@ -31,12 +31,12 @@ h2 {
 	font-weight: normal;
 }
 
-p.hint {
+#content p.hint {
 	color: gray;
 	font-size: 14px;
 	line-height: 1em;
 	font-style: italic;
 }
-p.hint a {
+#content p.hint a {
 	color: inherit;
 }
