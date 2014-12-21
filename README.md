@@ -5,6 +5,6 @@
 Сайт основан на идеях, почерпнутых на других туристических сайтах.
 
 - [Тестовая версия сайта](http://nebo.dev.umonkey.net/)
-- [Оформление сайта](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Design.md)
+- [Идеи по оформлению](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Design.md)
 - [Описание внутренностей сайта](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Software.md)
 - [Инструкция по редактированию страниц](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_manage.md)
