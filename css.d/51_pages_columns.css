@@ -13,7 +13,7 @@ div.col {
 	line-height: 1.75em;
 }
 div.col:nth-child(1) {
-	margin-right: 100px;
+	margin-right: 90px;
 }
 
 div.col p {
