@@ -134,3 +134,8 @@ p.link {
 p.link a {
 	color: gray;
 }
+
+#other {
+	width: 1000px;
+	margin: 20px auto;
+}
