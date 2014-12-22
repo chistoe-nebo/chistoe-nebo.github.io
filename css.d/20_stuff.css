@@ -1,7 +1,7 @@
 #stuff {
 	width: 1000px;
 	height: 233px;
-	margin: 20px auto;
+	margin: 20px auto 100px;
 }
 #stuff .item {
 	float: left;

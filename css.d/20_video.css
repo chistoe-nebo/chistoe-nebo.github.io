@@ -19,14 +19,6 @@
 	background-color: gray;
 }
 
-#video p {
-	margin: 0;
-	font-size: 12px;
-	line-height: 14px;
-}
-#video p a {
-	color: gray;
-}
 #video #map p {
 	text-align: right;
 }
