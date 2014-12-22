@@ -17,3 +17,10 @@
 .wide img {
 	width: 100%;
 }
+
+a[href$=".pdf"] {
+	background-image: url(/images/pdf.gif);
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+	padding-right: 18px;
+}

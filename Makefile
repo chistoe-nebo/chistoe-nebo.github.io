@@ -15,4 +15,5 @@ build: clean
 	grep -E '^(error|warning)' build.log || true
 
 deploy:
+	hg push
 	ssh nebo_welcome@doh.umonkey.net ./refresh
