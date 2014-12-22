@@ -1,6 +1,7 @@
 div.row {
 	font-size: 0; /* подавление пробелов между блоками */
 	margin-bottom: 50px;
+	width: 1000px;
 }
 div.col {
 	display: inline-block;

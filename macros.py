@@ -477,10 +477,15 @@ def wide_image():
     return html
 
 
+def strip_ws(html):
+    html = re.sub(r"</div>\s+<", "</div><", html, re.M)
+    return html
+
+
 def include(path):
     base = os.path.dirname(page.fname)
     real = os.path.abspath(os.path.join(base, path))
     if os.path.exists(real):
-        return open(real, "rb").read().decode("utf-8")
+        return strip_ws(open(real, "rb").read().decode("utf-8"))
     else:
         return "<!-- file %s not found -->" % path
