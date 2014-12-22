@@ -244,7 +244,7 @@ class Thumbnail(object):
         cache_id = hashlib.md5(url).hexdigest()
         cache_ext = url.split(".")[-1].lower()
 
-        cache_dir = os.path.expanduser("~/.cache/thumbnails")
+        cache_dir = os.path.expanduser("cache/thumbnails")
         if not os.path.exists(cache_dir):
             os.makedirs(cache_dir)
 
@@ -273,12 +273,12 @@ class Thumbnail(object):
         output_name = "%s,%u,%u,%u.jpg" % (output_id,
             int(width), int(height), int(fit))
 
-        cache_dir = os.path.expanduser("~/.cache/thumbnails")
+        cache_dir = os.path.expanduser("cache/thumbnails")
         if not os.path.exists(cache_dir):
             os.makedirs(cache_dir)
 
         self.web_path = "thumbnails/%s" % output_name
-        self.tmp_path = os.path.expanduser("~/.cache/thumbnails/%s" % output_name)
+        self.tmp_path = os.path.expanduser("cache/thumbnails/%s" % output_name)
 
         if os.path.exists(self.tmp_path):
             return True
