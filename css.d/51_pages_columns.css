@@ -16,7 +16,8 @@ div.col:nth-child(1) {
 	margin-right: 90px;
 }
 
-div.col p {
+div.col p,
+div.col ul {
 	margin: 0 0 1em; /* TODO: в общие стили */
 }
 div.col img {
