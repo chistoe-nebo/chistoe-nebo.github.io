@@ -558,6 +558,13 @@ def embed_video():
     return html
 
 
+def meta(key):
+    if key not in page:
+        print "warning: page %s has no meta header '%s'" % (page.fname, key)
+    else:
+        return page[key]
+
+
 def prepare_square_photos():
     """
     Создание квадратных превьюшек для фотографий на главной.
