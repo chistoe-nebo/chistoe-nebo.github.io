@@ -479,6 +479,9 @@ def page_title():
     elif "stay" in labels:
         _t = title[0].lower() + title[1:]
         title = u"<a href='/stay/'>Размещение</a>: %s" % _t
+    elif "residents" in labels:
+        _t = title[0].lower() + title[1:]
+        title = u"<a href='/residents/'>Поселенцы</a>: %s" % _t
 
     return title
 

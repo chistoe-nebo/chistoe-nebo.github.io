@@ -1,8 +1,9 @@
-title: Анна
+title: Анна Гусева
 wideimage: /residents/anna/wide.jpg
 thumbnail: wide.jpg
 list_title: Аня Гусева
 list_text: Научит печь классический домашний бездрожжевой хлеб.
+labels: residents
 ---
 <img src="/residents/anna/photo.jpg" alt="Анна" class="right"/>
 
