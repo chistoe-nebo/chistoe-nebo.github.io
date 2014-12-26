@@ -1,6 +1,6 @@
 title: Сожжение масленицы
 date: 2013-03-17
-labels: holiday
+labels: video, holiday
 youtube-id: DQW_8Lq_CPA
 ---
 

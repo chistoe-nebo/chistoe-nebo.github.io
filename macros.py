@@ -460,10 +460,16 @@ def format_feed_item_title(page):
 
 def page_title():
     title = page.get("title")
+    labels = get_page_labels(page)
 
-    if "animals" in get_page_labels(page):
+    if "animals" in labels:
         _t = title[0].lower() + title[1:]
         title = u"<a href='/nature/'>Природа</a>: %s" % _t
+    elif "video" in labels:
+        _t = title[0].lower() + title[1:]
+        title = u"<a href='/video/'>Видеозаписи</a>: %s" % _t
+    elif "title_html" in page:
+        title = page["title_html"]
 
     return title
 

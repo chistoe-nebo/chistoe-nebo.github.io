@@ -12,7 +12,7 @@ jQuery(document).ready(function($){
 		});
 	}
 
-	$(document).on("click", ".video", function (e) {
+	$(document).on("click", "body#home .video", function (e) {
 		e.preventDefault();
 		var code = $(this).attr("data-code");
 		$(this).replaceWith(code);
