@@ -63,7 +63,7 @@ OG_EMAIL = "hex@umonkey.net"
 
 #from plugins.rdfa import *
 
-#from plugins.video import *
+from plugins.video import *
 
 #from plugins.microblog import *
 MICROBLOG_SOURCE = "input/microblog.txt"

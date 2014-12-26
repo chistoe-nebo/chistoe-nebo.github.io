@@ -399,7 +399,10 @@ class Page(dict):
 
     def __str__(self):
         """Page representation by file name."""
-        return ('%s (virtual)' % self.fname) if self._virtual else self.fname
+        if self._virtual:
+            return "<page fname=%s (virtual)>" % self.fname
+        else:
+            return "<page fname=%s>" % self.fname
 
 # -----------------------------------------------------------------------------
 

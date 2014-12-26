@@ -7,16 +7,45 @@ Renders previews of posts tagged with the "video" label.
 
 
 import fnmatch
+import os
+import subprocess
 import sys
 
 from plugins import macros, get_page_date, get_page_labels, \
-    fix_url, safedict, Thumbnail, Tiles, get_page_image_path
+    fix_url, safedict, Thumbnail, Tiles, get_page_image_path, \
+    fetch
 
 
 __author__ = "Justin Forest"
 __email__ = "hex@umonkey.net"
 __license__ = "GPL"
 __version__ = "1.0"
+
+
+def add_file_from_url(url, dst):
+    print "wraning: fetching %s" % url
+
+    res = fetch(url)
+    if res.getcode() < 200 or res.getcode() >= 300:
+        print "warning: bad response: %s" % res.getcode()
+        return False
+
+    with open(dst, "wb") as f:
+        f.write(res.read())
+
+    print "info   : wrote %s" % dst
+
+    p = subprocess.Popen(["hg", "add", dst],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    out, err = p.communicate()
+
+    if p.returncode == 0:
+        print "info   : added %s to the repository, please commmit" % dst
+    else:
+        print "warning: could not add %s to the repository" % dst
+
+    return True
 
 
 def find_videos(label):
@@ -38,17 +67,33 @@ def find_videos(label):
     return sorted(videos, key=lambda p: p.get("date"), reverse=True)
 
 
+def get_video_thumbnail(page):
+    path = os.path.splitext(page.fname)[0] + ".jpg"
+    if os.path.exists(path):
+        return path
+
+    youtube_id = page.get("youtube-id")
+    if youtube_id:
+        url = "http://i.ytimg.com/vi/%s/maxresdefault.jpg" % youtube_id
+        add_file_from_url(url, path)
+
+    return path
+
+
 def video_album(label=None, columns=3, years=False):
-    """Renders a list of all videos.
-    
-    Videos are pages filtered by label or path (a glob)."""
+    """
+    Renders a list of all videos.
+
+    Videos are pages filtered by label or path (a glob).
+    """
 
     tiles = {}
 
     for video in find_videos(label):
-        if not video.get("thumbnail"):
-            print "warning: video %s has no thumbnail, example: <http://i.ytimg.com/vi/%s/mqdefault.jpg>" % (video.fname, video["youtube-id"])
-            continue
+        thumbnail = get_video_thumbnail(video)
+        if not thumbnail:
+            print "warning: page %s has no thumbnail." % video.fname
+            contiune
 
         if years:
             bucket = u"%s год" % get_page_date(video, "%Y")
@@ -65,7 +110,7 @@ def video_album(label=None, columns=3, years=False):
         tiles[bucket].append({
             "link": video.url,
             "title": video["title"],
-            "image": get_page_image_path(video),
+            "image": thumbnail,
             "description": description,
         })
 
@@ -75,7 +120,7 @@ def video_album(label=None, columns=3, years=False):
         css_class="tiles_video")
 
 
-def youtube(video_id, link=True):
+def youtube(video_id=None, link=True):
     player = u'http://www.youtube.com/embed/%s?rel=0' % video_id
 
     base_url = macros("BASE_URL")

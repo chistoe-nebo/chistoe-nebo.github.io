@@ -24,3 +24,8 @@ a[href$=".pdf"] {
 	background-position: 100% 50%;
 	padding-right: 18px;
 }
+
+
+iframe.youtube-player {
+	border: none;
+}

@@ -24,6 +24,11 @@ import urllib
 import urlparse
 
 
+def fetch(url):
+    res = urllib.urlopen(url)
+    return res
+
+
 def get_abs_url(rel_url):
     return urlparse.urljoin(
         macros("BASE_URL", "http://example.com"),
