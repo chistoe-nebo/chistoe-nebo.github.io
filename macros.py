@@ -81,6 +81,12 @@ pages = []
 
 # Place your own Poole hooks here.
 
+
+def typo(text):
+    text = text.replace(u".  ", u".&nbsp; ")
+    return text
+
+
 def fix_url(url):
     """Removes /index.html from local links."""
     if url.endswith("/index.html"):
@@ -470,6 +476,9 @@ def page_title():
         title = u"<a href='/video/'>Видеозаписи</a>: %s" % _t
     elif "title_html" in page:
         title = page["title_html"]
+    elif "stay" in labels:
+        _t = title[0].lower() + title[1:]
+        title = u"<a href='/stay/'>Размещение</a>: %s" % _t
 
     return title
 
@@ -497,6 +506,28 @@ def include(path):
         return strip_ws(open(real, "rb").read().decode("utf-8"))
     else:
         return "<!-- file %s not found -->" % path
+
+
+def embed_video():
+    if "youtube-id" in page:
+        vhtml = youtube(page["youtube-id"], link=False)
+    elif "vimeo-id" in page:
+        vhtml = vieo(page["vimeo-id"], link=False)
+
+    html = u"<div class='row'>"
+    html += u"<div class='col'>"
+    html += vhtml
+    html += u"</div>"
+
+    if "summary" in page:
+        summary = "<p>%s</p>" % typo(page["summary"])
+        if "date" in page:
+            summary += "<p class='date'>%s</p>" % page["date"]
+        html += u"<div class='col'>%s</div>" % summary
+
+    html += u"</div></div>"
+
+    return html
 
 
 def prepare_square_photos():

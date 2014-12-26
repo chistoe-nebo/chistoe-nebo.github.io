@@ -1,8 +1,9 @@
-title: Погостить у Игоря
+title: В гостях у Игоря
 list_title: Игорь
 list_text: Размещение в хозяйском доме.  Рядом есть баня.
 thumbnail: house.jpg
 icons: home, tents, sauna
+labels: stay
 ---
 Игорь постоянно живёт в поселении с 2012 года.
 Живёт один, держит пчёл, делает на заказ [самонесущие купола](http://magazin.chistoe-nebo.org/items/18/) для теплиц и домов и ульи.
