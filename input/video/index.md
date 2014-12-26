@@ -11,3 +11,8 @@ title_html: Дни нашей жизни: видео <a href="/photo/">фото<
 ## Повседневная жизнь
 
 {{ video_album(label="routine", size=(326, 233)) }}
+
+
+## Природа
+
+{{ video_album(label="nature", size=(326, 233)) }}
