@@ -1,4 +1,4 @@
-title: Анна Гусева
+title: Аня Гусева
 wideimage: /residents/anna/wide.jpg
 thumbnail: wide.jpg
 list_title: Аня Гусева
