@@ -13,8 +13,10 @@ jQuery(document).ready(function($){
 	}
 
 	$(document).on("click", "body#home .video", function (e) {
-		e.preventDefault();
 		var code = $(this).attr("data-code");
-		$(this).replaceWith(code);
+		if (code) {
+			e.preventDefault();
+			$(this).replaceWith(code);
+		}
 	});
 });
