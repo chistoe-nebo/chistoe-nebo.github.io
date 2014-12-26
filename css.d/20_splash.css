@@ -41,6 +41,7 @@
 	line-height: 1.25em;
 	text-align: left;
 
+	/* TODO: альтернатива для тупых браузеров */
 	background-color: rgba(192, 192, 192, 0.75);
 	box-shadow: 0 0 20px black;
 
