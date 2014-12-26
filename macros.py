@@ -1,10 +1,12 @@
 # vim: set fileencoding=utf-8 tw=0 nofoldenable:
 
 import cgi
+import glob
 import hashlib
 import imp
 import os
 import re
+import shutil
 import sys
 
 BASE_URL = "http://nebo-2.umonkey.net"
@@ -489,3 +491,27 @@ def include(path):
         return strip_ws(open(real, "rb").read().decode("utf-8"))
     else:
         return "<!-- file %s not found -->" % path
+
+
+def prepare_square_photos():
+    """
+    Создание квадратных превьюшек для фотографий на главной.
+
+    Создаются автоматически, если файла нет.  Можно заменить файл ручной версией.
+    """
+    pattern = "input/photo/*.jpg"
+
+    for src in glob.glob(pattern):
+        if src.endswith(".sq.jpg"):
+            continue
+
+        name, ext = os.path.splitext(src)
+        dst = name + ".sq.jpg"
+
+        if not os.path.exists(dst):
+            tn = Thumbnail(src, width=75, height=75, fit=True)
+            shutil.copy(tn.tmp_path, dst)
+            print "info   : created %s" % dst
+
+
+prepare_square_photos()

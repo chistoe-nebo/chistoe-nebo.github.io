@@ -232,10 +232,12 @@ class Thumbnail(object):
             return
 
         if not os.path.exists(self.web_path):
-            tpath = macros("output") + "/thumbnails"
-            makedir(tpath)
-            shutil.copy(self.tmp_path, macros("output") + "/" + self.web_path)
-            # print "debug  : wrote %s" % self.web_path
+            output = macros("output")
+            if output:
+                tpath = output + "/thumbnails"
+                makedir(tpath)
+                shutil.copy(self.tmp_path, macros("output") + "/" + self.web_path)
+                # print "debug  : wrote %s" % self.web_path
 
     @classmethod
     def from_url(cls, url, *args, **kwargs):

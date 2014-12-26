@@ -142,3 +142,73 @@ p.link a {
 	width: 1000px;
 	margin: 20px auto;
 }
+
+
+body#home #photo {
+	width: 100%;
+	background-color: #444;
+	margin: 50px 0;
+}
+body#home #photo .wrapper {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+}
+body#home #photo ul {
+	z-index: 1000;
+
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+	/* подавление пробелов между элементами */
+	font-size: 0;
+	height: 97px;
+
+	/**
+	 * Вытягивание по ширине, подкладываем под заголовок.
+	 **/
+	width: 1000px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+body#home #photo li {
+	display: inline-block;
+	margin: 10px 10px 0 0;
+	padding: 0;
+	height: 77px;
+}
+body#home #photo li img {
+	width: 75px;
+	height: 75px;
+	border: solid 1px white;
+}
+body#home #photo .header {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	z-index: 2000;
+
+	padding-left: 20px;
+
+	background: transparent url(/images/photo_grad.png) no-repeat top left;
+	color: white;
+	text-align: right;
+}
+body#home #photo .header a {
+	color: inherit;
+}
+body#home #photo .header h3,
+body#home #photo .header p {
+	font-size: 16px;
+	line-height: 24px;
+	margin: 0;
+	padding: 0;
+}
+body#home #photo .header h3 {
+	margin-top: 20px;
+}
+body#home #photo .header p {
+	font-size: 14px;
+}
