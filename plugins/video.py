@@ -80,7 +80,7 @@ def get_video_thumbnail(page):
     return path
 
 
-def video_album(label=None, columns=3, years=False):
+def video_album(label=None, columns=3, years=False, size=None):
     """
     Renders a list of all videos.
 
@@ -114,9 +114,12 @@ def video_album(label=None, columns=3, years=False):
             "description": description,
         })
 
+    if size is None:
+        size = (300, 200)
+
     tiles = sorted(tiles.items(),
         key=lambda t: t[0], reverse=True)
-    return Tiles(tiles).render(columns=columns,
+    return Tiles(tiles, size).render(columns=columns,
         css_class="tiles_video")
 
 

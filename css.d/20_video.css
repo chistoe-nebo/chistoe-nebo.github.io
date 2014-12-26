@@ -22,3 +22,9 @@
 #video #map p {
 	text-align: right;
 }
+
+
+.tiles_video .title {
+	font-size: 12px;
+	color: #444;
+}
