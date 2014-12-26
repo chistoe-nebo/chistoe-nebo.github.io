@@ -165,5 +165,6 @@ def embed_video():
 __all__ = [
     "video_album",
     "embed_video",
+    "find_videos",
     "youtube",
 ]

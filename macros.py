@@ -508,24 +508,49 @@ def include(path):
         return "<!-- file %s not found -->" % path
 
 
+def get_video_nav(page):
+    videos = find_videos("video")
+    videos.sort(key=lambda p: p["date"])
+    prev, next = find_sibling(videos, page)
+
+    for p in videos:
+        print p.fname, p["date"]
+
+    for v in videos:
+        print v.fname
+
+    if not prev and not next:
+        return None
+
+    parts = []
+    if prev:
+        parts.append(u"<a href='/%s' class='prev' title='%s'>Предыдущее видео</a>" % (prev.url, prev.title))
+    if next:
+        parts.append(u"<a href='/%s' class='next' title='%s'>Следущее видео</a>" % (next.url, next.title))
+    return "".join(parts)
+
+
 def embed_video():
     if "youtube-id" in page:
         vhtml = youtube(page["youtube-id"], link=False)
     elif "vimeo-id" in page:
         vhtml = vieo(page["vimeo-id"], link=False)
 
+    lines = []
+    if "summary" in page:
+        lines.append("<p class='summary'>%s</p>" % page["summary"])
+    if "date" in page:
+        lines.append("<p class='date'>%s</p>" % page["date"])
+
     html = u"<div class='row'>"
-    html += u"<div class='col'>"
-    html += vhtml
+    html += u"<div class='col'>%s</div>" % vhtml
+    if lines:
+        html += u"<div class='col'>%s</div>" % "".join(lines)
     html += u"</div>"
 
-    if "summary" in page:
-        summary = "<p>%s</p>" % typo(page["summary"])
-        if "date" in page:
-            summary += "<p class='date'>%s</p>" % page["date"]
-        html += u"<div class='col'>%s</div>" % summary
-
-    html += u"</div></div>"
+    nav_html = get_video_nav(page)
+    if nav_html:
+        html += u"<div class='nav'>%s</div>" % nav_html
 
     return html
 

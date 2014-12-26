@@ -28,4 +28,5 @@ a[href$=".pdf"] {
 
 iframe.youtube-player {
 	border: none;
+	background-color: gray;
 }

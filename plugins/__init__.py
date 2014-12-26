@@ -412,18 +412,34 @@ class Tiles(object):
         return output
 
 
+def find_sibling(pages, current):
+    prev = next = last = None
+
+    for page in pages:
+        if page.fname == current.fname:
+            prev = last
+
+        elif last and last.fname == current.fname:
+            next = page
+
+        last = page
+
+    return prev, next
+
+
 __all__ = [
+    "find_sibling",
     "fix_url",
     "fix_url_unicode",
     "get_abs_url",
     "get_page_date",
-    "get_page_labels",
     "get_page_image_path",
+    "get_page_labels",
     "get_page_url",
     "html_body_attrs",
     "macros",
-    "safedict",
     "Page",
+    "safedict",
     "Thumbnail",
     "Tiles",
 ]

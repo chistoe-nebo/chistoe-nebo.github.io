@@ -40,3 +40,24 @@ body.video div.col:nth-child(2) {
 body.video div.col .date {
 	color: gray;
 }
+
+body.video #content .row {
+	margin-bottom: 10px;
+}
+body.video #content .nav {
+	min-height: 50px;
+}
+body.video #content .nav a {
+	display: inline-block;
+	border: 1px solid #196a29;
+	background-color: #1D7D31;
+	color: white;
+	padding: 10px;
+	text-decoration: none;
+}
+body.video #content .nav a:hover {
+	text-decoration: underline;
+}
+body.video #content .nav .next {
+	float: right;
+}
