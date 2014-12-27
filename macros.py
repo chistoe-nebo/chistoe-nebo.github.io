@@ -426,7 +426,7 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
             "link": page.url,
             "title": page.get("list_title", page["title"]),
             "pre_title": get_page_icons(page),
-            "text": page.get("list_text"),
+            "description": page.get("list_text"),
             "image": image,
         })
 

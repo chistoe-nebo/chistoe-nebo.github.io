@@ -398,13 +398,17 @@ class Tiles(object):
                 if tile.get("pre_title"):
                     output += tile["pre_title"]
 
-                if title and show_title:
-                    output += u"<span class='title'>%s</span>\n" % title
-                if tile.get("text"):
-                    output += u"<div class='summary'>%s</div>" % tile["text"]
+                if not show_title:
+                    title = None
 
-                if tile.get("description"):
-                    output += u"<div class='description'>%s</div>" % tile["description"]
+                if title or tile.get("text"):
+                    desc = u""
+                    if title:
+                        desc += u"<span class='title'>%s.</span>" % title
+                    if tile.get("description"):
+                        desc += tile["description"]
+                    output += u"<div class='description'>%s</div>" % desc
+
                 output += u"</li>"
 
             output += u"</ul>\n"

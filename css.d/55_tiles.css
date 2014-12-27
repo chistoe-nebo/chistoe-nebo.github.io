@@ -20,13 +20,15 @@ ul.tiles li.col0 {
 	margin-left: 0;
 }
 
-ul.tiles li span {
-	display: block;
-}
-ul.tiles .summary {
+ul.tiles .description {
 	font-size: 14px;
+	line-height: 20px;
 	color: gray;
-	line-height: 125%;
+}
+ul.tiles .description .title {
+	color: black;
+	margin-right: .5em;
+	font-size: 16px;
 }
 
 ul.album .title {
