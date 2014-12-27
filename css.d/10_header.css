@@ -58,6 +58,10 @@ body#home #header {
 	border-radius: 6px;
 	padding-left: 6px;
 }
+body#home #search:hover {
+	box-shadow: 0 0 20px 3px green;
+}
+
 #search input[type=text] {
 	border: none;
 	font-family: inherit;
