@@ -570,6 +570,11 @@ def meta(key):
         return page[key]
 
 
+def hook_html_typo(html):
+    html = html.replace(u".\n", u".&nbsp; ")
+    return html
+
+
 def prepare_square_photos():
     """
     Создание квадратных превьюшек для фотографий на главной.
