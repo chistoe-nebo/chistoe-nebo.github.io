@@ -35,6 +35,16 @@ def get_abs_url(rel_url):
         rel_url)
 
 
+def is_older(wanted, source):
+    if not os.path.exists(wanted):
+        return False
+
+    if os.stat(wanted).st_mtime < os.stat(source).st_mtime:
+        return False
+
+    return True
+
+
 def macros(k, v=None):
     """Access properties of the macros module, e.g. pages, or page."""
     return getattr(sys.modules["macros"], k, v)
@@ -236,7 +246,7 @@ class Thumbnail(object):
             print "warning: could not prepare thumbnail from %s" % src_path
             return
 
-        if not os.path.exists(self.web_path):
+        if not is_older(self.web_path, src_path):
             output = macros("output")
             if output:
                 tpath = output + "/thumbnails"
@@ -287,7 +297,7 @@ class Thumbnail(object):
         self.web_path = "thumbnails/%s" % output_name
         self.tmp_path = os.path.expanduser("cache/thumbnails/%s" % output_name)
 
-        if os.path.exists(self.tmp_path):
+        if is_older(self.tmp_path, self.src_path):
             return True
 
         try:
