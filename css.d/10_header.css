@@ -31,6 +31,7 @@
 	vertical-align: middle;
 
 	line-height: 28px;
+	height: 28px;
 	vertical-align: bottom;
 }
 #header li a {
@@ -39,4 +40,37 @@
 
 #header li.skip {
 	margin-left: 50px;
+}
+
+/**
+ * TODO: оформить красиво.
+ **/
+#header #search {
+	vertical-align: top;
+	background-color: white;
+	border-radius: 6px;
+	padding-left: 6px;
+}
+#search input[type=text] {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: 1em;
+	width: 150px;
+	padding: 2px 4px 2px 8px;
+	height: 20px;
+	outline: none;
+}
+#search button {
+	background-color: transparent;
+	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjE5cHgiIGhlaWdodD0iMTlweCIgdmlld0JveD0iMCAwIDE5IDE5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxOSAxOSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBmaWxsPSIjNzc3Nzc3IiBkPSJNMTcuNjMyLDE2Ljk1NWwtNC43NjEtNC43NjJjMS4xMDktMS4xODgsMS43OTUtMi43NzYsMS43OTUtNC41MjdjMC0zLjY2Ny0yLjk4Mi02LjY0OC02LjY0OS02LjY0OA0KCWMtMy42NjcsMC02LjY0OSwyLjk4MS02LjY0OSw2LjY0N2MwLDMuNjY3LDIuOTgyLDYuNjQ3LDYuNjQ5LDYuNjQ3YzEuMzkxLDAsMi42ODItMC40MzQsMy43NS0xLjE2NGw0LjgzNCw0LjgzNEwxNy42MzIsMTYuOTU1eg0KCSBNMi44MjQsNy42NjZjMC0yLjg2MiwyLjMzLTUuMTkxLDUuMTkyLTUuMTkxYzIuODY0LDAsNS4xOTIsMi4zMjksNS4xOTIsNS4xOTFjMCwyLjg2MS0yLjMyOCw1LjE5MS01LjE5Miw1LjE5MQ0KCUM1LjE1NCwxMi44NTUsMi44MjQsMTAuNTI3LDIuODI0LDcuNjY2eiIvPg0KPC9zdmc+DQo=);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border: none;
+	width: 28px;
+	height: 28px;
+	margin: 0;
+	padding: 0;
+	text-indent: -1000px;
+	cursor: pointer;
 }
