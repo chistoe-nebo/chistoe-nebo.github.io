@@ -21,12 +21,11 @@ from plugins.simple_menu import *
 
 from plugins.sitemap import *
 SITEMAP_BLACKLIST_IMAGES = "^/thumbnails/"
-SITEMAP_EXTRA_URLS = ["volunteer/", "tools/beton-calc.html"]
 
 from plugins.meta import *
 OG_COUNTRY_NAME = "Russia"
 OG_LOCALITY = "Sebezh"
-OG_EMAIL = "hex@umonkey.net"
+OG_EMAIL = "poselenie@chistoe-nebo.net"
 
 #from plugins.yandex_metrika import *
 #YANDEX_METRIKA_ID = "14608519"

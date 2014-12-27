@@ -174,11 +174,15 @@ class Sitemap(object):
             print >> sys.stderr, "warning: BASE_URL not set in macros.py -- no sitemap for you"
             return
 
+        output = macros("output")
+
         xml = self.generate()
-        file(os.path.join("output", self.filename),
+        file(os.path.join(output, self.filename),
             "wb").write(xml.encode("utf-8"))
 
-        robots = os.path.join("output", "robots.txt")
+        print "info   : wrote %s" % self.filename
+
+        robots = os.path.join(output, "robots.txt")
         file(robots, "ab").write("Sitemap: %s\n" \
             % get_abs_url(self.filename, self.base_url))
 
