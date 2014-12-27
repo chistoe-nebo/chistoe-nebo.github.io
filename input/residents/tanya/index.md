@@ -1,6 +1,6 @@
 title: Таня Трофимова
 list_title: Таня Трофимова
-list_text: Швея-гитаристка.
+list_text: Научит шить одежду, от начала до конца.
 labels: residents
 thumbnail: face.jpg
 wideimage: wide.jpg
