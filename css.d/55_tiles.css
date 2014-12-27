@@ -6,6 +6,7 @@ ul.tiles {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+	clear: both;
 }
 
 ul.tiles li {
@@ -47,4 +48,13 @@ ul.album .title {
 	width: 32px;
 	height: 37px;
 	cursor: help;
+}
+
+
+/**
+ * 4 колонки
+ **/
+ul.tiles_4col li {
+	width: 240px;
+	margin-left: 13px;
 }

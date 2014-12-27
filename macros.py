@@ -440,11 +440,16 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
     return Tiles([(None, tiles)], (326, 233)).render()
 
 
-def album(tiles):
+def album(tiles, columns=3):
+    if columns == 4:
+        sizes = (240, 160)
+    else:
+        sizes = (326, 233)
+
     for tile in tiles:
         tile["image"] = "input/" + tile["link"]
-    return Tiles([(None, tiles)], (326, 233)).render(
-        css_class="album")
+    return Tiles([(None, tiles)], sizes).render(
+        css_class="album", columns=columns)
 
 
 def format_pagelist_title(page):

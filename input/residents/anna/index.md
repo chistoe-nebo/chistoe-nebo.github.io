@@ -5,8 +5,6 @@ list_title: Аня Гусева
 list_text: Научит печь классический домашний бездрожжевой хлеб.
 labels: residents
 ---
-<img src="/residents/anna/photo.jpg" alt="Анна" class="right"/>
-
 С 2012 года живёт в поселении постоянно, с мужем <a href="/residents/dima/">Димой</a>.
 Занимается домашним хозяйством.
 14 августа 2014 года родила сына Владислава.
@@ -16,4 +14,12 @@ labels: residents
 Мастер-класс длится 2 часа и включает все этапы изготовления хлеба, чаепитие.
 Стоит 1000 р.
 
-[Познакомиться с другими жителями](/residents/)
+{{ album([{
+  "link": "residents/anna/anya-1a.jpg",
+}, {
+  "link": "residents/anna/anya-1b.jpg",
+}, {
+  "link": "residents/anna/anya-1c.jpg",
+}, {
+  "link": "residents/anna/anya-1d.jpg",
+}], columns=4) }}
