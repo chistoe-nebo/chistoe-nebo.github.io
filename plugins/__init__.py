@@ -398,12 +398,17 @@ class Tiles(object):
                 else:
                     item_class += " col_mid"
 
-                output += u"<li class='{0}'>".format(item_class)
+                output += u"<li class='{0}' itemscope='itemscope' " \
+                          u"itemtype='http://schema.org/ImageObject'>".format(item_class)
 
-                img = u"<img src='/%s' alt='%s'/>" % (image, title or "thumbnail")
+                img = u"<img itemprop='contentUrl' src='/%s' alt='%s'/>" % (image, title or "thumbnail")
                 if link:
                     img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
                 output += img
+
+                image_url = self.get_image_url(tile)
+                if image_url:
+                    output += u"<meta itemprop='contentUrl' content='%s'/>" % image_url
 
                 if tile.get("pre_title"):
                     output += tile["pre_title"]
@@ -414,9 +419,9 @@ class Tiles(object):
                 if title or tile.get("text"):
                     desc = u""
                     if title:
-                        desc += u"<span class='title'>%s.</span>" % title
+                        desc += u"<span class='title' itemprop='name'>%s.</span>" % title
                     if tile.get("description"):
-                        desc += tile["description"]
+                        desc += u"<span class='caption' itemprop='caption'>%s</span>" % tile["description"]
                     output += u"<div class='description'>%s</div>" % desc
 
                 output += u"</li>"
@@ -424,6 +429,23 @@ class Tiles(object):
             output += u"</ul>\n"
 
         return output
+
+    def get_image_url(self, tile):
+        base_url = macros("BASE_URL")
+        if not base_url:
+            return None
+
+        if not tile.get("link"):
+            return None
+
+        page_url = urlparse.urljoin(base_url, tile["link"])
+
+        image = tile["image"]
+        if image.startswith("input/"):
+            image = image[5:]
+
+        image_url = urlparse.urljoin(page_url, image)
+        return image_url
 
 
 def find_sibling(pages, current):
