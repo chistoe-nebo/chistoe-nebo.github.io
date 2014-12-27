@@ -40,10 +40,6 @@ def _is_podcast(page):
     return page.get("file", "").endswith(".mp3")
 
 
-def _has_image(page):
-    return "image" in page
-
-
 def quote(string):
     return cgi.escape(string)
 
@@ -69,6 +65,21 @@ def hook_html_meta_keywords(html):
         html = html.replace("</head>", keywords + "</head>")
 
     return html
+
+
+def get_page_image(page):
+    base_url = macros("BASE_URL")
+    if not base_url:
+        return None
+
+    page_url = urlparse.urljoin(base_url, page.url)
+
+    for k in ("image", "thumbnail", "picture"):
+        if page.get(k):
+            image_url = urlparse.urljoin(page_url, page[k])
+            return fix_url(image_url)
+
+    return None
 
 
 def hook_html_opengraph(html):
@@ -133,21 +144,19 @@ def hook_html_opengraph(html):
         add_tag("og:audio", url)
         add_tag("og:audio:type", "audio/mp3")
 
-    if _has_image(page):
-        image_path = "input" + page["image"]
-        if not os.path.exists(image_path):
-            print("warning: image {0} does not exist.".format(page["image"]))
-        else:
-            image_url = urlparse.urljoin(macros("BASE_URL"), page["image"].decode("utf-8"))
-            add_tag("og:image", fix_url(image_url))
+    image_url = get_page_image(page)
+    if image_url:
+        add_tag("og:image", fix_url(image_url))
 
-            img = Image.open(image_path)
-            add_tag("og:image:width", str(img.size[0]))
-            add_tag("og:image:height", str(img.size[1]))
+        """
+        img = Image.open(image_path)
+        add_tag("og:image:width", str(img.size[0]))
+        add_tag("og:image:height", str(img.size[1]))
+        """
 
-            mt, subtype = mimetypes.guess_type(image_path)
-            if mt:
-                add_tag("og:image:type", mt)
+        mt, subtype = mimetypes.guess_type(image_url)
+        if mt:
+            add_tag("og:image:type", mt)
 
     # TODO: og:section
 
