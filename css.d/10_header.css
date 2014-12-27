@@ -36,3 +36,7 @@
 #header li a {
 	color: inherit;
 }
+
+#header li.skip {
+	margin-left: 50px;
+}
