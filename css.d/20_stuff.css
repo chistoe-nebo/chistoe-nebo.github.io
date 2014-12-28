@@ -6,6 +6,10 @@
 #stuff .item {
 	float: left;
 }
+#stuff .item img {
+	width: 326px;
+	height: 233px;
+}
 #stuff .skip {
 	margin-left: 11px;
 }
