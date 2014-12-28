@@ -60,3 +60,15 @@ ul.tiles_4col li {
 	width: 240px;
 	margin-left: 13px;
 }
+
+ul.tiles img {
+	background-color: #eee;
+}
+ul.tiles_326x233 img {
+	width: 326px;
+	height: 233px;
+}
+ul.tiles_240x160 img {
+	width: 240px;
+	height: 160px;
+}
