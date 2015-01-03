@@ -417,7 +417,9 @@ class Tiles(object):
                           u"itemtype='http://schema.org/ImageObject'>".format(item_class)
 
                 img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
-                if link:
+                if link and link.endswith(".jpg"):
+                    img = u"<a href='/%s' data-lightbox='gallery'>%s</a>" % (fix_url(link), img)
+                elif link:
                     img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
                 output += img
 
