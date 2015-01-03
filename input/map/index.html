@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>test map</title>
+    <title>Карта Чистого неба</title>
     <meta charset="utf-8"/>
     <!--
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
@@ -13,6 +13,10 @@
 
     <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
     <script src="scripts/leaflet_google.js"></script>
+
+    <script src="http://api-maps.yandex.ru/2.0/?load=package.map&lang=ru-RU" type="text/javascript"></script>
+    <script src="scripts/leaflet_yandex.js"></script>
+
     <script src="scripts/leaflet_scale.js"></script>
     <link rel="stylesheet" type="text/css" href="scripts/distance.css" />
     <script src="scripts/leaflet_distance.js"></script>
@@ -106,10 +110,10 @@
         ,[56.17018, 28.73124, "<img src='/stay/vladimir/for_map.jpg' alt='гостевой дом' width='300' height='200'/><p>Гостевой дом <a href='/stay/vladimir/' target='_top'>Владимира и Юлии</a></p>", "building", "home"]
         ,[56.17358, 28.7327, "<img src='/stay/igor/house_map.jpg' alt='дом' width='300' height='200'/><p>Гостевой дом <a href='/stay/igor/' target='_top'>Игоря</a></p>", "building", "home"]
         ,[56.18356, 28.74077, "<img src='/stay/alexey/guesthouse_map.jpg' width='300' height='200'/><p>Гостевой дом <a href='/stay/alexey/' target='_top'>Алексея</a></p>", "building", "home"]
-        ,[56.1705, 28.73102, "<img src='/stay/vladimir/camping_map.jpg' width='300' height='200' alt='палаточный лагерь'/><p>Палаточный лагерь <a href='/stay/vladimir/' target='_top'>Владимира и Юлии</a></p>", "building", "tents"]
+        ,[56.17052, 28.73077, "<img src='/stay/vladimir/camping_map.jpg' width='300' height='200' alt='палаточный лагерь'/><p>Палаточный лагерь <a href='/stay/vladimir/' target='_top'>Владимира и Юлии</a></p>", "building", "tents"]
 
-        ,[56.18285, 28.74116, "<img src='/stay/alexey/bath_map.jpg' alt='баня' width='300' height='200'/><p>Баня <a href='/stay/alexey/' target='_top'>Алексея</a></p>", "building", "sauna"]
-        ,[56.17345, 28.73425, "Баня <a href='/stay/igor/' target='_top'>Игоря</a><br/><img src='/stay/igor/bath_map.jpg' alt='дом' width='300' height='200'/>", "building", "sauna"]
+        ,[56.18277, 28.74087, "<img src='/stay/alexey/bath_map.jpg' alt='баня' width='300' height='200'/><p>Баня <a href='/stay/alexey/' target='_top'>Алексея</a></p>", "building", "sauna"]
+        ,[56.17375, 28.73349, "Баня <a href='/stay/igor/' target='_top'>Игоря</a><br/><img src='/stay/igor/bath_map.jpg' alt='дом' width='300' height='200'/>", "building", "sauna"]
         ,[56.28746, 28.59715, "Баня частного рыбного хозяйства, 1500 р за 4 часа, вместительность до 6 человек.", "building", "sauna"]
 
         ,[56.1522, 28.67412, "Магазин в Осыно. Работает по рабочим дням с 8:00 до 15:00. Есть минимальный набор продуктов и хозяйственных товаров.", "food", "grocery"]
@@ -117,7 +121,7 @@
         ,[56.27711, 28.48723, "Гостиница «Себеж», в ней есть кафе и wifi.", "food", "hotfoodcheckpoint"]
 
         ,[56.27722, 28.49204, "Краеведческий музей", "building", "home"]
-        ,[56.17865, 28.7323, "<img src='/residents/anna/for_map.jpg' alt='anna' width='300' height='150'/><p><a href='/residents/anna/' target='_top'>Аня Гусева</a> проведёт мастер-класс по выпечке классического домашнего бездрожжевого хлеба.</p>", "building", "school"]
+        ,[56.17855, 28.7324, "<img src='/residents/anna/for_map.jpg' alt='anna' width='300' height='150'/><p><a href='/residents/anna/' target='_top'>Аня Гусева</a> проведёт мастер-класс по выпечке классического домашнего бездрожжевого хлеба.</p>", "building", "school"]
 
         ,[56.28412, 28.48311, "Автостанция, сюда приезжает автобус из Санкт-Петербурга", "building", "home"]
         ,[56.30513, 28.46958, "Ж/д вокзал, сюда приезжает поезд из Москвы", "building", "home"]
@@ -146,6 +150,8 @@
         maxZoom: 17
       });
 
+      var base_yandex = new L.Yandex("satellite");
+
       // При ctrl-клике выводим координаты точки.
       map.on("click", function (e) {
         if (e.originalEvent.ctrlKey) {
@@ -170,6 +176,7 @@
         "OpenStreetMap": base_osm,
         "OpenStreetMap France": base_osm_fr,
         "Google": base_google,
+        "Яндекс": base_yandex,
         "ESRI": base_esri
       };
 
