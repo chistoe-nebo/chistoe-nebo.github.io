@@ -1,6 +1,10 @@
+/*
 window.onerror = function (msg, url, line) {
 	alert("JavaScript error: " + msg + "\nat " + url + " line " + line + ".");
 }
+*/
+
+var tb_pathToImage = "/scripts/loadingAnimation.gif";
 
 jQuery(document).ready(function($){
 	if ($("#splash").length == 1) {
