@@ -30,3 +30,16 @@ iframe.youtube-player {
 	border: none;
 	background-color: gray;
 }
+
+
+body#about_index_html table {
+	border-collapse: collapse;
+}
+body#about_index_html table td,
+body#about_index_html table th {
+	border: solid 1px #ccc;
+	padding: 4px 10px;
+}
+body#about_index_html table td {
+	text-align: right;
+}
