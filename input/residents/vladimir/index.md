@@ -13,13 +13,13 @@ summary: Владимир живёт в поселении с 2012 года. У�
 Ведёт [блог о жизни в деревне](http://land.umonkey.net/), в котором популяризирует идею переезда из города на землю.
 
 {{ album([{
-  "link": "residents/vladimir/photo-1a.jpg",
+  "link": "photo-1a.jpg",
 }, {
-  "link": "residents/vladimir/photo-1b.jpg",
+  "link": "photo-1b.jpg",
 }, {
-  "link": "residents/vladimir/photo-1c.jpg",
+  "link": "photo-1c.jpg",
 }, {
-  "link": "residents/vladimir/photo-1d.jpg",
+  "link": "photo-1d.jpg",
 }], columns=4) }}
 
 
@@ -27,13 +27,13 @@ summary: Владимир живёт в поселении с 2012 года. У�
 В первый год работы программы по ней в поселение приехало более 10 человек.
 
 {{ album([{
-  "link": "residents/vladimir/photo-2a.jpg",
+  "link": "photo-2a.jpg",
 }, {
-  "link": "residents/vladimir/photo-2b.jpg",
+  "link": "photo-2b.jpg",
 }, {
-  "link": "residents/vladimir/photo-2c.jpg",
+  "link": "photo-2c.jpg",
 }, {
-  "link": "residents/vladimir/photo-2d.jpg",
+  "link": "photo-2d.jpg",
 }], columns=4) }}
 
 

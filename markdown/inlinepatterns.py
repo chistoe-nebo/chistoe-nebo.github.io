@@ -275,7 +275,7 @@ class LinkPattern (Pattern):
 class ImagePattern(LinkPattern):
     """ Return a img element from the given match. """
     def handleMatch(self, m):
-        print "warning: %s" % str(m.groups())
+        # print "warning: %s" % str(m.groups())
         el = markdown.etree.Element("img")
         src_parts = m.group(9).split()
         if src_parts:

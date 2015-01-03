@@ -10,37 +10,37 @@ summary: Фотографии из поселения Чистое небо, и�
 
 {{ album([{
   "title": u"Хоровод, главная игра на любом празднике",
-  "link": "photo/horovod.jpg",
+  "link": "horovod.jpg",
 }, {
   "title": u"Перетягивание каната",
-  "link": "photo/kanat.jpg",
+  "link": "kanat.jpg",
 }, {
   "title": u"Картошка, весёлая летняя игра",
-  "link": "photo/kartoshka.jpg",
+  "link": "kartoshka.jpg",
 }, {
   "title": u"Поиск клада, детская праздничная игра",
-  "link": "photo/kidmapping.jpg",
+  "link": "kidmapping.jpg",
 }, {
   "title": u"Урок изготовления очелий",
-  "link": "photo/ochelie.jpg",
+  "link": "ochelie.jpg",
 }, {
   "title": u"Образ поселения",
-  "link": "photo/plakat.jpg",
+  "link": "plakat.jpg",
 }, {
   "title": u"Гости",
-  "link": "photo/polaki.jpg",
+  "link": "polaki.jpg",
 }, {
   "title": u"Урок прядения",
-  "link": "photo/pryazha.jpg",
+  "link": "pryazha.jpg",
 }, {
   "title": u"Типи, место для общих собраний летом",
-  "link": "photo/tipi.jpg",
+  "link": "tipi.jpg",
 }, {
   "title": u"Праздничный стол",
-  "link": "photo/zastolie.jpg",
+  "link": "zastolie.jpg",
 }, {
   "title": u"Стрельба из арбалета",
-  "link": "photo/arbalet.jpg",
+  "link": "arbalet.jpg",
 }]) }}
 
 
@@ -48,14 +48,14 @@ summary: Фотографии из поселения Чистое небо, и�
 
 {{ album([{
   "title": u"Изготовление ловушки для слепней",
-  "link": "photo/htrap.jpg",
+  "link": "htrap.jpg",
 }, {
   "title": u"Раскопки",
-  "link": "photo/rov.jpg",
+  "link": "rov.jpg",
 }, {
   "title": u"Строительство дома",
-  "link": "photo/dom.jpg",
+  "link": "dom.jpg",
 }, {
   "title": u"Подготовка уличного стола",
-  "link": "photo/stol.jpg",
+  "link": "stol.jpg",
 }]) }}

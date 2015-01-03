@@ -28,26 +28,26 @@ SMS слать не стоит — телефон их не принимает.
 
 {{ album([{
   "title": u"Владимир и Юлия",
-  "link": "stay/vladimir/hosts.jpg",
+  "link": "hosts.jpg",
 }, {
   "title": u"Дом зимой",
-  "link": "stay/vladimir/house.jpg",
+  "link": "house.jpg",
 }, {
   "title": u"Палаточный лагерь",
-  "link": "stay/vladimir/camping.jpg",
+  "link": "camping.jpg",
 }, {
   "title": u"Досуг",
-  "link": "stay/vladimir/games.jpg",
+  "link": "games.jpg",
 }, {
   "title": u"Дом осенью",
-  "link": "stay/vladimir/house_summer.jpg",
+  "link": "house_summer.jpg",
 }, {
   "title": u"Ужин на костре",
-  "link": "stay/vladimir/fire.jpg",
+  "link": "fire.jpg",
 }, {
   "title": u"Костёр",
-  "link": "stay/vladimir/flute.jpg",
+  "link": "flute.jpg",
 }, {
   "title": u"Вектор",
-  "link": "stay/vladimir/vector.jpg",
+  "link": "vector.jpg",
 }]) }}

@@ -1,5 +1,5 @@
 title: Дима Гусев
-wideimage: /residents/dima/wide.jpg
+wideimage: wide.jpg
 thumbnail: dima-1c.jpg
 labels: residents
 list_text: Тракторист, строитель, пчеловод.
@@ -13,15 +13,15 @@ summary: Дима Гусев: тракторист, строитель, пчел
 Когда для экскаватора работы нет — например, зимой — Дима занимается строительством деревянных каркасных домов под ключ.
 Для себя держит пчёл.
 
-{{ album([{
-  "link": "residents/dima/dima-1a.jpg",
+{{ album4([{
+  "link": "dima-1a.jpg",
 }, {
-  "link": "residents/dima/dima-1b.jpg",
+  "link": "dima-1b.jpg",
 }, {
-  "link": "residents/dima/dima-1c.jpg",
+  "link": "dima-1c.jpg",
 }, {
-  "link": "residents/dima/dima-1d.jpg",
-}], columns=4) }}
+  "link": "dima-1d.jpg",
+}]) }}
 
 Дима проводит экскурсии по своему поместью, в которые входит:
 

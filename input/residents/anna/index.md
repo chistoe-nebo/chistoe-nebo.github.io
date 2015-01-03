@@ -1,5 +1,5 @@
 title: Аня Гусева
-wideimage: /residents/anna/wide.jpg
+wideimage: wide.jpg
 thumbnail: anya-1c.jpg
 list_title: Аня Гусева
 list_text: Научит печь классический домашний бездрожжевой хлеб.
@@ -17,15 +17,15 @@ summary: Аня Гусева живёт в поселении с 2012 года, 
 Вяжет, шьёт одежду себе и мужу, повседневную и праздничную.
 В тёплое время года занимается органическим земледелием, помогает мужу ухаживать за пчёлами.
 
-{{ album([{
-  "link": "residents/anna/anya-1a.jpg",
+{{ album4([{
+  "link": "anya-1a.jpg",
 }, {
-  "link": "residents/anna/anya-1b.jpg",
+  "link": "anya-1b.jpg",
 }, {
-  "link": "residents/anna/anya-1c.jpg",
+  "link": "anya-1c.jpg",
 }, {
-  "link": "residents/anna/anya-1d.jpg",
-}], columns=4) }}
+  "link": "anya-1d.jpg",
+}]) }}
 
 Аня печёт свой хлеб уже больше года.
 Хлеб пользуется популярностью внутри поселения.

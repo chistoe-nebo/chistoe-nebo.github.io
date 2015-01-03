@@ -14,13 +14,13 @@ summary: Таня живёт в поселении с 2012 года.  Шьёт �
 Также делает самую разную выпечку, готовит вкусные блюда сыроедческой кухни.
 
 {{ album([{
-  "link": "residents/tanya/tanya-1c.jpg",
+  "link": "tanya-1c.jpg",
 }, {
-  "link": "residents/tanya/tanya-1b.jpg",
+  "link": "tanya-1b.jpg",
 }, {
-  "link": "residents/tanya/tanya-1a.jpg",
+  "link": "tanya-1a.jpg",
 }, {
-  "link": "residents/tanya/face.jpg",
+  "link": "face.jpg",
 }], columns=4) }}
 
 Таня проводит мастер-класс «шитьё одежды от А до Я».

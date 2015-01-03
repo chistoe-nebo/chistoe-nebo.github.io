@@ -446,9 +446,15 @@ def album(tiles, columns=3):
         sizes = (326, 233)
 
     for tile in tiles:
-        tile["image"] = "input/" + tile["link"]
+        tile["image"] = join_path(page.fname, tile["link"])
+        tile["link"] = join_path(page.url, tile["link"])
+
     return Tiles([(None, tiles)], sizes).render(
         css_class="album", columns=columns)
+
+
+def album4(tiles):
+    return album(tiles, columns=4)
 
 
 def format_pagelist_title(page):
@@ -495,7 +501,9 @@ def wide_image():
     if not img:
         return ""
 
-    html = u"<div class='wide'>\n<img src='%s' alt='wide'/>" % img
+    img = join_path(page.url, img)
+
+    html = u"<div class='wide'>\n<img src='/%s' alt='wide'/>" % img
     html += u"</div>\n"
 
     return html

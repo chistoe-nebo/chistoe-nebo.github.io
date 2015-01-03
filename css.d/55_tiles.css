@@ -61,7 +61,7 @@ ul.tiles_4col li {
 	margin-left: 13px;
 }
 
-ul.tiles img {
+ul.tiles img.picture {
 	background-color: #eee;
 }
 ul.tiles_326x233 img {

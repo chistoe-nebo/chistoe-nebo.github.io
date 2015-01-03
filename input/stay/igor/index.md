@@ -16,13 +16,13 @@ summary: Гостевой дом в поселении Чистое небо, э
 
 {{ album([{
   "title": u"Дом",
-  "link": "stay/igor/house.jpg",
+  "link": "house.jpg",
 }, {
   "title": u"Баня",
-  "link": "stay/igor/bath.jpg",
+  "link": "bath.jpg",
 }, {
   "title": u"Пруд",
-  "link": "stay/igor/lake.jpg",
+  "link": "lake.jpg",
 }]) }}
 
 Размещение у Игоря стоит от 500 р в сутки либо помощь по хозяйству.

@@ -62,6 +62,21 @@ def utf(s):
     return s
 
 
+def join_path(src, dst):
+    src = src.split("/")
+    src.pop()
+
+    for part in dst.split("/"):
+        if part == "/":
+            src = ["input"]
+        elif part == "..":
+            src.pop()
+        else:
+            src.append(part)
+
+    return "/".join(src)
+
+
 class safedict(object):
     def __init__(self, p):
         self.p = dict(p)
@@ -401,7 +416,7 @@ class Tiles(object):
                 output += u"<li class='{0}' itemscope='itemscope' " \
                           u"itemtype='http://schema.org/ImageObject'>".format(item_class)
 
-                img = u"<img itemprop='contentUrl' src='/%s' alt='%s'/>" % (image, title or "thumbnail")
+                img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
                 if link:
                     img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
                 output += img
@@ -472,6 +487,7 @@ __all__ = [
     "get_page_image_path",
     "get_page_labels",
     "get_page_url",
+    "join_path",
     "html_body_attrs",
     "macros",
     "Page",
