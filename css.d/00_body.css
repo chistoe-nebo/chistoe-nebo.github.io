@@ -45,6 +45,11 @@ h1 {
 
 h2 {
 	font-size: 20px;
+	margin: 2em 0 .5em;
+}
+
+#content p {
+	width: 100%;
 }
 
 #content p.hint {
