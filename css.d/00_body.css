@@ -48,10 +48,6 @@ h2 {
 	margin: 2em 0 .5em;
 }
 
-#content p {
-	width: 100%;
-}
-
 #content p.hint {
 	color: gray;
 	font-size: 14px;
