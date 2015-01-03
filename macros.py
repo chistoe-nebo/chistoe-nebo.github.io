@@ -83,6 +83,8 @@ pages = []
 
 def typo(text):
     text = text.replace(u".  ", u".&nbsp; ")
+    text = text.replace(u" - ", u"&nbsp;— ")
+    text = re.sub(u"\.\s+([А-Я])", u".&nbsp; \\1", text)
     return text
 
 
