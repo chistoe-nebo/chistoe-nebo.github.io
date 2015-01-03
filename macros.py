@@ -580,8 +580,7 @@ def meta(key):
 
 
 def hook_html_typo(html):
-    html = html.replace(u".\n", u".&nbsp; ")
-    return html
+    return typo(html)
 
 
 def prepare_square_photos():
