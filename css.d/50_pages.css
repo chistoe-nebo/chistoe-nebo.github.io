@@ -43,3 +43,7 @@ body#about_index_html table th {
 body#about_index_html table td {
 	text-align: right;
 }
+body#about_index_html table th {
+	font-weight: normal;
+	background-color: #eee;
+}
