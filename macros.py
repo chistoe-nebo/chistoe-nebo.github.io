@@ -573,6 +573,39 @@ def embed_video():
     return html
 
 
+def hook_postconvert_other_residents():
+    label = "residents"
+
+    residents = [p for p in pages
+                 if label in get_page_labels(p)]
+    residents.sort(key=lambda p: p["title"].lower())
+
+    for page in pages:
+        if label not in get_page_labels(page):
+            continue
+
+        tiles = [{
+            "image": join_path(res.fname, res["thumbnail"]),
+            "link": res.url,
+            "title": res["title"],
+        } for res in residents
+          if res.fname != page.fname]
+
+        if not tiles:
+            continue
+
+        tiles_html = Tiles([(None, tiles)], (75, 75)).render(
+                           css_class="other_residents",
+                           columns=100)
+
+        bonus = u"<div class='other'>"
+        bonus += u"<h3>Познакомьтесь и с другими нашими жителями:</h3>"
+        bonus += tiles_html
+        bonus += u"</div>"
+
+        page.html += bonus
+
+
 def meta(key):
     if key not in page:
         print "warning: page %s has no meta header '%s'" % (page.fname, key)

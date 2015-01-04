@@ -14,7 +14,6 @@ ul.tiles li {
 	vertical-align: top;
 	margin-left: 11px;
 	margin-bottom: 10px;
-	width: 326px;
 }
 ul.tiles li.col0 {
 	margin-left: 0;
@@ -64,10 +63,15 @@ ul.tiles_4col li {
 ul.tiles img.picture {
 	background-color: #eee;
 }
+
+ul.tiles_326x233 li {
+	width: 326px;
+}
 ul.tiles_326x233 img {
 	width: 326px;
 	height: 233px;
 }
+
 ul.tiles_240x160 img {
 	width: 240px;
 	height: 160px;

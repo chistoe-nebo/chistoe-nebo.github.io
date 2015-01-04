@@ -1,0 +1,12 @@
+body.residents ul.other_residents li a {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+}
+body.residents ul.other_residents .description {
+	display: none;
+}
+
+body.residents div.other {
+	margin-top: 50px;
+}

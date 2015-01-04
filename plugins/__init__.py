@@ -418,11 +418,17 @@ class Tiles(object):
                           u"itemtype='http://schema.org/ImageObject'>".format(item_class)
 
                 img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
-                if link and link.endswith(".jpg"):
-                    img = u"<a href='/%s' data-lightbox='gallery' data-title='%s'>%s</a>" % (fix_url(link), title or "", img)
-                elif link:
-                    img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
-                output += img
+
+                if link:
+                    a = u"<a href='/%s'" % fix_url(link)
+                    if title:
+                        a += u" title='%s'" % title
+                    if link.endswith(".jpg"):
+                        a += u" data-lightbox='gallery'"
+                        if title:
+                            a += u" data-title='%s'" % title
+
+                    output += a + u">" + img + u"</a>"
 
                 image_url = self.get_image_url(tile)
                 if image_url:
