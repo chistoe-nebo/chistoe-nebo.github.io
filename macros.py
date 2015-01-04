@@ -559,12 +559,6 @@ def get_video_nav(page):
     videos.sort(key=lambda p: p["date"])
     prev, next = find_sibling(videos, page)
 
-    for p in videos:
-        print p.fname, p["date"]
-
-    for v in videos:
-        print v.fname
-
     if not prev and not next:
         return None
 
