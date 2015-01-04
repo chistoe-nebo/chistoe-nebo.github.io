@@ -425,7 +425,7 @@ class Tiles(object):
                 img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
 
                 if link:
-                    if "://" not in link:
+                    if "://" not in link and not link.startswith("/"):
                         link = "/" + link
                     a = u"<a href='%s'" % link
                     if title:

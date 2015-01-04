@@ -469,7 +469,7 @@ def album(desc, columns=3, sizes=None):
             parts.append(None)
 
         image = join_path(page.fname, parts[0]) if parts[0] else None
-        link = join_path(page.url, parts[1]) if parts[1] else image
+        link = join_path(page.url, parts[1]) if parts[1] else image[7:]
         title = parts[2]
         desc = parts[3]
 
