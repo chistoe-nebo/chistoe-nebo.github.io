@@ -76,3 +76,8 @@ ul.tiles_240x160 img {
 	width: 240px;
 	height: 160px;
 }
+
+
+body#go_index_html ul.tiles li {
+	margin-bottom: 40px;
+}
