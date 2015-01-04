@@ -1,6 +1,7 @@
 # vim: set fileencoding=utf-8 tw=0 nofoldenable:
 
 import cgi
+import csv
 import glob
 import hashlib
 import imp
@@ -442,15 +443,42 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
     return Tiles([(None, tiles)], (326, 233)).render()
 
 
-def album(tiles, columns=3):
-    if columns == 4:
+def album(desc, columns=3, sizes=None):
+    if isinstance(desc, unicode):
+        desc = desc.encode("utf-8")
+    elif not isinstance(desc, str):
+        print "error  : bad album format in %s, must be: image[;link[;title[;desc]]]" % page.fname
+        return "<!-- bad album format -->"
+
+    if sizes is not None:
+        pass
+    elif columns == 4:
         sizes = (240, 160)
     else:
         sizes = (326, 233)
 
-    for tile in tiles:
-        tile["image"] = join_path(page.fname, tile["link"])
-        tile["link"] = join_path(page.url, tile["link"])
+    tiles = []
+
+    lines = [l for l in desc.splitlines() if l.strip()]
+    reader = csv.reader(lines, delimiter=";")
+
+    deutf = lambda s: s.decode("utf-8") if isinstance(s, str) else s
+
+    for parts in reader:
+        while len(parts) < 4:
+            parts.append(None)
+
+        image = join_path(page.fname, parts[0]) if parts[0] else None
+        link = join_path(page.url, parts[1]) if parts[1] else image
+        title = parts[2]
+        desc = parts[3]
+
+        tiles.append({
+            "image": image,
+            "link": link,
+            "title": deutf(title),
+            "description": deutf(desc),
+        })
 
     return Tiles([(None, tiles)], sizes).render(
         css_class="album", columns=columns)

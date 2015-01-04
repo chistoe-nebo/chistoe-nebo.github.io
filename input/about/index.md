@@ -41,15 +41,12 @@ summary: История поселения Чистое небо, описани
 
 В шести километрах от поселения начинается [Себежский национальный парк](http://seb-park.ru/).
 
-{{ album4([{
-  "link": "photo-11.jpg",
-}, {
-  "link": "photo-12.jpg",
-}, {
-  "link": "photo-13.jpg",
-}, {
-  "link": "photo-14.jpg",
-}]) }}
+{{ album4("""
+photo-11.jpg
+photo-12.jpg
+photo-13.jpg
+photo-14.jpg
+""") }}
 
 [Подробный прогноз](http://www.gismeteo.ru/city/daily/11529/) &middot; [Дневник погоды](http://www.gismeteo.ru/diary/11529/)
 

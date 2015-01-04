@@ -26,28 +26,13 @@ SMS слать не стоит — телефон их не принимает.
 
 [Другие варианты размещения](/stay/)
 
-{{ album4([{
-  "title": u"Владимир и Юлия",
-  "link": "hosts.jpg",
-}, {
-  "title": u"Дом зимой",
-  "link": "house.jpg",
-}, {
-  "title": u"Палаточный лагерь",
-  "link": "camping.jpg",
-}, {
-  "title": u"Досуг",
-  "link": "games.jpg",
-}, {
-  "title": u"Дом осенью",
-  "link": "house_summer.jpg",
-}, {
-  "title": u"Ужин на костре",
-  "link": "fire.jpg",
-}, {
-  "title": u"Костёр",
-  "link": "flute.jpg",
-}, {
-  "title": u"Вектор",
-  "link": "vector.jpg",
-}]) }}
+{{ album4("""
+hosts.jpg;;Владимир и Юлия
+house.jpg;;Дом зимой
+camping.jpg;;Палаточный лагерь
+games.jpg;;Досуг
+house_summer.jpg;;Дом осенью
+fire.jpg;;Ужин на костре
+flute.jpg;;Костёр
+vector.jpg;;Вектор
+""") }}

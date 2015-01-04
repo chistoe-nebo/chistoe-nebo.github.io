@@ -20,13 +20,8 @@ summary: Гостевой дом в поселении Чистое небо, э
 
 [Другие варианты размещения](/stay/)
 
-{{ album4([{
-  "title": u"Гостевой дом",
-  "link": "guesthouse.jpg",
-}, {
-  "title": u"Дом хозяев",
-  "link": "house.jpg",
-}, {
-  "title": u"Баня",
-  "link": "bath.jpg",
-}]) }}
+{{ album4("""
+guesthouse.jpg;;Гостевой дом
+house.jpg;;Дом хозяев
+bath.jpg;;Баня
+""") }}
