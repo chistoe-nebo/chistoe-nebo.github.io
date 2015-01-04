@@ -64,6 +64,9 @@ def utf(s):
 
 
 def join_path(src, dst):
+    if "://" in dst:
+        return dst
+
     src = src.split("/")
     src.pop()
 
@@ -100,6 +103,8 @@ def fix_url_unicode(url):
 
 def fix_url(url):
     """Removes /index.html from local links."""
+    if "://" in url:
+        return url
     if url.endswith("/index.html"):
         url = url[:-10]
     elif url == "index.html":
@@ -420,7 +425,9 @@ class Tiles(object):
                 img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
 
                 if link:
-                    a = u"<a href='/%s'" % fix_url(link)
+                    if "://" not in link:
+                        link = "/" + link
+                    a = u"<a href='%s'" % link
                     if title:
                         a += u" title='%s'" % title
                     if link.endswith(".jpg"):
