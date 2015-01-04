@@ -10,7 +10,7 @@ div.col {
 
 	/* восстановление подавленного в div.row шрифта */
 	font-size: 16px;
-	line-height: 1.75em;
+	line-height: 1.5em;
 }
 div.col:nth-child(1) {
 	margin-right: 90px;
