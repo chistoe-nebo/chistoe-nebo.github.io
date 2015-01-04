@@ -1,4 +1,5 @@
 # encoding=utf-8
+# vim: set tw=0:
 
 """Plugins for Poole
 
@@ -418,7 +419,7 @@ class Tiles(object):
 
                 img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
                 if link and link.endswith(".jpg"):
-                    img = u"<a href='/%s' data-lightbox='gallery'>%s</a>" % (fix_url(link), img)
+                    img = u"<a href='/%s' data-lightbox='gallery' data-title='%s'>%s</a>" % (fix_url(link), title or "", img)
                 elif link:
                     img = u"<a href='/%s'>%s</a>" % (fix_url(link), img)
                 output += img
