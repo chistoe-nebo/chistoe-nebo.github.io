@@ -1,0 +1,51 @@
+body#home #blogs {
+	width: 1000px;
+	margin: 20px auto 100px;
+}
+
+body#home #blogs .wrap {
+	/*
+	padding-left: 160px;
+	background: white url(/images/blog-small.jpg) no-repeat 0 50%;
+	min-height: 100px;
+	*/
+}
+body#home #blogs h3 {
+	margin: 0 0 .5em;
+}
+body#home #blogs ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	line-height: 1.25em;
+}
+body#home #blogs li {
+	margin: 0 0 10px 0;
+	padding-left: 55px;
+	min-height: 50px;
+	background: transparent url(/images/ava_default.png) no-repeat top left;
+}
+
+body#home #blogs .col1 {
+	width: 180px;
+	margin-right: 20px;
+	line-height: 1.25em;
+}
+body#home #blogs .col2 {
+	width: 390px;
+	margin-right: 20px;
+}
+body#home #blogs .col3 {
+	width: 390px;
+	margin-right: 0px;
+}
+
+body#home #blogs li.ava_maxim {
+	background-image: url(/images/ava_maksim.jpg);
+}
+body#home #blogs li.ava_vitaly {
+	background-image: url(/images/ava_vitalik.jpg);
+}
+body#home #blogs li.ava_vova {
+	background-image: url(/images/ava_vladimir.jpg);
+}
