@@ -1,4 +1,4 @@
-/**
+.**
  * Оформление внутренних страниц сайта.
  **/
 
@@ -32,18 +32,18 @@ iframe.youtube-player {
 }
 
 
-body#about_index_html table {
+body.about table {
 	border-collapse: collapse;
 }
-body#about_index_html table td,
-body#about_index_html table th {
+body.about table td,
+body.about table th {
 	border: solid 1px #ccc;
 	padding: 4px 10px;
 }
-body#about_index_html table td {
+body.about table td {
 	text-align: right;
 }
-body#about_index_html table th {
+body.about table th {
 	font-weight: normal;
 	background-color: #eee;
 }

@@ -78,6 +78,6 @@ ul.tiles_240x160 img {
 }
 
 
-body#go_index_html ul.tiles li {
+body.go ul.tiles li {
 	margin-bottom: 40px;
 }

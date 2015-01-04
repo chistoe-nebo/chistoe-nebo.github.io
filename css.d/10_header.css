@@ -9,7 +9,7 @@
 	width: 100%;
 }
 
-body#home #header {
+body.home #header {
 	position: absolute;
 	z-index: 2000;
 }
@@ -58,7 +58,7 @@ body#home #header {
 	border-radius: 6px;
 	padding-left: 6px;
 }
-body#home #search:hover {
+body.home #search:hover {
 	box-shadow: 0 0 20px 3px green;
 }
 

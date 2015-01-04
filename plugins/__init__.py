@@ -158,13 +158,11 @@ def get_page_date(page, fmt=None):
 def html_body_attrs():
     """Returns a string which adds page-specific classes to an HTML node."""
     page = macros("page")
-    output = u" id='%s'" % re.sub("[-./]", "_", page["url"])
 
-    labels = get_page_labels(page)
-    if labels:
-        output += u" class='%s'" % " ".join(labels)
+    classes = get_page_labels(page)
+    classes.append(re.sub("[-./]", "_", page["url"]).replace("_index_html", ""))
 
-    return output
+    return u" class='%s'" % " ".join(list(set(classes)))
 
 
 def get_page_image_path(page, image=None):
