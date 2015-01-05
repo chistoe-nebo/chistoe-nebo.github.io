@@ -11,16 +11,40 @@
 }
 #footer ul {
 	display: inline-block;
-	width: 240px;
+	width: 320px;
 
 	margin: 0;
 	padding: 0;
 
-	color: gray;
+	color: black;
 	font-size: 14px;
 	line-height: 1.75em;
 	list-style-type: none;
 	vertical-align: top;
+}
+
+
+/**
+ * Размеры блоков.
+ **/
+#footer ul {
+	width: 235px;
+	margin-right: 20px;
+}
+#footer ul.last {
+	margin-right: 0;
+}
+
+
+/**
+ * Цвет текста.
+ **/
+#footer ul {
+	color: #444;
+}
+#footer ul li:nth-child(1) {
+	color: black;
+	margin-bottom: .5em;
 }
 #footer a,
 #footer a:visited {
