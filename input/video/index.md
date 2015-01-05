@@ -7,14 +7,14 @@ summary: Коллекция видеозаписей о жизни в посел
 
 ## Праздники
 
-{{ video_album(label="holiday", size=(326, 233)) }}
+{{ video_album4("holiday") }}
 
 
 ## Повседневная жизнь
 
-{{ video_album(label="routine", size=(326, 233)) }}
+{{ video_album4("routine") }}
 
 
 ## Природа
 
-{{ video_album(label="nature", size=(326, 233)) }}
+{{ video_album4("nature") }}

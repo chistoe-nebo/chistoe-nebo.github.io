@@ -443,6 +443,10 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
     return Tiles([(None, tiles)], (326, 233)).render()
 
 
+def video_album4(label):
+    return video_album(label=label, columns=4, size=(240, 160))
+
+
 def album(desc, columns=3, sizes=None):
     if isinstance(desc, unicode):
         desc = desc.encode("utf-8")
