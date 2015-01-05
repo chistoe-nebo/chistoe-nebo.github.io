@@ -61,7 +61,7 @@ OG_EMAIL = "poselenie@chistoe-nebo.net"
 #    "sex": "f",
 #}]
 
-#from plugins.rdfa import *
+from plugins.rdfa import *
 
 from plugins.video import *
 

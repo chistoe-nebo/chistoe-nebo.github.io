@@ -61,3 +61,15 @@ a {
 #content p.hint a {
 	color: inherit;
 }
+
+
+#content > figure {
+	width: 1000px;
+	margin: 0 0 1.5em;
+	padding: 0;
+}
+#content > figure > figuredesc {
+	font-style: italic;
+	font-family: serif;
+	color: gray;
+}
