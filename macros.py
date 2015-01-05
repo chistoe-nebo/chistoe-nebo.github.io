@@ -534,7 +534,16 @@ def wide_image():
 
     img = join_path(page.url, img)
 
-    html = u"<div class='wide'>\n<img src='/%s' alt='wide'/>" % img
+    if page.get("widetext"):
+        html = u"<div class='wide'>"
+        html += u"<div class='image' style='background-image:url(/%s)'></div>" % img
+        html += u"<div class='text'>"
+        html += u"<h1>%s</h1>" % page["title"]
+        html += u"<p>%s</p>" % page["widetext"]
+        html += u"</div>"
+    else:
+        html = u"<div class='wide' style='background-image:url(/%s)'>" % img
+
     html += u"</div>\n"
 
     return html

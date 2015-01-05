@@ -10,3 +10,53 @@ body.residents ul.other_residents .description {
 body.residents div.other {
 	margin-top: 50px;
 }
+
+body.residents .wide {
+	height: 500px;
+	margin-bottom: 20px;
+	position: relative;
+}
+body.residents.has_widetext .wide {
+	margin-bottom: 40px;
+}
+
+body.residents .wide,
+body.residents .wide .image {
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+}
+
+body.residents .wide .image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+}
+
+body.residents .wide .text {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	background-color: #e3c952;
+	color: rgb(42, 56, 56);
+}
+
+body.residents .wide .text h1 {
+	margin: 100px 100px 50px;
+	padding: 0;
+	background: none;
+	font-size: 40px;
+}
+body.residents .wide .text p {
+	margin: 1em 100px;
+	line-height: 1.5em;
+	font-size: 20px;
+}
+
+body.residents.has_widetext #chead {
+	display: none;
+}

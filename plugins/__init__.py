@@ -164,6 +164,11 @@ def html_body_attrs():
     classes = get_page_labels(page)
     classes.append(re.sub("[-./]", "_", page["url"]).replace("_index_html", ""))
 
+    for k, v in page.items():
+        if k.startswith("_"):
+            continue
+        classes.append("has_" + k.replace("-", "_"))
+
     return u" class='%s'" % " ".join(list(set(classes)))
 
 
