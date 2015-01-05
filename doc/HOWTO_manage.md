@@ -5,3 +5,10 @@
 ## Вставка уменьшенного изображения
 
     {{ thumbnail("files/welcome.jpg", 300, 200) }}
+
+
+## Вставка видео
+
+- Создать страницу: `input/video/filename.md`,
+- заполнить по примеру другой такой страницы,
+- положить рядом `filename.jpg`, взять по адресу `http://img.youtube.com/vi/???/maxresdefault.jpg`.
