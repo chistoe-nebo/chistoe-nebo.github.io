@@ -7,13 +7,14 @@ Renders previews of posts tagged with the "video" label.
 
 
 import fnmatch
+import lxml.etree
 import os
 import subprocess
 import sys
 
 from plugins import macros, get_page_date, get_page_labels, \
     fix_url, safedict, Thumbnail, Tiles, get_page_image_path, \
-    fetch
+    fetch, join_path
 
 
 __author__ = "Justin Forest"
@@ -67,6 +68,32 @@ def find_videos(label):
     return sorted(videos, key=lambda p: p.get("date"), reverse=True)
 
 
+def get_youtube_thumbnail_url(video_id):
+    url = "https://gdata.youtube.com/feeds/api/videos/%s" % video_id
+
+    print "warning: fetching %s" % url
+    xml = fetch(url).read()
+
+    doc = lxml.etree.fromstring(xml)
+    for child in doc.getchildren():
+        if child.tag == "{http://search.yahoo.com/mrss/}group":
+            thumbnails = []
+
+            for child2 in child.getchildren():
+                if child2.tag == "{http://search.yahoo.com/mrss/}thumbnail":
+                    turl = child2.get("url")
+                    tw = int(child2.get("width"))
+                    th = int(child2.get("height"))
+
+                    thumbnails.append((turl, tw * th))
+
+            if thumbnails:
+                thumbnails.sort(key=lambda x: x[1], reverse=True)
+                return thumbnails[0][0]
+
+    return None
+
+
 def get_video_thumbnail(page):
     path = os.path.splitext(page.fname)[0] + ".jpg"
     if os.path.exists(path):
@@ -74,8 +101,9 @@ def get_video_thumbnail(page):
 
     youtube_id = page.get("youtube-id")
     if youtube_id:
-        url = "http://i.ytimg.com/vi/%s/maxresdefault.jpg" % youtube_id
-        add_file_from_url(url, path)
+        url = get_youtube_thumbnail_url(youtube_id)
+        if url is not None:
+            add_file_from_url(url, path)
 
     return path
 
