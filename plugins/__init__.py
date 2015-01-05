@@ -128,7 +128,7 @@ def get_page_labels(page):
     Returns a list of page's labels read from the "labels" property.
     The result is cached, next calls are fast.
     """
-    if "_parsed_labels" not in page:
+    if "_parsed_labels" not in page or True:
         _raw_labels = page.get("labels", "").strip()
         if not _raw_labels:
             page["_parsed_labels"] = []
