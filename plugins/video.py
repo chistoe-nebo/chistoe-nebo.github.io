@@ -23,16 +23,9 @@ __license__ = "GPL"
 __version__ = "1.0"
 
 
-def add_file_from_url(url, dst):
-    print "wraning: fetching %s" % url
-
-    res = fetch(url)
-    if res.getcode() < 200 or res.getcode() >= 300:
-        print "warning: bad response: %s" % res.getcode()
-        return False
-
+def add_file_from_string(dst, data):
     with open(dst, "wb") as f:
-        f.write(res.read())
+        f.write(data)
 
     print "info   : wrote %s" % dst
 
@@ -47,6 +40,17 @@ def add_file_from_url(url, dst):
         print "warning: could not add %s to the repository" % dst
 
     return True
+
+
+def add_file_from_url(url, dst):
+    print "wraning: fetching %s" % url
+
+    res = fetch(url)
+    if res.getcode() < 200 or res.getcode() >= 300:
+        print "warning: bad response: %s" % res.getcode()
+        return False
+
+    return add_file_from_string(dst, res.read())
 
 
 def find_videos(label):
@@ -89,7 +93,11 @@ def get_youtube_thumbnail_url(video_id):
 
             if thumbnails:
                 thumbnails.sort(key=lambda x: x[1], reverse=True)
-                return thumbnails[0][0]
+
+            thumbnails.insert(0, ("https://i.ytimg.com/vi/%s/sddefault.jpg" % video_id, ))
+            thumbnails.insert(0, ("https://i.ytimg.com/vi/%s/maxresdefault.jpg" % video_id, ))
+
+            return [t[0] for t in thumbnails]
 
     return None
 
@@ -101,9 +109,13 @@ def get_video_thumbnail(page):
 
     youtube_id = page.get("youtube-id")
     if youtube_id:
-        url = get_youtube_thumbnail_url(youtube_id)
-        if url is not None:
-            add_file_from_url(url, path)
+        for url in get_youtube_thumbnail_url(youtube_id):
+            print "warning: fetching %s" % url
+            res = fetch(url)
+            if res.getcode() >= 200 and res.getcode() < 300:
+                data = res.read()
+                add_file_from_string(path, data)
+                return path
 
     return path
 
