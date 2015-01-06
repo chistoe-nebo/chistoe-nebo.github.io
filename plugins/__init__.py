@@ -114,13 +114,13 @@ def fix_url(url):
 
 def get_page_url(page):
     """Returns the page's fully-qualified URL."""
-    url = page["url"]
+    url = fix_url(page["url"])
 
     base_url = macros("BASE_URL")
     if base_url is not None:
         url = base_url + "/" + url
 
-    return fix_url(url)
+    return url
 
 
 def get_page_labels(page):
