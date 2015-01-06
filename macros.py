@@ -28,8 +28,8 @@ OG_COUNTRY_NAME = "Russia"
 OG_LOCALITY = "Sebezh"
 OG_EMAIL = "poselenie@chistoe-nebo.net"
 
-#from plugins.yandex_metrika import *
-#YANDEX_METRIKA_ID = "14608519"
+from plugins.yandex_metrika import *
+YANDEX_METRIKA_ID = "27824553"
 
 #from plugins.photopages import *
 #PHOTO_PAGE_TEMPLATE = "photo_template.md"
