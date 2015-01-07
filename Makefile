@@ -19,5 +19,10 @@ deploy:
 	-hg push
 	ssh nebo_welcome@doh.umonkey.net ./refresh
 
+push-docs:
+	hg addremove doc
+	hg commit README.md TODO doc -m "Обновление документации"
+	hg push
+
 strip-images:
 	for fn in `find input -name "*.jpg"`; do convert $$fn -strip tmp.jpg; mv -f tmp.jpg $$fn; done
