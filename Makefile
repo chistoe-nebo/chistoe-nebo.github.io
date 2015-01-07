@@ -12,11 +12,11 @@ build: clean
 	test -d ~/.cache/thumbnails || mkdir -p ~/.cache/thumbnails
 	python -u poole.py --build | tee build.log
 	#ls css.d/*.css | sort | xargs cat > output/screen.css
-	ls css.d/*.css | sort | xargs cat | csstidy --silent --template=highest - output/screen.css
+	ls css.d/*.css | sort | xargs cat | csstidy - --silent=true --template=highest output/screen.css
 	grep -E '^(error|warning)' build.log || true
 
 deploy:
-	hg push
+	-hg push
 	ssh nebo_welcome@doh.umonkey.net ./refresh
 
 strip-images:
