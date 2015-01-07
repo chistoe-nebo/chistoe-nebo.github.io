@@ -10,7 +10,7 @@ import re
 import shutil
 import sys
 
-BASE_URL = "http://nebo.dev.umonkey.net"
+BASE_URL = "http://www.chistoe-nebo.org"
 WEBSITE_NAME = u"Поселение Чистое небо"
 DEFAULT_LANGUAGE = "ru"
 STOP_LABELS = ["draft", "status", "link", "queue"]
