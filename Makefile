@@ -15,6 +15,7 @@ build:
 	#ls css.d/*.css | sort | xargs cat > output/screen.css
 	ls css.d/*.css | sort | xargs cat | csstidy - --silent=true --template=highest output/screen.css
 	grep -E '^(error|warning)' build.log || true
+	cp input/.htaccess output/
 
 deploy: clean build
 	rsync -e ssh -avz -c --delete -h output/ $(REMOTE):nebo-welcome/
