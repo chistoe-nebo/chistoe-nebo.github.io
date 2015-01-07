@@ -57,3 +57,7 @@
 #footer li.gray a {
 	color: #888;
 }
+
+#footer img {
+	border: none;
+}
