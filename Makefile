@@ -17,3 +17,6 @@ build: clean
 deploy:
 	hg push
 	ssh nebo_welcome@doh.umonkey.net ./refresh
+
+strip-images:
+	for fn in `find input -name "*.jpg"`; do convert $$fn -strip tmp.jpg; mv -f tmp.jpg $$fn; done
