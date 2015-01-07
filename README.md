@@ -16,6 +16,7 @@
 
 - [Добавление видеозаписи](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_video.md)
 - [Добавление фотографии](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_photo.md)
+- [Отправка новости подписчикам](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_news_mail.md)
 
 Что-то непонятно?
 Пишите на <hex@umonkey.net> или в Skype (`justin.forest`).
