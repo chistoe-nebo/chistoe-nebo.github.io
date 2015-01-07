@@ -12,6 +12,11 @@
 После внесения изменений в репозиторий следует подождать около 5 минут и изменения будут отражены на сайте.
 
 
+## Инструкции для редакторов
+
+- [Добавление видеозаписи](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_video.md)
+
+
 ## Немного документации
 
 - [Описание внутренностей сайта](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Software.md)
