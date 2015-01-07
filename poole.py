@@ -278,7 +278,7 @@ def symlink_output(real_path):
 
 
 def purge_backups():
-    dirs = sorted(glob.glob("output-*-*"))
+    dirs = sorted(glob.glob(".output-*-*"))
     for dirname in dirs[:-10]:
         print("info   : removing old output directory %s" % dirname)
         shutil.rmtree(dirname)
@@ -482,7 +482,7 @@ def build(project, opts):
 
     dir_in = opj(project, "input")
 
-    dir_out = opj(project, "output-" + time.strftime("%Y%m%d-%H%M%S"))
+    dir_out = opj(project, ".output-" + time.strftime("%Y%m%d-%H%M%S"))
     if not os.path.exists(dir_out):
         os.makedirs(dir_out)
 
