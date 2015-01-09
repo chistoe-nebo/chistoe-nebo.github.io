@@ -30,7 +30,7 @@ push-docs:
 	hg push
 
 shell:
-	ssh -t $(REMOTE)
+	ssh -t $(REMOTE) 'cd nebo-welcome; bash -i'
 
 strip-images:
 	for fn in `find input -name "*.jpg"`; do convert $$fn -strip tmp.jpg; mv -f tmp.jpg $$fn; done
