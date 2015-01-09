@@ -655,6 +655,20 @@ def hook_html_typo(html):
     return typo(html)
 
 
+def page_scripts():
+    if "script" not in page:
+        return ""
+
+    output = u""
+    for k, v in get_page_headers(page):
+        if k == "script":
+            output += u"<script type='text/javascript' src='%s'></script>\n" % v
+        elif k == "style":
+            output += u"<link rel='stylesheet' type='text/css' href='%s'/>\n" % v
+
+    return output
+
+
 def prepare_square_photos():
     """
     Создание квадратных превьюшек для фотографий на главной.

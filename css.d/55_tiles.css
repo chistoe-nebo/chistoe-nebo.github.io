@@ -62,6 +62,7 @@ ul.tiles_4col li {
 
 ul.tiles img.picture {
 	background-color: #eee;
+	border: solid 1px gray;
 }
 
 ul.tiles_326x233 li {

@@ -112,6 +112,24 @@ def fix_url(url):
     return fix_url_unicode(url)
 
 
+def get_page_headers(page):
+    raw_data = open(page.fname, "rb").read().decode("utf-8")
+
+    headers = []
+    for line in raw_data.splitlines():
+        if line.startswith("#"):
+            continue
+
+        if ":" in line:
+            k, v = line.split(":", 1)
+            headers.append((k.strip(), v.strip()))
+
+        elif line.strip() == "---":
+            break
+
+    return headers
+
+
 def get_page_url(page):
     """Returns the page's fully-qualified URL."""
     url = fix_url(page["url"])
@@ -503,6 +521,7 @@ __all__ = [
     "find_sibling",
     "fix_url",
     "fix_url_unicode",
+    "get_page_headers",
     "get_abs_url",
     "get_page_date",
     "get_page_image_path",

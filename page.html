@@ -5,15 +5,12 @@
     <title>{{ page.title }} — Чистое небо</title>
     <meta name="keywords" content="{{ meta('keywords') }}"/>
     <meta name="description" content="{{ meta('summary') }}"/>
-    <link rel="stylesheet" type="text/css" href="/screen.css"/>
-    <script type="text/javascript" src="/scripts/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/scripts/bjqs-1.3.min.js"></script>
-    <script type="text/javascript" src="/scripts/scripts.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Ubuntu+Condensed&subset=cyrillic' rel='stylesheet' type='text/css'/>
-
-    <script type="text/javascript" src="/scripts/lightbox/js/lightbox.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/scripts/lightbox/css/lightbox.css"/>
-
+    <link rel="stylesheet" type="text/css" href="/assets/screen.css"/>
+    <script type="text/javascript" src="/assets/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/assets/bjqs-1.3.min.js"></script>
+    <script type="text/javascript" src="/assets/scripts.js"></script>
+    <script type="text/javascript" src="/assets/lightbox/js/lightbox.min.js"></script>
+    {{ page_scripts() }}
     <meta name="viewport" content="width=1100"/>
   </head>
   <body{{ html_body_attrs() }}>

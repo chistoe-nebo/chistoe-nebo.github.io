@@ -12,8 +12,8 @@ build:
 	test -d output || mkdir output
 	test -d ~/.cache/thumbnails || mkdir -p ~/.cache/thumbnails
 	python -u poole.py --build | tee build.log
-	#ls css.d/*.css | sort | xargs cat > output/screen.css
-	ls css.d/*.css | sort | xargs cat | csstidy - --silent=true --template=highest output/screen.css
+	find css.d -type f | sort | xargs cat | csstidy - --silent=true --template=highest --merge_selectors=0 output/assets/screen.css
+	find js.d/leaflet.js -type f | sort | xargs cat > output/assets/leaflet.js
 	grep -E '^(error|warning)' build.log || true
 	cp input/.htaccess output/
 
