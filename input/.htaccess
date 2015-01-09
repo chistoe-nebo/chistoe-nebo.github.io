@@ -1,2 +1,4 @@
 ErrorDocument 404 /error.html
 RedirectMatch ^/(wp-content/.*) http://blog.chistoe-nebo.org/$1
+ExpiresActive on
+ExpiresDefault "access plus 1 week"
