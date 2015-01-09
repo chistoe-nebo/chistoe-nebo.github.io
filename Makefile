@@ -33,4 +33,5 @@ shell:
 	ssh -t $(REMOTE) 'cd nebo-welcome; bash -i'
 
 strip-images:
-	for fn in `find input -name "*.jpg"`; do convert $$fn -strip tmp.jpg; mv -f tmp.jpg $$fn; done
+	find input -type f -name "*.jpg" -exec jpegoptim --strip-all {} \;
+	find input -type f -name "*.png" -exec optipng -o7 {} \;
