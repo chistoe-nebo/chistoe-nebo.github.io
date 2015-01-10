@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"api_version": 1,
+	"layout": {
+		"logo": "http://www.chistoe-nebo.org/yandex-tablo.png",
+		"color": "#ffffff",
+		"show_title": false
+	}
+}
