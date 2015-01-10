@@ -133,7 +133,7 @@ jQuery(document).ready(function($){
 		L.control.layers(baseMaps, overlays).addTo(map);
 
 		// Вывод слоёв по умолчанию.
-		map.addLayer(base_osm_fr);
+		map.addLayer(base_osm);
 		map.addLayer(ovl_buildings);
 		map.addLayer(ovl_water);
 		map.addLayer(ovl_food);
