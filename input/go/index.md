@@ -33,6 +33,7 @@ pos-struga.jpg;https://vk.com/belaya.struga;Белая струга;Молодо
 pos-bor.jpg;http://poselenia.ru/poselenie/2798?from=nebo;Сосновый бор;Формирующееся поселение в 20 км от Идрицы.
 pos-opolie.jpg;http://www.rodovoepomestje.narod.ru/?from=nebo;Ополье;Формирующееся поселение в 150 км от Пскова.
 pos-zemlya.jpg;https://vk.com/club20213963;Светлая земля;Развивающееся родовое поселение в Новоржевском районе.
+pos-dubravnoe.jpg;https://vk.com/dubravnoe;Дубравное;Экопоселение в 30 км от порхова.
 """) }}
 
 Знаете ещё интересные места?  Пишите на <poselenia@chistoe-nebo.org>.
