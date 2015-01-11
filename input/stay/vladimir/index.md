@@ -31,8 +31,8 @@ hosts.jpg;;Владимир и Юлия
 house.jpg;;Дом зимой
 camping.jpg;;Палаточный лагерь
 games.jpg;;Досуг
-house_summer.jpg;;Дом осенью
-fire.jpg;;Ужин на костре
 flute.jpg;;Костёр
+kacheli.jpg;;Качели рядом с домом
+fire.jpg;;Ужин на костре
 vector.jpg;;Вектор
 """) }}
