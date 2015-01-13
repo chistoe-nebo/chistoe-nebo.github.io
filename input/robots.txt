@@ -1,0 +1,2 @@
+Host: www.chistoe-nebo.org
+Sitemap: http://www.chistoe-nebo.info/sitemap.xml
