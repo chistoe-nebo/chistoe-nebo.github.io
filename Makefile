@@ -22,7 +22,8 @@ build:
 
 deploy: clean build
 	-hg push
-	rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
+	#rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
+	ssh $(REMOTE_HOST) ./refresh
 
 push-docs:
 	hg addremove doc
