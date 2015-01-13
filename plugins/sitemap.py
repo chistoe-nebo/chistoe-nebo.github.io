@@ -183,8 +183,14 @@ class Sitemap(object):
         print "info   : wrote %s" % self.filename
 
         robots = os.path.join(output, "robots.txt")
-        file(robots, "ab").write("Sitemap: %s\n" \
-            % get_abs_url(self.filename, self.base_url))
+        if os.path.exists(robots):
+            data = open(robots, "rb").read().lower()
+            if "sitemap:" in data:
+                return
+
+        with open(robots, "ab") as f:
+            url = get_abs_url(self.filename, self.base_url)
+            f.write("Sitemap: %s\n" % url)
 
 
 def get_abs_url(url, base_url):
