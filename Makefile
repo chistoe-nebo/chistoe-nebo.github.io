@@ -20,11 +20,11 @@ build:
 	cp input/.htaccess output/
 
 deploy: clean build
-	rsync -e ssh -avz -c --delete -h output/ $(REMOTE):nebo-welcome/
-
-deploy-dev: clean build
 	-hg push
 	ssh nebo_welcome@doh.umonkey.net ./refresh
+
+deploy-prod: clean build
+	rsync -e ssh -avz -c --delete -h output/ $(REMOTE):nebo-welcome/
 
 push-docs:
 	hg addremove doc
@@ -33,6 +33,9 @@ push-docs:
 
 shell:
 	ssh -t $(REMOTE) 'cd nebo-welcome; bash -i'
+
+shell-dev:
+	ssh -t nebo_welcome@doh.umonkey.net
 
 strip-images:
 	find input -type f -name "*.jpg" -exec jpegoptim --strip-all {} \;
