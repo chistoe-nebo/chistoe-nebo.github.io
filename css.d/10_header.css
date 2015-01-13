@@ -101,4 +101,5 @@ body.home #search:hover {
 	padding: 0;
 	text-indent: -1000px;
 	cursor: pointer;
+	overflow: hidden;
 }
