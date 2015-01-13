@@ -1,4 +1,5 @@
-REMOTE=magazin.chistoe-nebo.org
+REMOTE_HOST=www.chistoe-nebo.info
+REMOTE_FOLDER=src/output
 
 all: build
 
@@ -21,10 +22,7 @@ build:
 
 deploy: clean build
 	-hg push
-	ssh nebo_welcome@doh.umonkey.net ./refresh
-
-deploy-prod: clean build
-	rsync -e ssh -avz -c --delete -h output/ $(REMOTE):nebo-welcome/
+	rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
 
 push-docs:
 	hg addremove doc
@@ -32,10 +30,7 @@ push-docs:
 	hg push
 
 shell:
-	ssh -t $(REMOTE) 'cd nebo-welcome; bash -i'
-
-shell-dev:
-	ssh -t nebo_welcome@doh.umonkey.net
+	ssh -t $(REMOTE_HOST) 'cd $(REMOTE_FOLDER); bash -i'
 
 strip-images:
 	find input -type f -name "*.jpg" -exec jpegoptim --strip-all {} \;
