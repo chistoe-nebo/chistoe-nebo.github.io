@@ -655,6 +655,12 @@ def hook_html_typo(html):
     return typo(html)
 
 
+def hook_html_99_minify(html):
+    html = re.sub(r"^\s+", "", html, count=0, flags=re.M)
+    html = re.sub(r"<!--.*?-->", "", html)
+    return html
+
+
 def page_scripts():
     if "script" not in page:
         return ""
