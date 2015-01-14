@@ -6,7 +6,7 @@ if (!empty($_POST["email"])) {
          "{$_POST["email"]} wants to subscribe",
          "From: {$_POST["email"]}\r\n");
 
-    header("300 See Other");
+    header("303 See Other");
     header("Location: http://www.chistoe-nebo.info/news/thanks/");
     die("Thanks!");
 }
