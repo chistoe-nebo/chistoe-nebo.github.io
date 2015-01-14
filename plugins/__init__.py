@@ -497,6 +497,8 @@ class Tiles(object):
         image = tile["image"]
         if image.startswith("input/"):
             image = image[5:]
+        elif image.startswith("./input/"):
+            image = image[7:]
 
         image_url = urlparse.urljoin(page_url, image)
         return image_url
