@@ -61,3 +61,8 @@
 #footer img {
 	border: none;
 }
+
+
+#footer ul.addr a {
+	color: inherit;
+}
