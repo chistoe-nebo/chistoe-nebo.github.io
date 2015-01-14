@@ -661,6 +661,32 @@ def hook_html_99_minify(html):
     return html
 
 
+def hook_after_00_compress_css():
+    sources = []
+
+    for folder, folders, files in os.walk("css.d"):
+        for file in files:
+            if file.endswith(".css"):
+                sources.append(os.path.join(folder, file))
+
+    source = "\n".join([open(fn, "rb").read()
+                        for fn in sorted(sources)])
+    length = len(source)
+
+    source = re.sub(r"/\*.*?\*/", "", source, flags=re.S)
+    source = re.sub(r"^\s+", "", source, flags=re.M)
+
+    lines = source.splitlines()
+    lines = [l for l in lines if l.strip()]
+    source = "\n".join(lines)
+
+    filename = os.path.join(output, "assets", "screen.css")
+    with open(filename, "wb") as f:
+        saved = length - len(output)
+        f.write(source)
+        print "info   : wrote assets/screen.css (compressed, %u bytes saved)" % saved
+
+
 def page_scripts():
     if "script" not in page:
         return ""

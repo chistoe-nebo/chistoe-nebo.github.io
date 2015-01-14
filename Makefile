@@ -10,11 +10,10 @@ clean:
 	find . -name "*.pyc" -delete
 
 build:
-	test -d output || mkdir output
 	test -d ~/.cache/thumbnails || mkdir -p ~/.cache/thumbnails
 	python -u poole.py --build | tee build.log
 	#find css.d -type f | sort | xargs cat | csstidy - --silent=true --template=default --merge_selectors=0 output/assets/screen.css
-	find css.d -type f | sort | xargs cat > output/assets/screen.css
+	#find css.d -type f | sort | xargs cat > output/assets/screen.css
 	find js.d/leaflet.js -type f | sort | xargs cat > tmp.js && yui-compressor -o output/assets/leaflet.js tmp.js; rm -f tmp.js
 	find js.d/scripts.js -type f | sort | xargs cat > tmp.js && yui-compressor -o output/assets/scripts.js tmp.js; rm -f tmp.js
 	grep -E '^(error|warning)' build.log || true
