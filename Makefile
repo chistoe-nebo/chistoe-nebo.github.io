@@ -18,6 +18,7 @@ build:
 	@##find js.d/scripts.js -type f | sort | xargs cat > tmp.js && yui-compressor -o output/assets/scripts.js tmp.js; rm -f tmp.js
 	grep -E '^(error|warning)' build.log || true
 	cp input/.htaccess output/
+	-notify-send -i info chistoe-nebo.info "Web site rebuilt."
 
 deploy: clean build
 	-hg push

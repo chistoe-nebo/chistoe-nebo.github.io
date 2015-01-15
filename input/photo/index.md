@@ -37,3 +37,29 @@ rov.jpg;;;Раскопки
 dom.jpg;;;Строительство дома
 stol.jpg;;;Подготовка уличного стола
 """) }}
+
+
+## Природа
+
+{{ album4("""
+nature-winter-1.jpg
+nature-winter-2.jpg
+nature-winter-3.jpg
+nature-winter-4.jpg
+nature-summer-1.jpg
+nature-summer-2.jpg;;Зеленец
+nature-summer-3.jpg
+nature-summer-4.jpg;;Дашково
+""") }}
+
+
+## Животные
+
+{{ album4("""
+animals-goats.jpg;;Козлята
+animals-vector.jpg;;Вектор
+animals-kitten.jpg;;Котята
+animals-birds.jpg;;Мухоловки
+animals-bats.jpg;;Летучий мышонок
+animals-tit.jpg;;Синица в руке
+""") }}
