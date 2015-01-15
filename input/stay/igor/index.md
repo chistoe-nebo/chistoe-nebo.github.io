@@ -1,6 +1,6 @@
 title: В гостях у Игоря
 list_title: Игорь
-list_text: Размещение в хозяйском доме.  Рядом есть баня.
+list_text: Размещение в хозяйском доме.  Рядом есть баня, пруд.
 thumbnail: house.jpg
 icons: home, tents, sauna
 labels: stay
