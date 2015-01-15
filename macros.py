@@ -9,6 +9,8 @@ import os
 import re
 import shutil
 import sys
+import time
+
 
 BASE_URL = "http://www.chistoe-nebo.info"
 WEBSITE_NAME = u"Поселение Чистое небо"
