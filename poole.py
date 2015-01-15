@@ -562,7 +562,7 @@ def build(project, opts):
 
     hooks = [a for a in macros if re.match(r'hook_preconvert_|once_', a)]
     for fn in sorted(hooks):
-        print("info   : executing hook %s" % fn)
+        print("info   : executing %s" % fn)
         macros[fn]()
 
     # -------------------------------------------------------------------------
@@ -587,7 +587,7 @@ def build(project, opts):
 
     hooks = [a for a in macros if a.startswith("hook_postconvert_")]
     for fn in sorted(hooks):
-        print("info   : executing hook %s" % fn)
+        print("info   : executing %s" % fn)
         macros[fn]()
 
     # -------------------------------------------------------------------------
@@ -631,7 +631,7 @@ def build(project, opts):
 
     hooks = [a for a in macros if a.startswith("hook_after_")]
     for fn in sorted(hooks):
-        print("info   : executing hook %s" % fn)
+        print("info   : executing %s" % fn)
         macros[fn]()
 
     print("success: built project")
