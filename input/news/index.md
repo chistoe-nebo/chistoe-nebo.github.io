@@ -8,4 +8,6 @@ summary: Подпишитесь на новости поселения Чист�
 
 <form action="/subscribe.php" method="post"><input type="text" name="email" placeholder="Ваш email" autofocus="autofocus" style="padding:2px 4px; margin-right:10px"/><input type="submit" value="Подписаться"/></form>
 
+Вы также можете получать наши новости из [нашей страницы вконтакте](https://vk.com/nebo.ecovillage).
+
 <!-- [Архив рассылки](https://groups.google.com/forum/#!forum/nebo-guest) можно посмотреть в браузере. -->
