@@ -144,7 +144,7 @@ def hook_html_opengraph(html):
         add_tag("og:audio", url)
         add_tag("og:audio:type", "audio/mp3")
 
-    image_url = get_page_image(page)
+    image_url = get_page_image(page) or macros("OG_DEFAULT_IMAGE")
     if image_url:
         add_tag("og:image", fix_url(image_url))
 

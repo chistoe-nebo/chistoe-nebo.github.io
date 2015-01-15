@@ -29,6 +29,7 @@ from plugins.meta import *
 OG_COUNTRY_NAME = "Russia"
 OG_LOCALITY = "Sebezh"
 OG_EMAIL = "hex@umonkey.net"
+OG_DEFAULT_IMAGE = "http://www.chistoe-nebo.info/images/opengraph.png"
 
 from plugins.yandex_metrika import *
 YANDEX_METRIKA_ID = "27824553"
