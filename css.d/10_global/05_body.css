@@ -73,3 +73,13 @@ a {
 	font-family: serif;
 	color: gray;
 }
+
+body {
+	background-color: #ccc;
+}
+#canvas {
+	background-color: white;
+	border-top: solid 1px white;
+	border-bottom: solid 1px white;
+	padding-bottom: 50px;
+}
