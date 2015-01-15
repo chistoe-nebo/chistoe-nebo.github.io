@@ -661,16 +661,22 @@ def hook_html_99_minify(html):
     return html
 
 
-def hook_after_00_compress_css():
-    sources = []
-
-    for folder, folders, files in os.walk("css.d"):
+def find_files(root, suffix=None):
+    result = []
+    for folder, folders, files in os.walk(root):
         for file in files:
-            if file.endswith(".css"):
-                sources.append(os.path.join(folder, file))
+            if suffix is None or file.endswith(suffix):
+                result.append(os.path.join(folder, file))
+    return result
 
-    source = "\n".join([open(fn, "rb").read()
-                        for fn in sorted(sources)])
+
+def compress_files(files):
+    source = ""
+    for file in files:
+        if file.endswith(".js"):
+            source += ";"
+        source += open(file, "rb").read()
+
     length = len(source)
 
     source = re.sub(r"/\*.*?\*/", "", source, flags=re.S)
@@ -680,11 +686,33 @@ def hook_after_00_compress_css():
     lines = [l for l in lines if l.strip()]
     source = "\n".join(lines)
 
+    return length, source
+
+
+def hook_after_00_compress_css():
+    sources = find_files("css.d", ".css")
+    length, source = compress_files(sources)
+
     filename = os.path.join(output, "assets", "screen.css")
     with open(filename, "wb") as f:
-        saved = length - len(output)
+        saved = length - len(source)
         f.write(source)
         print "info   : wrote assets/screen.css (compressed, %u bytes saved)" % saved
+
+
+def hook_after_00_compress_js():
+    sources = []
+
+    for target in os.listdir("js.d"):
+        root = os.path.join("js.d", target)
+        sources = find_files(root, ".js")
+        length, source = compress_files(sources)
+
+        filename = os.path.join(output, "assets", target)
+        with open(filename, "wb") as f:
+            saved = length - len(source)
+            f.write(source)
+            print "info   : wrote assets/%s (compressed, %u bytes saved)" % (target, saved)
 
 
 def page_scripts():
