@@ -71,7 +71,7 @@ def join_path(src, dst):
     src.pop()
 
     for part in dst.split("/"):
-        if part == "/":
+        if part == "":
             src = ["input"]
         elif part == "..":
             src.pop()
