@@ -34,8 +34,8 @@ OG_DEFAULT_IMAGE = "http://www.chistoe-nebo.info/images/opengraph.png"
 from plugins.yandex_metrika import *
 YANDEX_METRIKA_ID = "27824553"
 
-from plugins.google_analytics import *
-GOOGLE_ANALYTICS_ID = "UA-7814794-2"
+#from plugins.google_analytics import *
+#GOOGLE_ANALYTICS_ID = "UA-7814794-2"
 
 #from plugins.photopages import *
 #PHOTO_PAGE_TEMPLATE = "photo_template.md"
