@@ -65,8 +65,12 @@ a {
 
 #content > figure {
 	width: 1000px;
-	margin: 0 0 1.5em;
+	margin: 20px 0 1.5em;
 	padding: 0;
+}
+#content > figure img {
+	border-top: solid 2px #444;
+	border-bottom: solid 2px #444;
 }
 #content > figure > figuredesc {
 	font-style: italic;
