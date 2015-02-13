@@ -4,6 +4,7 @@ summary: Карта интересных мест внутри поселени�
 script: http://maps.google.com/maps/api/js?v=3&amp;sensor=false
 script: http://api-maps.yandex.ru/2.0/?load=package.map&lang=ru-RU
 script: /assets/leaflet.js
+comments: yes
 ---
 На этой карте отмечены интересные места внутри поселения и некоторые за его пределами.
 
