@@ -72,13 +72,22 @@ def add_body(html, page, disqus_id):
     return html.replace("</body>", script + "</body>")
 
 
+def is_page_commentable(page):
+    f = macros("is_page_commentable")
+    if f is not None:
+        return f(page)
+
+    return "draft" not in get_page_labels(page)
+
+
 def hook_html_disqus(html):
     """Inject required HTML code to pages that have comments enabled (i.e., not
     explicitly disabled by the comments:no property)."""
     disqus_id = macros("DISQUS_ID")
     if disqus_id:
         page = macros("page")
-        if "draft" not in get_page_labels(page):
+
+        if is_page_commentable(page):
             html = add_header(html, page, disqus_id)
             html = add_body(html, page, disqus_id)
     return html
@@ -89,7 +98,7 @@ def comments():
     page does not disable them.  Requires DISQUS_ID to be set in macros.py,
     otherwise produces a warning."""
     page = macros("page")
-    if page.get("comments", "yes") == "yes" and "draft" not in get_page_labels(page):
+    if is_page_commentable(page):
         if macros("DISQUS_ID") is None:
             print >> sys.stderr, "warning: %s uses comments, " \
                 "but DISQUS_ID not set in macros.py" % page.fname

@@ -19,6 +19,9 @@ STOP_LABELS = ["draft", "status", "link", "queue"]
 
 from plugins import *
 
+from plugins.disqus import *
+DISQUS_ID = "chistoenebo"
+
 from plugins.simple_menu import *
 #SIMPLE_MENU_FIXED = [("volunteer/", u"Волонтёрам", None, 60, None)]
 
@@ -512,6 +515,16 @@ def page_scripts():
             output += u"<link rel='stylesheet' type='text/css' href='%s'/>\n" % v
 
     return output
+
+
+def is_page_commentable(page):
+    if page.get("comments") != "yes":
+        return False
+
+    if "draft" in get_page_labels(page):
+        return False
+
+    return True
 
 
 def prepare_square_photos():
