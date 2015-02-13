@@ -59,6 +59,12 @@ ul.tiles_4col li {
 	width: 240px;
 	margin-left: 13px;
 }
+ul.tiles_4col li > a {
+	display: block;
+	width: 242px;
+	height: 162px;
+	line-height: 0;
+}
 
 ul.tiles img.picture {
 	background-color: #eee;

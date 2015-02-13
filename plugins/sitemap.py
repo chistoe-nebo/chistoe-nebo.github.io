@@ -57,6 +57,9 @@ class Sitemap(object):
             if set(labels) & set(self.stop_labels):
                 continue
 
+            if page.get("hidden") == "yes":
+                continue
+
             self.pages.append(page)
 
             if "image" in page:

@@ -31,6 +31,8 @@ OG_LOCALITY = "Sebezh"
 OG_EMAIL = "hex@umonkey.net"
 OG_DEFAULT_IMAGE = "http://www.chistoe-nebo.info/images/opengraph.png"
 
+from plugins.typo import *
+
 from plugins.yandex_metrika import *
 YANDEX_METRIKA_ID = "27824553"
 
@@ -86,14 +88,6 @@ pages = []
 
 
 # Place your own Poole hooks here.
-
-
-def typo(text):
-    text = text.replace(u".  ", u".&nbsp; ")
-    text = text.replace(u" - ", u"&nbsp;— ")
-    text = text.replace(u" -- ", u"&nbsp;— ")
-    text = re.sub(u"\.\s+([А-Я])", u".&nbsp; \\1", text)
-    return text
 
 
 def fix_url(url):
@@ -202,6 +196,9 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
     tiles = []
 
     for page in sorted(pages, key=lambda p: p.get(sort), reverse=reverse):
+        if page.get("hidden") == "yes":
+            continue
+
         labels = get_page_labels(page)
 
         if "draft" in labels:
@@ -398,15 +395,20 @@ def embed_video():
     return html
 
 
-def hook_postconvert_other_residents():
+def find_residents():
     label = "residents"
-
     residents = [p for p in pages
-                 if label in get_page_labels(p)]
+                 if label in get_page_labels(p)
+                 and p.get("hidden") != "yes"]
     residents.sort(key=lambda p: p["title"].lower())
+    return residents
+
+
+def hook_postconvert_other_residents():
+    residents = find_residents()
 
     for page in pages:
-        if label not in get_page_labels(page):
+        if "residents" not in get_page_labels(page):
             continue
 
         tiles = [{
@@ -436,10 +438,6 @@ def meta(key):
         print "warning: page %s has no meta header '%s'" % (page.fname, key)
     else:
         return page[key]
-
-
-def hook_html_typo(html):
-    return typo(html)
 
 
 def hook_html_99_minify(html):
