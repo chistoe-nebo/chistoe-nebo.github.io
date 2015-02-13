@@ -23,6 +23,7 @@ ul.tiles .description {
 	font-size: 14px;
 	line-height: 20px;
 	color: gray;
+	margin-top: 5px;
 }
 ul.tiles .description .title {
 	color: black;
