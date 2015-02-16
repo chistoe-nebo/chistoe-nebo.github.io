@@ -455,7 +455,7 @@ def find_files(root, suffix=None):
         for file in files:
             if suffix is None or file.endswith(suffix):
                 result.append(os.path.join(folder, file))
-    return result
+    return sorted(result)
 
 
 def compress_files(files):
