@@ -1,6 +1,8 @@
 title: Саша и Света Гусевы
+list_title: Саша и Света
+list_text: Увлекаются автомобилями.
 labels: residents
-thumbnail: seeother.jpg
+thumbnail: thumbnail.jpg
 wideimage: bridge.jpg
 widetext: Зимуют в поселении с 2014 года.  Увлекаются автомобилями.  Работают в поселении, строят дом из профилированного бруса.  В планах баня и авторемонтная мастерская.
 keywords: переезд на землю, переезд, дауншифтинг
