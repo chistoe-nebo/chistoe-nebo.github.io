@@ -2,6 +2,7 @@ title: Таня Трофимова
 list_title: Таня Трофимова
 list_text: Научит шить одежду, от начала до конца.
 labels: residents
+hidden: yes
 thumbnail: face.jpg
 wideimage: wide.jpg
 keywords: швея, вышивка, шитьё, выкройка, мастер-класс, жители, экопоселенцы
