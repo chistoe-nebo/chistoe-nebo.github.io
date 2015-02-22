@@ -74,7 +74,7 @@ def get_page_image(page):
 
     page_url = urlparse.urljoin(base_url, page.url)
 
-    for k in ("image", "thumbnail", "picture"):
+    for k in ("og_image", "wideimage", "image", "thumbnail", "picture"):
         if page.get(k):
             image_url = urlparse.urljoin(page_url, page[k])
             return fix_url(image_url)
