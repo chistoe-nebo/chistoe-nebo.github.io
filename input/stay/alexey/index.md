@@ -22,7 +22,6 @@ comments: yes
 [Другие варианты размещения](/stay/)
 
 {{ album4("""
-guesthouse.jpg;;Гостевой дом
 house.jpg;;Дом хозяев
 bath.jpg;;Баня
 """) }}
