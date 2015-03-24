@@ -39,9 +39,6 @@ from plugins.typo import *
 from plugins.yandex_metrika import *
 YANDEX_METRIKA_ID = "27824553"
 
-#from plugins.google_analytics import *
-#GOOGLE_ANALYTICS_ID = "UA-7814794-2"
-
 #from plugins.photopages import *
 #PHOTO_PAGE_TEMPLATE = "photo_template.md"
 #PHOTO_INCLUDE_PATTERN = "^photo/[^/]+\.jpg$"
