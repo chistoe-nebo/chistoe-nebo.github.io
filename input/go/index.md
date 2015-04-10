@@ -35,6 +35,7 @@ pos-bor.jpg;http://poselenia.ru/poselenie/2798?from=nebo;Сосновый бор
 pos-opolie.jpg;http://www.rodovoepomestje.narod.ru/?from=nebo;Ополье;Формирующееся поселение в 150 км от Пскова.
 pos-zemlya.jpg;https://vk.com/club20213963;Светлая земля;Развивающееся родовое поселение в Новоржевском районе.
 pos-dubravnoe.jpg;https://vk.com/dubravnoe;Дубравное;Экопоселение в 30 км от порхова.
+pos-red-gorka.jpg;http://eco-derevnja.narod.ru/;Красная горка;Экодеревня в 60 км от Пскова, с православным уклоном.
 """) }}
 
 Знаете ещё интересные места?  Пишите на <hex@umonkey.net>.
