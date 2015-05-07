@@ -18,3 +18,8 @@ summary: Коллекция видеозаписей о жизни в посел
 ## Природа
 
 {{ video_album4("nature") }}
+
+
+## Краеведение
+
+{{ video_album4("geography") }}
