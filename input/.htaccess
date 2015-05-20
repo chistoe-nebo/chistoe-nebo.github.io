@@ -1,9 +1,9 @@
-ErrorDocument 404 /error.html
-
-RedirectMatch ^/(wp-content/.*) http://blog.chistoe-nebo.org/$1
-
-RewriteCond %{HTTP_HOST} =chistoe-nebo.org [NC]
-RewriteRule ^(.*)$ http://www.chistoe-nebo.org/$1 [R=301,L]
-
-ExpiresActive on
-ExpiresDefault "access plus 1 week"
+#ErrorDocument 404 /error.html
+#
+#RedirectMatch ^/(wp-content/.*) http://blog.chistoe-nebo.org/$1
+#
+#RewriteCond %{HTTP_HOST} =chistoe-nebo.org [NC]
+#RewriteRule ^(.*)$ http://www.chistoe-nebo.org/$1 [R=301,L]
+#
+#ExpiresActive on
+#ExpiresDefault "access plus 1 week"
