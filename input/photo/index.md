@@ -59,8 +59,8 @@ nature-summer-4.jpg;;Дашково
 ## Животные
 
 {{ album4("""
+animals-goats.jpg;;Зима и Зебра
 maya.jpg;;Майя
-animals-goats.jpg;;Козлята
 animals-vector.jpg;;Вектор
 animals-kitten.jpg;;Котята
 animals-birds.jpg;;Мухоловки
