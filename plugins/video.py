@@ -73,6 +73,8 @@ def find_videos(label):
 
 
 def get_youtube_thumbnail_url(video_id):
+    return ["http://img.youtube.com/vi/%s/0.jpg" % video_id]
+
     url = "https://gdata.youtube.com/feeds/api/videos/%s" % video_id
 
     print "warning: fetching %s" % url
