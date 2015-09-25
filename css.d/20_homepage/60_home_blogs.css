@@ -49,3 +49,6 @@ body.home #blogs li.ava_vitaly {
 body.home #blogs li.ava_vova {
 	background-image: url(/images/ava_vladimir.jpg);
 }
+body.home #blogs li.ava_lev {
+	background-image: url(/images/ava_lev.jpg);
+}
