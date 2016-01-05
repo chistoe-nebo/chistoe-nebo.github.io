@@ -35,6 +35,7 @@ import posixpath
 import urllib
 import re
 import shutil
+import socket
 import StringIO
 import sys
 import time
@@ -390,6 +391,9 @@ class Page(dict):
 
         self.html = ""
 
+        self._labels = None
+        self._images = None
+
     def __getattr__(self, name):
         """Attribute-style access to dictionary items."""
         try:
@@ -403,6 +407,23 @@ class Page(dict):
             return "<page fname=%s (virtual)>" % self.fname
         else:
             return "<page fname=%s>" % self.fname
+
+    def get_labels(self):
+        if self._labels is None:
+            labels = self.get("labels")
+            self._labels = labels.split() if labels else []
+        return self._labels
+
+    def find_images(self):
+        if self._images is None:
+            folder = os.path.dirname(self.fname)
+            files = os.listdir(folder)
+
+            valid = (".jpg", ".png", ".gif")
+            match = lambda fn: os.path.splitext(fn)[1].lower() in valid
+            self._images = filter(match, files)
+
+        return self._images
 
 # -----------------------------------------------------------------------------
 
@@ -510,6 +531,15 @@ def build(project, opts):
     macros["Page"] = Page
 
     # -------------------------------------------------------------------------
+    # run init hooks in macro module (named 'once' before)
+    # -------------------------------------------------------------------------
+
+    hooks = [a for a in macros if a.startswith("hook_init_")]
+    for fn in sorted(hooks):
+        print("info   : executing %s" % fn)
+        macros[fn]()
+
+    # -------------------------------------------------------------------------
     # process input files
     # -------------------------------------------------------------------------
 
@@ -525,7 +555,9 @@ def build(project, opts):
             if re.search(opts.ignore, opj(cwd_site, sdir)):
                 dirs.remove(sdir)
             else:
-                os.mkdir(opj(dir_out, cwd_site, sdir))
+                dirname = opj(dir_out, cwd_site, sdir)
+                if not os.path.exists(dirname):
+                    os.mkdir(dirname)
         for f in files:
             if re.search(opts.ignore, opj(cwd_site, f)):
                 pass
@@ -664,8 +696,14 @@ def serve(project, port):
         if k in (".js", ):
             m[k] += "; charset=utf-8"
 
-    server = HTTPServer(('', port), RequestHandler)
-    server.serve_forever()
+    while True:
+        try:
+            server = HTTPServer(('', port), RequestHandler)
+            server.serve_forever()
+        except socket.error, e:
+            print("warning: port %u is taken, trying %u." % (port, port + 1))
+            port += 1
+
 
 # =============================================================================
 # options

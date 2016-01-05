@@ -72,6 +72,8 @@ YANDEX_METRIKA_ID = "27824553"
 from plugins.rdfa import *
 
 from plugins.video import *
+from plugins.residents import *
+from plugins.images import *
 
 #from plugins.microblog import *
 MICROBLOG_SOURCE = "input/microblog.txt"
@@ -199,7 +201,7 @@ def tiles_by_pattern(pattern, columns=3, sort="title", reverse=False, limit=None
         if page.get("hidden") == "yes":
             continue
 
-        labels = get_page_labels(page)
+        labels = page.get_labels()
 
         if "draft" in labels:
             continue
@@ -318,28 +320,6 @@ def page_title():
     return title
 
 
-def wide_image():
-    img = page.get("wideimage")
-    if not img:
-        return ""
-
-    img = join_path(page.url, img)
-
-    if page.get("widetext"):
-        html = u"<div class='wide'>"
-        html += u"<div class='image' style='background-image:url(/%s)'></div>" % img
-        html += u"<div class='text'>"
-        html += u"<h1>%s</h1>" % page["title"]
-        html += u"<p>%s</p>" % page["widetext"]
-        html += u"</div>"
-    else:
-        html = u"<div class='wide' style='background-image:url(/%s)'>" % img
-
-    html += u"</div>\n"
-
-    return html
-
-
 def strip_ws(html):
     html = re.sub(r"</div>\s+<", "</div><", html, re.M)
     return html
@@ -393,44 +373,6 @@ def embed_video():
         html += u"<div class='nav'>%s</div>" % nav_html
 
     return html
-
-
-def find_residents():
-    label = "residents"
-    residents = [p for p in pages
-                 if label in get_page_labels(p)
-                 and p.get("hidden") != "yes"]
-    residents.sort(key=lambda p: p["title"].lower())
-    return residents
-
-
-def hook_postconvert_other_residents():
-    residents = find_residents()
-
-    for page in pages:
-        if "residents" not in get_page_labels(page):
-            continue
-
-        tiles = [{
-            "image": join_path(res.fname, res["thumbnail"]),
-            "link": res.url,
-            "title": res["title"],
-        } for res in residents
-          if res.fname != page.fname]
-
-        if not tiles:
-            continue
-
-        tiles_html = Tiles([(None, tiles)], (75, 75)).render(
-                           css_class="other_residents",
-                           columns=100)
-
-        bonus = u"<div class='other'>"
-        bonus += u"<h3>Познакомьтесь и с другими нашими жителями:</h3>"
-        bonus += tiles_html
-        bonus += u"</div>"
-
-        page.html += bonus
 
 
 def meta(key):

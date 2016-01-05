@@ -72,6 +72,7 @@ photo-14.jpg
  <th>2012</th>
  <th>2013</th>
  <th>2014</th>
+ <th>2015</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -84,6 +85,7 @@ photo-14.jpg
  <td>7</td>
  <td>13</td>
  <td>16</td>
+ <td>19</td>
 </tr>
 <tr>
  <th>Человек</th>
@@ -95,6 +97,7 @@ photo-14.jpg
  <td>20</td>
  <td>36</td>
  <td>46</td>
+ <td>50</td>
 </tr>
 </tbody></table>
 

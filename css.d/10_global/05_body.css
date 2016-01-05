@@ -52,6 +52,9 @@ a {
 	color: #080;
 }
 
+#content {
+	overflow: hidden;
+}
 #content p.hint {
 	color: gray;
 	font-size: 14px;

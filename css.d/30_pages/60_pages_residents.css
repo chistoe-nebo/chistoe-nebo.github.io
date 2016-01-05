@@ -27,6 +27,10 @@ body.residents .wide .image {
 	background-size: cover;
 }
 
+body.residents.wide_left .wide .image {
+	background-position: 0 50%;
+}
+
 body.residents .wide .image {
 	position: absolute;
 	top: 0;

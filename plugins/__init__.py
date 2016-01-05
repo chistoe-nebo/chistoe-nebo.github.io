@@ -179,8 +179,11 @@ def html_body_attrs():
     """Returns a string which adds page-specific classes to an HTML node."""
     page = macros("page")
 
-    classes = get_page_labels(page)
+    classes = page.get_labels()
     classes.append(re.sub("[-./]", "_", page["url"]).replace("_index_html", ""))
+
+    if "body_class" in page:
+        classes.append(page["body_class"])
 
     for k, v in page.items():
         if k.startswith("_"):
@@ -198,19 +201,13 @@ def get_page_image_path(page, image=None):
     elif "poster" in page:
         image = page["poster"]
     else:
-        return None
+        image = "_thumbnail.jpg"
 
-    if image.startswith("/"):
-        image = os.path.join("input", image[1:])
+    image_path = join_path(page.fname, image)
+    if not os.path.exists(image_path):
+        raise RuntimeError("source file %s not found, refered in %s." % (image_path, page.fname))
 
-    else:
-        base = os.path.dirname(page.fname)
-        image = os.path.join(base, image)
-
-    if not os.path.exists(image):
-        raise RuntimeError("source file %s not found, refered in %s." % (image, page.fname))
-
-    return image
+    return image_path
 
 
 class Page(object):
@@ -342,6 +339,9 @@ class Thumbnail(object):
         self.tmp_path = os.path.expanduser("cache/thumbnails/%s" % output_name)
 
         if is_older(self.tmp_path, self.src_path):
+            img = Image.open(self.tmp_path)
+            self.width = img.size[0]
+            self.height = img.size[1]
             return True
 
         try:
@@ -376,9 +376,10 @@ class Thumbnail(object):
 
         img.filter(ImageFilter.SHARPEN)
 
-        if not os.path.exists("output/thumbnails"):
-            os.makedirs("output/thumbnails")
-            print "info   : created folder output/thumbnails."
+        output = macros("output") + "/thumbnails"
+        if not os.path.exists(output):
+            os.makedirs(output)
+            print "info   : created folder %s." % output
 
         img.save(self.tmp_path, "JPEG", quality=90)
         print "debug  : wrote %s" % self.tmp_path
@@ -387,6 +388,9 @@ class Thumbnail(object):
         self.height = new_height
 
         return True
+
+    def get_url(self):
+        return self.web_path
 
 
 class Tiles(object):
@@ -517,6 +521,23 @@ def find_sibling(pages, current):
         last = page
 
     return prev, next
+
+
+def element(name, attrs, contents=None):
+    html = u"<%s" % name
+
+    deutf = lambda s: unicode(s, "utf-8") if isinstance(s, str) else unicode(s)
+
+    for k, v in sorted(attrs.items()):
+        if v:
+            html += u" %s=\"%s\"" % (k, deutf(v))
+
+    if contents:
+        html += u">%s</%s>" % (deutf(contents), name)
+    else:
+        html += u" />"
+
+    return html
 
 
 __all__ = [
