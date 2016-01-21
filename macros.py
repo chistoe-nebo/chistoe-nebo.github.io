@@ -11,6 +11,8 @@ import shutil
 import sys
 import time
 
+from plugins.thumbnails import *
+
 
 BASE_URL = "http://www.chistoe-nebo.info"
 WEBSITE_NAME = u"Поселение Чистое небо"
@@ -482,7 +484,7 @@ def prepare_square_photos():
         dst = name + ".sq.jpg"
 
         if not os.path.exists(dst):
-            tn = Thumbnail(src, width=75, height=75, fit=True)
+            tn = Thumbnail(src, width=75, height=75)
             shutil.copy(tn.tmp_path, dst)
             print "info   : created %s" % dst
 

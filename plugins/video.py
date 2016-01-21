@@ -13,8 +13,10 @@ import subprocess
 import sys
 
 from plugins import macros, get_page_date, get_page_labels, \
-    fix_url, safedict, Thumbnail, Tiles, get_page_image_path, \
+    fix_url, safedict, Tiles, get_page_image_path, \
     fetch, join_path
+
+from thumbnails import Thumbnail
 
 
 __author__ = "Justin Forest"

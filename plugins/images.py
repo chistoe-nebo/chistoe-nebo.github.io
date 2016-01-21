@@ -3,7 +3,8 @@
 
 import urlparse
 
-from plugins import Thumbnail, element, macros
+from plugins import element, macros
+from thumbnails import Thumbnail
 
 
 __all__ = ["image"]
@@ -22,7 +23,7 @@ def image(url, title=None, description=None, width=None, cls=None):
     image_url = urlparse.urljoin(page.url, url)
     image_path = "input/" + image_url.lstrip("/")
 
-    thumbnail = Thumbnail(image_path, width=width, height=width, fit=False)
+    thumbnail = Thumbnail(image_path, width=width, height=width)
 
     html = element("img", {
         "src": thumbnail.get_url(),

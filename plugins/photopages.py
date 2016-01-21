@@ -34,8 +34,10 @@ from PIL import Image
 import markdown
 
 from plugins import Page
-from plugins import macros, fix_url, fix_url_unicode, get_page_date, Tiles, Thumbnail
+from plugins import macros, fix_url, fix_url_unicode, get_page_date, Tiles
 from plugins import get_page_labels
+
+from thumbnails import Thumbnail
 
 
 __author__ = "Justin Forest"

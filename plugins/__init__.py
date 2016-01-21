@@ -24,6 +24,9 @@ import time
 import urllib
 import urlparse
 
+from thumbnails import Thumbnail
+from util import *
+
 
 def fetch(url):
     res = urllib.urlopen(url)
@@ -274,125 +277,6 @@ class Page(object):
             f.write(self.body.encode("utf-8"))
 
 
-class Thumbnail(object):
-    def __init__(self, src_path, width=300, height=200, fit=True):
-        """Creates a thumbnail from the specified file."""
-        self.src_path = src_path
-        self.tmp_path = None
-        self.web_path = None
-        self.width = None
-        self.height = None
-
-        if not self.prepare(width, height, fit):
-            print "warning: could not prepare thumbnail from %s" % src_path
-            return
-
-        if not is_older(self.web_path, src_path):
-            output = macros("output")
-            if output:
-                tpath = output + "/thumbnails"
-                makedir(tpath)
-                shutil.copy(self.tmp_path, macros("output") + "/" + self.web_path)
-                # print "debug  : wrote %s" % self.web_path
-
-    @classmethod
-    def from_url(cls, url, *args, **kwargs):
-        """Loads a remote image and prepares it for thumbnailing.  Remote files
-        are cached locally, for subsequent thumbnailing attempts to be quicker."""
-        cache_id = hashlib.md5(url).hexdigest()
-        cache_ext = url.split(".")[-1].lower()
-
-        cache_dir = os.path.expanduser("cache/thumbnails")
-        if not os.path.exists(cache_dir):
-            os.makedirs(cache_dir)
-
-        cache_path = os.path.expanduser("%s/remote-%s.%s" \
-            % (cache_dir, cache_id, cache_ext))
-        if not os.path.exists(cache_path):
-            res = urllib.urlopen(url)
-            if res.getcode() != 200:
-                raise RuntimeException("Error fetching %s" % url)
-            with open(cache_path, "wb") as f:
-                f.write(res.read())
-                print "info   : downloaded %s" % url
-
-        return cls(cache_path, *args, **kwargs)
-
-    @classmethod
-    def from_file(cls, filename, *args, **kwargs):
-        return cls(filename, *args, **kwargs)
-
-    def prepare(self, width, height, fit):
-        """Returns a path to the thumbnail image, which is stored in
-        output/thumbnails.  The returned file is named like
-        'thumbnails/md5,w,h.ext'."""
-
-        output_id = hashlib.md5(utf(self.src_path)).hexdigest()
-        output_name = "%s,%u,%u,%u.jpg" % (output_id,
-            int(width), int(height), int(fit))
-
-        cache_dir = os.path.expanduser("cache/thumbnails")
-        if not os.path.exists(cache_dir):
-            os.makedirs(cache_dir)
-
-        self.web_path = "thumbnails/%s" % output_name
-        self.tmp_path = os.path.expanduser("cache/thumbnails/%s" % output_name)
-
-        if is_older(self.tmp_path, self.src_path):
-            img = Image.open(self.tmp_path)
-            self.width = img.size[0]
-            self.height = img.size[1]
-            return True
-
-        try:
-            img = Image.open(self.src_path)
-        except Exception, e:
-            print "error  : could not open %s: %s" % (self.src_path, e)
-            return False
-
-        ratio = float(img.size[0]) / float(img.size[1])
-
-        new_width = width
-        new_height = int(new_width / ratio)
-
-        if fit and new_height < height:
-            new_height = height
-            new_width = new_height * ratio
-        elif not fit and new_height > height:
-            new_height = height
-            new_width = new_height * ratio
-
-        img = img.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
-
-        if fit:
-            if new_width > width:
-                shift = int((new_width - width) / 2)
-                crop = (shift, 0, shift + width, height)
-            else:
-                shift = (new_height - height) / 2
-                crop = (0, shift, width, shift + height)
-
-            img = img.crop(crop)
-
-        img.filter(ImageFilter.SHARPEN)
-
-        output = macros("output") + "/thumbnails"
-        if not os.path.exists(output):
-            os.makedirs(output)
-            print "info   : created folder %s." % output
-
-        img.save(self.tmp_path, "JPEG", quality=90)
-        print "debug  : wrote %s" % self.tmp_path
-
-        self.width = new_width
-        self.height = new_height
-
-        return True
-
-    def get_url(self):
-        return self.web_path
-
-
 class Tiles(object):
     def __init__(self, items, thumbnail_size=None):
         self.items = items
@@ -436,7 +320,7 @@ class Tiles(object):
                 else:
                     raise ValueError("a tile lacks image/image_url.")
 
-                image = t.web_path
+                image = t.get_url()
 
                 item_class = "col{0}".format(idx % columns)
                 if idx == 0:
@@ -449,7 +333,7 @@ class Tiles(object):
                 output += u"<li class='{0}' itemscope='itemscope' " \
                           u"itemtype='http://schema.org/ImageObject'>".format(item_class)
 
-                img = u"<img itemprop='contentUrl' src='/%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
+                img = u"<img itemprop='contentUrl' src='%s' alt='%s' class='picture'/>" % (image, title or "thumbnail")
 
                 if link:
                     if "://" not in link and not link.startswith("/"):
@@ -555,6 +439,5 @@ __all__ = [
     "macros",
     "Page",
     "safedict",
-    "Thumbnail",
     "Tiles",
 ]
