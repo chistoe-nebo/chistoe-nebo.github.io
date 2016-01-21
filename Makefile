@@ -14,12 +14,9 @@ build:
 	python -u poole.py --build | tee build.log
 	grep -E '^(error|warning)' build.log || true
 	cp input/.htaccess output/
-	-notify-send -i info chistoe-nebo.info "Web site rebuilt."
 
-deploy:
-	-hg push
-	@#rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
-	ssh $(REMOTE_HOST) ./refresh
+deploy: build
+	rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
 
 push-docs:
 	hg addremove doc
