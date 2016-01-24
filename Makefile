@@ -14,6 +14,7 @@ build:
 	python -u poole.py --build | tee build.log
 	grep -E '^(error|warning)' build.log || true
 	cp input/.htaccess output/
+	find output -type f -exec chmod 664 {} \;
 
 deploy: build
 	rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
