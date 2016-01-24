@@ -285,6 +285,17 @@ def purge_backups():
         shutil.rmtree(dirname)
 
 
+def get_finfo(src):
+    if not os.path.isdir(src):
+        src = os.path.dirname(src)
+    src = os.path.join(src, "dirinfo.txt")
+    if not os.path.exists(src):
+        return {}
+
+    raw_data = codecs.open(src, "rb", "utf-8").read()
+    return dict([l.split(" ", 1) for l in raw_data.splitlines()])
+
+
 def init(project):
     """Initialize a site project."""
 
@@ -421,14 +432,35 @@ class Page(dict):
 
             valid = (".jpg", ".png", ".gif")
             match = lambda fn: os.path.splitext(fn)[1].lower() in valid
-            self._images = filter(match, files)
+            names = sorted(filter(match, files),
+                           key=lambda fn: fn.lower())
+
+            desc = get_finfo(self.fname)
+
+            self._images = [{
+                "name": name,
+                "path": os.path.join(os.path.dirname(self.fname), name),
+                "url": urlparse.urljoin(self.url, name),
+                "description": desc.get(name),
+            } for name in names]
 
         return self._images
+
+    def is_hidden(self):
+        if self.get("hide") == "yes":
+            return True
+        if self.get("hidden") == "yes":
+            return True
+        if "draft" in self.get_labels():
+            return True
+        return False
 
 # -----------------------------------------------------------------------------
 
 def build(project, opts):
     """Build a site project."""
+
+    started_at = time.time()
 
     # -------------------------------------------------------------------------
     # utilities
@@ -649,7 +681,11 @@ def build(project, opts):
 
         # apply final hooks
         for fn in html_hooks:
-            out = macros[fn](out)
+            try:
+                out = macros[fn](out)
+            except Exception, e:
+                print "warning: %s failed for page %s: %s" % (fn, page.fname, e)
+                raise
 
         # write HTML page
         fname = page.fname.replace(dir_in, dir_out)
@@ -666,7 +702,8 @@ def build(project, opts):
         print("info   : executing %s" % fn)
         macros[fn]()
 
-    print("success: built project")
+    elapsed = time.time() - started_at
+    print("success: built project in %u seconds" % int(elapsed))
 
     symlink_output(dir_out)
 
