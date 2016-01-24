@@ -167,8 +167,14 @@ def hook_html_opengraph(html):
 
     images = page.find_images()
     if images:
-        image_path = images[0]["path"]
-        image_url = images[0]["url"]
+        image = images[0]
+
+        for img in images:
+            if img["name"] == page.get("image"):
+                image = img
+
+        image_path = image["path"]
+        image_url = image["url"]
         image_url = urlparse.urljoin(macros("BASE_URL"), image_url)
         add_tag("og:image", fix_url(image_url))
 
