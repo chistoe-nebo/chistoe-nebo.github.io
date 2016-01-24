@@ -459,10 +459,15 @@ def page_scripts():
 
 
 def is_page_commentable(page):
-    if page.get("comments") != "yes":
+    labels = page.get_labels()
+
+    if "draft" in labels:
         return False
 
-    if "draft" in get_page_labels(page):
+    if "residents" in labels:
+        return True
+
+    if page.get("comments") != "yes":
         return False
 
     return True
