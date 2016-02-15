@@ -223,21 +223,20 @@ def hook_html_twitter_cards(html):
     if page.is_hidden():
         return html
 
-    if "item" in page.get_labels():
-        # https://cards-dev.twitter.com/validator
-        add = u"<meta name='twitter:card' content='summary_large_image'/>\n"
-        add += u"<meta name='twitter:site' content='@umonkey'/>\n"
-        add += u"<meta name='twitter:creator' content='@umonkey'/>\n"
-        """
-        # No need to duplicate -- OGP fallback works.
-        add += u"<meta name='twitter:title' content='%s'/>\n" % page["title"]
-        if page.get("summary"):
-            add += u"<meta name='twitter:description' content='%s'/>\n" % page["summary"]
-        for image in page.find_images():
-            add += u"<meta name='twitter:image' content='%s/%s'/>\n" \
-                % (macros("BASE_URL"), image["url"])
-        """
-        html = html.replace("</head>", add + "</head>")
+    # https://cards-dev.twitter.com/validator
+    add = u"<meta name='twitter:card' content='summary_large_image'/>\n"
+    add += u"<meta name='twitter:site' content='@umonkey'/>\n"
+    add += u"<meta name='twitter:creator' content='@umonkey'/>\n"
+
+    # No need to duplicate -- OGP fallback works.
+    add += u"<meta name='twitter:title' content='%s'/>\n" % page["title"]
+    if page.get("summary"):
+        add += u"<meta name='twitter:description' content='%s'/>\n" % page["summary"]
+    for image in page.find_images():
+        add += u"<meta name='twitter:image' content='%s/%s'/>\n" \
+            % (macros("BASE_URL"), image["url"])
+
+    html = html.replace("</head>", add + "</head>")
 
     return html
 
