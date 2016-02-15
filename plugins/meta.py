@@ -232,9 +232,12 @@ def hook_html_twitter_cards(html):
     add += u"<meta name='twitter:title' content='%s'/>\n" % page["title"]
     if page.get("summary"):
         add += u"<meta name='twitter:description' content='%s'/>\n" % page["summary"]
+
+    """
     for image in page.find_images():
         add += u"<meta name='twitter:image' content='%s/%s'/>\n" \
             % (macros("BASE_URL"), image["url"])
+    """
 
     html = html.replace("</head>", add + "</head>")
 
