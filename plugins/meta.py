@@ -26,7 +26,7 @@ __email__ = "hex@umonkey.net"
 __license__ = "GPL"
 
 import cgi
-import Image
+from PIL import Image
 import mimetypes
 import os
 import re

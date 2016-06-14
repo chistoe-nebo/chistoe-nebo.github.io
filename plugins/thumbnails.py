@@ -1,8 +1,7 @@
 # encoding=utf-8
 
 import hashlib
-import Image
-import ImageFilter
+from PIL import Image, ImageFilter
 import os
 
 from util import macros

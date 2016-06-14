@@ -18,7 +18,7 @@ Result:
 
 from __future__ import print_function
 
-import Image
+from PIL import Image
 import os
 import re
 import urlparse

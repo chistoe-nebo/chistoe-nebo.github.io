@@ -14,8 +14,8 @@ the plugin script, or look for warnings during the build process.
 
 
 import hashlib
-import Image
-import ImageFilter
+from PIL import Image
+from PIL import ImageFilter
 import os
 import re
 import shutil
