@@ -16,9 +16,6 @@ summary: Гостевой дом в поселении Чистое небо, э
 03.jpg
 """) }}
 
-Контакты:
-
-- <leolits@gmail.com>
-- https://vk.com/leolits
+Контакты: [email](mailto:leolits@gmail.com), [vk.com](https://vk.com/leolits).
 
 [Другие варианты размещения](/stay/)
