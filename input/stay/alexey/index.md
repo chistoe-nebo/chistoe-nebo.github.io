@@ -3,7 +3,7 @@ list_title: Алексей и Галина
 list_text: Размещение в отдельной комнате хозяйского дома или в отдельном гостевом доме.  Есть баня.
 thumbnail: house.jpg
 icons: home, tents, sauna, boat, kids
-labels: stay
+labels: stay, draft
 keywords: загородный дом, экотуризм, агротуризм, дом в деревне, гостевой дом, экопоселение
 summary: Гостевой дом в поселении Чистое небо, экскурсии, беседы.
 comments: yes

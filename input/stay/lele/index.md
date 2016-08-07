@@ -1,5 +1,5 @@
 title: Гостевой дом Льва и Анны
-labels: stay
+labels: stay, draft
 list_title: Лев и Анна
 list_text: Размещение в хозяйском доме.  Есть душ, мобильный интернет.
 thumbnail: 01.jpg
