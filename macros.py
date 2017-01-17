@@ -14,7 +14,7 @@ import time
 from plugins.thumbnails import *
 
 
-BASE_URL = "http://www.chistoe-nebo.info"
+BASE_URL = "https://www.chistoe-nebo.info"
 WEBSITE_NAME = u"Поселение Чистое небо"
 DEFAULT_LANGUAGE = "ru"
 STOP_LABELS = ["draft", "status", "link", "queue"]
@@ -34,7 +34,7 @@ from plugins.meta import *
 OG_COUNTRY_NAME = "Russia"
 OG_LOCALITY = "Sebezh"
 OG_EMAIL = "hex@umonkey.net"
-OG_DEFAULT_IMAGE = "http://www.chistoe-nebo.info/images/opengraph.png"
+OG_DEFAULT_IMAGE = "https://www.chistoe-nebo.info/images/opengraph.png"
 
 from plugins.typo import *
 
