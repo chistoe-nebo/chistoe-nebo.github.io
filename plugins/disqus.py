@@ -62,9 +62,9 @@ def add_body(html, page, disqus_id):
     disqus_url = page.get("disqus_url", base_url + fix_url("/" + page.url))
 
     if page_has_comments(html):
-        script_url = "http://%s.disqus.com/embed.js" % disqus_id
+        script_url = "//%s.disqus.com/embed.js" % disqus_id
     elif '#disqus_thread' in page.html:
-        script_url = "http://%s.disqus.com/count.js" % disqus_id
+        script_url = "//%s.disqus.com/count.js" % disqus_id
     else:
         return html
 
