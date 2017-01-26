@@ -14,21 +14,20 @@
 
 ## Инструкции для редакторов
 
-- [Добавление видеозаписи](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_video.md)
-- [Добавление фотографии](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_photo.md)
-- [Отправка новости подписчикам](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_news_mail.md)
+- [Добавление видеозаписи](https://bitbucket.org/chistoe-nebo/website-info/src/default/doc/HOWTO_video.md)
+- [Добавление фотографии](https://bitbucket.org/chistoe-nebo/website-info/src/default/doc/HOWTO_photo.md)
+- [Отправка новости подписчикам](https://bitbucket.org/chistoe-nebo/website-info/src/default/doc/HOWTO_news_mail.md)
 
 Что-то непонятно?
-Пишите на <hex@umonkey.net> или в Skype (`justin.forest`).
+Пишите на <hex@umonkey.net>.
 
 
 ## Немного документации
 
-- [Описание внутренностей сайта](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Software.md)
-- [Инструкция по редактированию страниц](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/HOWTO_manage.md)
+- [Описание внутренностей сайта](https://bitbucket.org/chistoe-nebo/website-info/src/default/doc/Software.md)
+- [Инструкция по редактированию страниц](https://bitbucket.org/chistoe-nebo/website-info/src/default/doc/HOWTO_manage.md)
 
 
 ## Ссылки
 
-- [Тестовая версия сайта](http://nebo.dev.umonkey.net/)
-- [Источники идей по оформлению](https://bitbucket.org/umonkey/website-nebo-welcome/src/default/doc/Design.md)
+- [Источники идей по оформлению](https://bitbucket.org/chistoe-nebo/website-info/src/default/doc/Design.md)
