@@ -16,8 +16,9 @@ build:
 	cp input/.htaccess output/
 	find output -type f -exec chmod 664 {} \;
 
-deploy: build
-	rsync -e ssh -avz -c --delete -h output/ $(REMOTE_HOST):$(REMOTE_FOLDER)/
+deploy:
+	hg push || true
+	ssh static.umonkey.net ./bin/rebuild.sh chistoe-nebo.info
 
 push-docs:
 	hg addremove doc
