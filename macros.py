@@ -418,46 +418,6 @@ def compress_files(files):
     return length, source
 
 
-def hook_after_00_compress_css():
-    sources = find_files("css.d", ".css")
-    length, source = compress_files(sources)
-
-    filename = os.path.join(output, "assets", "screen.css")
-    with open(filename, "wb") as f:
-        saved = length - len(source)
-        f.write(source)
-        print "info   : wrote assets/screen.css (compressed, %u bytes saved)" % saved
-
-
-def hook_after_00_compress_js():
-    sources = []
-
-    for target in os.listdir("js.d"):
-        root = os.path.join("js.d", target)
-        sources = find_files(root, ".js")
-        length, source = compress_files(sources)
-
-        filename = os.path.join(output, "assets", target)
-        with open(filename, "wb") as f:
-            saved = length - len(source)
-            f.write(source)
-            print "info   : wrote assets/%s (compressed, %u bytes saved)" % (target, saved)
-
-
-def page_scripts():
-    if "script" not in page:
-        return ""
-
-    output = u""
-    for k, v in get_page_headers(page):
-        if k == "script":
-            output += u"<script type='text/javascript' src='%s'></script>\n" % v
-        elif k == "style":
-            output += u"<link rel='stylesheet' type='text/css' href='%s'/>\n" % v
-
-    return output
-
-
 def is_page_commentable(page):
     labels = page.get_labels()
 
@@ -471,6 +431,12 @@ def is_page_commentable(page):
         return False
 
     return True
+
+
+def hashof(fn):
+    with open(fn, "rb") as f:
+        data = f.read()
+    return hashlib.md5(data).hexdigest()
 
 
 def prepare_square_photos():

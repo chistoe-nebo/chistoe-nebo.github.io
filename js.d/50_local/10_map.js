@@ -76,25 +76,26 @@ jQuery(document).ready(function($){
 		});
 		map.fitBounds(get_bounds());
 
-		map.addControl(new L.Control.Scale());
-		map.addControl(new L.Control.Distance());
+		// map.addControl(new L.Control.Scale());
+		// map.addControl(new L.Control.Distance());
 
-		var base_osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		var base_osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 		  maxZoom: 18
 		});
 
-		var base_osm_fr = new L.TileLayer('http://{s}.tile.openstreetmap.fr/osmfr-lz/{z}/{x}/{y}.png', {
-		  attribution: 'Map data &copy; <a href="http://openstreetmap.fr">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-		  maxZoom: 20
+		// UNOFFICIAL HACK.
+		// http://stackoverflow.com/questions/9394190/leaflet-map-api-with-google-satellite-layer
+		var base_g = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+		  maxZoom: 20,
+		  subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+		  attribution: 'Map data &copy; Google'
 		});
 
-		var base_esri = new L.TileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		  attribution: 'Map data &copy; <a href="http://openstreetmap.fr">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+		var base_esri = new L.TileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		  attribution: 'Map data &copy; ESRI',
 		  maxZoom: 17
 		});
-
-		var base_yandex = new L.Yandex("satellite");
 
 		// При ctrl-клике выводим координаты точки.
 		map.on("click", function (e) {
@@ -110,17 +111,13 @@ jQuery(document).ready(function($){
 		  }
 		});
 
-		var base_google = new L.Google();
-
 		var ovl_buildings = L.layerGroup(points_of_type("building"));
 		var ovl_water = L.layerGroup(points_of_type("water"));
 		var ovl_food = L.layerGroup(points_of_type("food"));
 
 		var baseMaps = {
 		  "OpenStreetMap": base_osm,
-		  "OpenStreetMap France": base_osm_fr,
-		  "Google": base_google,
-		  "Яндекс": base_yandex,
+		  "Google": base_g,
 		  "ESRI": base_esri
 		};
 

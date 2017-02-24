@@ -49,7 +49,7 @@ def add_header(html, page, disqus_id):
     settings += u"var disqus_url = '%s'; " % page.get("disqus_url", disqus_url)
     settings += u"var disqus_shortname = '%s'; " % disqus_id
     settings += u"var disqus_identifier = '%s'; " % page.url
-    settings += u"var disqus_developer = (window.location.href.indexOf('http://127.0.0.1:') == 0); "
+    settings += u"var disqus_developer = (window.location.href.indexOf('http://nebo.local/') == 0); "
     settings += u"var disqus_title = '%s'; " % page["title"]
 
     header = "<script type='text/javascript'>%s</script>\n" % settings.strip()
