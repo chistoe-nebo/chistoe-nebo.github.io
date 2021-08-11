@@ -1,7 +1,7 @@
 body.map {
 }
 
-body.map #fullmap {
+body.map #map {
 	width: 100%;
 	height: 100%;
 	border: none;

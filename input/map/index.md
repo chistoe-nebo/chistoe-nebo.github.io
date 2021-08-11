@@ -1,1 +1,1 @@
-<div id="fullmap"></div>
+<div id="map"></div>
