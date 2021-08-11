@@ -4,6 +4,9 @@ DOCKER_OPTS=-v ${PWD}:/app
 build: docker
 	docker run --rm $(DOCKER_OPTS) $(IMAGE) make -C /app -f Makefile.site build
 
+deploy:
+	rsync -avzub --delete output/ neboinfo@doh3.umonkey.net:app/public/
+
 docker:
 	docker build -t $(IMAGE) -f build/Dockerfile .
 
