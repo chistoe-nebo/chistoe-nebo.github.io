@@ -889,6 +889,33 @@ body.home #sitemap {
 body.go #map {
 	border: solid 1px gray;
 }
+body.map {
+}
+
+body.map #fullmap {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+body.map #header,
+body.map #chead,
+body.map #footer {
+	display: none;
+}
+
+body.map #canvas {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+body.map #content {
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	line-height: 0;
+}
 body.plan .col li {
 	margin-bottom: .5em;
 	line-height: 1.25em;
