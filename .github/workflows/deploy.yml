@@ -12,9 +12,6 @@ jobs:
       SSH_ADDR: "neboinfo@doh3.umonkey.net"
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Set up SSH keys
         run: |
           mkdir -p ~/.ssh
@@ -28,6 +25,9 @@ jobs:
 
       - name: Check SSH access
         run: ssh ${SSH_ADDR} ls -lh
+
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Build and deploy the image
         run: make build
