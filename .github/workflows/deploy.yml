@@ -20,6 +20,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${SSH_KEY}" > ~/.ssh/id_dsa
           chmod 600 ~/.ssh/id_dsa
+          cat ~/.ssh/id_dsa
           echo "Host *" >> ~/.ssh/config
           echo " StrictHostKeyChecking = no" >> ~/.ssh/config
         env:
