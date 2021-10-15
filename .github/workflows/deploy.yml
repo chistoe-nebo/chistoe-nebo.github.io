@@ -19,6 +19,8 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${SSH_KEY}" > ~/.ssh/id_dsa
+          echo "Host *" >> ~/.ssh/config
+          echo " StrictHostKeyChecking = no" >> ~/.ssh/config
         env:
           SSH_KEY: ${{secrets.SSH_KEY}}
 
