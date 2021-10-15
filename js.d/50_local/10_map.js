@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-    if ($("body.go #map").length == 1) {
+    if ($("body.go #map, body.map #map").length == 1) {
         function mrk(p) {
           var m = L.marker([p[0], p[1]]);
           if (p[2])
@@ -74,6 +74,22 @@ jQuery(document).ready(function($){
           fullscreenControl: true
         });
         map.fitBounds(get_bounds());
+
+        L.control.ruler({
+            position: 'topleft',
+            lengthUnit: {
+                factor: 1000,
+                display: 'm',
+                decimal: 1,
+                label: 'Расстояние:'
+            },
+            angleUnit: {
+                display: '&deg;',
+                decimal: 2,
+                factor: null,
+                label: 'Азимут:'
+            }
+        }).addTo(map);
 
         // map.addControl(new L.Control.Scale());
         // map.addControl(new L.Control.Distance());
