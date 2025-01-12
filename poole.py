@@ -269,22 +269,6 @@ pre {
 }
 
 
-def symlink_output(real_path):
-    if os.path.islink("output"):
-        os.unlink("output")
-    elif os.path.isdir("output"):
-        shutil.rmtree("output")
-
-    os.symlink(real_path, "output")
-
-
-def purge_backups():
-    dirs = sorted(glob.glob(".output-*-*"))
-    for dirname in dirs[:-10]:
-        print("info   : removing old output directory %s" % dirname)
-        shutil.rmtree(dirname)
-
-
 def get_finfo(src):
     if not os.path.isdir(src):
         src = os.path.dirname(src)
@@ -531,11 +515,10 @@ def build(project, opts):
     # preparations
     # -------------------------------------------------------------------------
 
-    purge_backups()
-
     dir_in = opj(project, "input")
 
-    dir_out = opj(project, ".output-" + time.strftime("%Y%m%d-%H%M%S"))
+    dir_out = opj(project, "output")
+
     if not os.path.exists(dir_out):
         os.makedirs(dir_out)
 
@@ -704,8 +687,6 @@ def build(project, opts):
 
     elapsed = time.time() - started_at
     print("success: built project in %u seconds" % int(elapsed))
-
-    symlink_output(dir_out)
 
 
 # =============================================================================
